@@ -26,32 +26,35 @@
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background: #f3f4f6;
       display: flex;
       justify-content: center;
       min-height: 100vh;
     }
 
+    /* המוצר עכשיו על כל הדף (רוחב מלא, לא קופסה קטנה) */
     .shell {
       width: 100%;
-      max-width: 540px;
+      max-width: 1100px;
+      min-height: 100vh;
       background: white;
-      border-radius: 28px;
+      border-radius: 0;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      margin: 0 auto;
     }
 
     /* HEADER */
 
     .header {
-      padding: 18px 20px 14px;
+      padding: 18px 32px 14px;
       border-bottom: 1px solid #e5e7eb;
       background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 60%),
+        radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 60%),
         linear-gradient(to bottom, #ffffff, #f9fafb);
     }
 
@@ -85,7 +88,7 @@
     }
 
     .brand-main {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 700;
       color: #111827;
       letter-spacing: 0.5px;
@@ -107,10 +110,11 @@
     }
 
     .hero-text-main {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: #0f172a;
       margin-bottom: 4px;
+      margin-top: 4px;
     }
 
     .hero-text-sub {
@@ -121,7 +125,7 @@
     /* BODY */
 
     .body {
-      padding: 16px;
+      padding: 16px 24px 18px;
       background: #f9fafb;
       flex: 1;
       display: flex;
@@ -146,9 +150,27 @@
 
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 6px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .header {
+        padding: 16px 16px 12px;
+      }
+      .body {
+        padding: 14px 14px 16px;
+      }
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     .tool-card {
@@ -159,7 +181,7 @@
       cursor: pointer;
       transition: .15s ease;
       position: relative;
-      min-height: 70px;
+      min-height: 80px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -204,12 +226,13 @@
       border: 1px dashed #c7d2fe;
       padding: 8px 10px;
       line-height: 1.4;
+      margin-top: 8px;
     }
 
     /* FOOTER */
 
     .footer {
-      padding: 10px 14px;
+      padding: 10px 18px;
       background: #f9fafb;
       border-top: 1px solid #e5e7eb;
       font-size: 10px;
@@ -370,11 +393,11 @@
     }
 
     @media (max-width: 520px) {
-      body {
-        padding: 12px;
-      }
       .shell {
-        border-radius: 24px;
+        border-radius: 0;
+        box-shadow: none;
+        border-left: none;
+        border-right: none;
       }
       .modal {
         border-radius: 18px;
@@ -396,12 +419,12 @@
           </div>
         </div>
         <div class="pill">
-          גרסת Creator • לשימוש ומכירה ללקוחות
+          גרסת Creator • לשימוש אישי ולמכירה ללקוחות
         </div>
       </div>
 
       <div class="hero-text-main">
-        4 כפתורים שעוזרים לך להבין, להסביר ולמכור – בכל תחום.
+        4 כפתורים שעוזרים להבין, להסביר ולמכור – בכל תחום.
       </div>
       <div class="hero-text-sub">
         בוחרים כלי → מעתיקים את הטקסט → מדביקים ב-ChatGPT → עונים על השאלות → מקבלים תוצאה מוכנה.
@@ -427,7 +450,7 @@
         <div class="tool-card" data-tool="concept">
           <div>
             <div class="tool-title">יצירת כיוון / רעיון</div>
-            <div class="tool-desc">מזקק רעיון ברור ומובן לכל סוג פעילות</div>
+            <div class="tool-desc">מזקק רעיון ברור לכל סוג פעילות</div>
           </div>
           <div class="tool-chevron">›</div>
         </div>
@@ -451,7 +474,7 @@
       </div>
 
       <div class="info-strip">
-        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש.
+        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, כותבים כמה מילים מה את/ה עושה ובאיזה תחום, עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש.
       </div>
     </main>
 
@@ -460,7 +483,7 @@
         <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן</div>
         <div class="footer-tag-row">
           <div class="footer-tag">מתאים לכל תחום</div>
-          <div class="footer-tag">אפשר למתג ללקוחות שלך</div>
+          <div class="footer-tag">כולל התאמה אוטומטית לתחום המשתמש</div>
         </div>
       </div>
       <button class="footer-btn" onclick="showInstallHint()">
@@ -484,7 +507,7 @@
           <ul>
             <li>לחצי על הכפתור "העתקת הטקסט ל-ChatGPT".</li>
             <li>פתחי ChatGPT, הדביקי את הטקסט והוסיפי הסבר קצר מה את עושה ובאיזה תחום.</li>
-            <li>עני על השאלות שתקבלי – ובסוף תקבלי מסמך/תוכן מוכן.</li>
+            <li>עני על השאלות – ובסוף תקבלי מסמך/תוכן מוכן.</li>
           </ul>
         </div>
 
@@ -497,14 +520,13 @@
       </div>
 
       <div class="modal-close-row">
-        <div>אפשר לערוך את הטקסט לפני שמעתיקים, ולהתאים לשפה שלך.</div>
+        <div>הערה: הטקסט כולל קרדיט "נוצר באמצעות HEDVA.AI" – לשימוש אישי של הרוכש בלבד.</div>
         <button class="modal-close-btn" onclick="closeModal()" aria-label="סגירה">×</button>
       </div>
     </div>
   </div>
 
 <script>
-  // רפרנסים
   const modalBackdrop = document.getElementById("modalBackdrop");
   const modalTitle = document.getElementById("modalTitle");
   const modalSub = document.getElementById("modalSub");
@@ -516,7 +538,7 @@
   const tools = {
     needs: {
       title: "אפיון צרכים",
-      sub: "עוזר לך להבין מה הלקוח צריך ומה המטרה – בכל תחום.",
+      sub: "עוזר להבין מה הלקוח צריך ומה המטרה – בכל תחום.",
       text: `את/ה עוזר/ת AI לאפיון צרכים עבור פרויקטים בכל תחום.
 
 המטרה שלך:
@@ -552,7 +574,7 @@
   • נקודות חוזקה
   • מה חשוב לי בתהליך.
 
-הצג/י את האפיון כך שאוכל להעתיק אותו כמות שהוא ל-Word / Google Docs / מייל.`
+הקפד/י לשמור על טון כתיבה ידידותי ומעשי, ולהתאים תמיד לתחום שבו אני עוסק/ת.`
     },
     concept: {
       title: "יצירת כיוון / רעיון",
@@ -595,7 +617,7 @@
 4. 3–5 משפטים שאפשר לומר ללקוח / לקהל:
    – משפטים שאפשר לומר בשיחה או בסטורי, שמסבירים את הכיוון בפשטות.
 
-התאם/י את כל התשובות לתחום שאני אומר/ת לך בתחילת התהליך.`
+התאם/י את כל התשובות לתחום שאני אומר/ת לך בתחילת התהליך, ושמור/י על טון כתיבה נעים ומכבד.`
     },
     client: {
       title: "טקסטים ללקוחות",
@@ -661,7 +683,7 @@
 אופן העבודה:
 - אחרי שאענה על השאלות, בנה/בני עבורי:
 
-1. לוח רעיונות לתוכן (לא חייב טבלה בפורמט, אפשר רשימה):
+1. לוח רעיונות לתוכן:
    – רשימה של לפחות 15–20 רעיונות לפוסטים / סרטונים / סטוריז.
    – לכל רעיון: ציין/י מה סוג התוכן (פוסט, רילס, סטורי), על מה מדברים, ומה הקריאה לפעולה (לייק, תגובה, הודעה, שמירה וכו').
 
@@ -681,7 +703,6 @@
     }
   };
 
-  // פתיחת מודל לכלי
   document.querySelectorAll(".tool-card").forEach(card => {
     card.onclick = () => {
       document.querySelectorAll(".tool-card").forEach(c => c.classList.remove("active"));
@@ -689,7 +710,6 @@
 
       const key = card.dataset.tool;
       const tool = tools[key];
-
       if (!tool) return;
 
       modalTitle.textContent = tool.title;
@@ -713,10 +733,16 @@
       alert("קודם בחרי אחד הכלים – ואז אפשר להעתיק את הטקסט.");
       return;
     }
+
+    // "הגנה רכה": מוסיפים שורת קרדיט לכל העתקה
+    const brandedText =
+      currentPrompt +
+      "\n\n---\nנוצר באמצעות HEDVA.AI – לשימוש אישי של הרוכש בלבד. אין להעביר את הטקסט הזה כמוצר נפרד.";
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(currentPrompt)
+      navigator.clipboard.writeText(brandedText)
         .then(() => {
-          alert("הטקסט הועתק. עכשיו פתחי ChatGPT, הדביקי את הטקסט והוסיפי כמה מילים מה את עושה ובאיזה תחום.");
+          alert("הטקסט הועתק (כולל קרדיט HEDVA.AI). עכשיו פתחי ChatGPT, הדביקי את הטקסט והוסיפי כמה מילים מה את עושה ובאיזה תחום.");
         })
         .catch(() => {
           alert("אם ההעתקה לא עבדה – סמני את הטקסט בחלון, העתיקי ידנית והדביקי ב-ChatGPT.");
