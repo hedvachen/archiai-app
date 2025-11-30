@@ -7,14 +7,17 @@
 
   <style>
     :root {
-      --bg: #f3f4f6;
+      --bg: #0f172a;
+      --bg-soft: #020617;
       --card: #ffffff;
       --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.08);
-      --text: #111827;
+      --accent-soft: rgba(37, 99, 235, 0.10);
+      --text: #020617;
       --muted: #6b7280;
-      --border: #d1d5db;
-      --shadow: 0 18px 45px rgba(15,23,42,0.14);
+      --border: #e2e8f0;
+      --shadow: 0 24px 60px rgba(15,23,42,0.30);
+      --radius-lg: 30px;
+      --radius-md: 18px;
     }
 
     * {
@@ -25,116 +28,162 @@
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      min-height: 100vh;
       margin: 0;
-      padding: 0;
-      background: #f3f4f6;
+      padding: 24px 16px;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #1d4ed8 0, transparent 55%),
+        radial-gradient(circle at top right, #22c1c3 0, transparent 55%),
+        linear-gradient(to bottom, #020617, #0b1120);
+      color: var(--text);
     }
 
-    /* המוצר עכשיו על כל הדף (רוחב מלא, לא קופסה קטנה) */
     .shell {
       width: 100%;
-      max-width: 1100px;
-      min-height: 100vh;
-      background: white;
-      border-radius: 0;
-      border: 1px solid var(--border);
+      max-width: 1180px;
+      min-height: calc(100vh - 48px);
+      background: radial-gradient(circle at top, rgba(248,250,252,0.9), #f1f5f9);
+      border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
-      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.5);
       display: flex;
       flex-direction: column;
-      margin: 0 auto;
+      overflow: hidden;
+      backdrop-filter: blur(26px);
     }
 
     /* HEADER */
 
     .header {
-      padding: 18px 32px 14px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 22px 32px 18px;
+      border-bottom: 1px solid #e2e8f0;
       background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.08), transparent 60%),
-        linear-gradient(to bottom, #ffffff, #f9fafb);
+        radial-gradient(circle at top left, rgba(59,130,246,0.16), transparent 60%),
+        radial-gradient(circle at top right, rgba(56,189,248,0.18), transparent 65%),
+        linear-gradient(to bottom, rgba(255,255,255,0.96), rgba(248,250,252,0.96));
     }
 
     .brand-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .brand-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #f4f4f5;
-      border: 1px solid #d4d4d8;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #111827;
-      box-shadow: 0 5px 12px rgba(15,23,42,0.12);
-    }
-
-    .brand-main {
       font-size: 20px;
       font-weight: 700;
       color: #111827;
-      letter-spacing: 0.5px;
+      box-shadow: 0 10px 26px rgba(15,23,42,0.25);
+    }
+
+    .brand-main {
+      font-size: 22px;
+      font-weight: 700;
+      color: #020617;
+      letter-spacing: 0.06em;
     }
 
     .brand-sub {
-      font-size: 11px;
-      color: #6b7280;
+      font-size: 12px;
+      color: #64748b;
     }
 
     .pill {
-      font-size: 10px;
-      padding: 4px 10px;
+      font-size: 11px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid #cbd5e1;
-      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(255,255,255,0.95);
       white-space: nowrap;
-      color: #111827;
+      color: #0f172a;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .hero-text-main {
-      font-size: 15px;
-      font-weight: 600;
-      color: #0f172a;
-      margin-bottom: 4px;
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.35);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
       margin-top: 4px;
     }
 
-    .hero-text-sub {
+    .hero-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #020617;
+      margin-bottom: 4px;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: #4b5563;
+      max-width: 580px;
+      line-height: 1.5;
+    }
+
+    .hero-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       font-size: 11px;
-      color: #6b7280;
+      color: #475569;
+      text-align: left;
+    }
+
+    .step-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.03);
+      border: 1px dashed rgba(148,163,184,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-size: 13px;
     }
 
     /* BODY */
 
     .body {
-      padding: 16px 24px 18px;
-      background: #f9fafb;
-      flex: 1;
+      padding: 18px 24px 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      flex: 1;
     }
 
     .section-label {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
       display: flex;
       align-items: center;
@@ -142,100 +191,169 @@
     }
 
     .section-label span {
-      width: 6px;
-      height: 6px;
-      background: #9ca3af;
+      width: 7px;
+      height: 7px;
+      background: #cbd5f5;
       border-radius: 50%;
     }
 
     .tools-grid {
+      margin-top: 10px;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
+      gap: 14px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .tools-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
+      .tools-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
       .header {
-        padding: 16px 16px 12px;
+        padding: 18px 18px 14px;
       }
       .body {
-        padding: 14px 14px 16px;
+        padding: 16px 14px 18px;
       }
-      .tools-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .brand-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
     .tool-card {
-      background: white;
-      border-radius: 16px;
-      border: 1px solid #e5e7eb;
-      padding: 10px 11px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid #e2e8f0;
+      padding: 12px 13px;
       cursor: pointer;
-      transition: .15s ease;
       position: relative;
-      min-height: 80px;
+      overflow: hidden;
+      min-height: 92px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease, background-color .14s ease;
+    }
+
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 60%);
+      opacity: 0;
+      transition: opacity .14s ease;
+      pointer-events: none;
+    }
+
+    .tool-card:hover::before {
+      opacity: 1;
     }
 
     .tool-card:hover {
       border-color: #2563eb;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, .22);
-      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(37,99,235,0.28);
+      background: #f8fafc;
+      transform: translateY(-3px);
     }
 
     .tool-card.active {
       border-color: #2563eb;
-      box-shadow: 0 10px 26px rgba(37,99,235,0.30);
+      box-shadow: 0 18px 44px rgba(37,99,235,0.35);
+      background: #eff6ff;
+    }
+
+    .tool-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .tool-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
     }
 
     .tool-title {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
+      color: #020617;
       margin-bottom: 2px;
-      color: #111827;
     }
 
     .tool-desc {
-      font-size: 11px;
+      font-size: 12px;
       color: #6b7280;
     }
 
     .tool-chevron {
       position: absolute;
-      bottom: 7px;
-      left: 10px;
-      font-size: 16px;
+      bottom: 9px;
+      left: 12px;
+      font-size: 17px;
       color: #94a3b8;
     }
 
     .info-strip {
-      font-size: 10px;
-      color: #6b7280;
+      font-size: 11px;
+      color: #4b5563;
       background: #eef2ff;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px dashed #c7d2fe;
-      padding: 8px 10px;
-      line-height: 1.4;
-      margin-top: 8px;
+      padding: 9px 11px;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    /* SALES STRIP */
+
+    .sales-strip {
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(56,189,248,0.10));
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin-top: 12px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.10);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .sales-main {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .sales-sub {
+      font-size: 12px;
+      color: #475569;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* FOOTER */
 
     .footer {
-      padding: 10px 18px;
+      padding: 10px 20px 14px;
       background: #f9fafb;
-      border-top: 1px solid #e5e7eb;
-      font-size: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 11px;
       color: #6b7280;
       display: flex;
       justify-content: space-between;
@@ -246,7 +364,7 @@
     .footer-left {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
     .footer-tag-row {
@@ -256,20 +374,23 @@
     }
 
     .footer-tag {
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e2e8f0;
       background: #ffffff;
     }
 
     .footer-btn {
-      padding: 6px 10px;
+      padding: 7px 12px;
       border-radius: 999px;
       border: 1px dashed #94a3b8;
       background: white;
       cursor: pointer;
-      font-size: 10px;
+      font-size: 11px;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* MODAL */
@@ -277,7 +398,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15,23,42,0.32);
+      background: rgba(15,23,42,0.40);
       display: none;
       align-items: center;
       justify-content: center;
@@ -291,15 +412,15 @@
 
     .modal {
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
       background: #ffffff;
       border-radius: 22px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 20px 55px rgba(15,23,42,0.30);
+      box-shadow: 0 24px 60px rgba(15,23,42,0.40);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      max-height: 90vh;
+      max-height: 92vh;
     }
 
     .modal-header {
@@ -308,16 +429,16 @@
     }
 
     .modal-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 3px;
-      color: #111827;
+      color: #020617;
     }
 
     .modal-sub {
-      font-size: 11px;
+      font-size: 12px;
       color: #6b7280;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .modal-body {
@@ -370,6 +491,14 @@
       font-size: 12px;
       cursor: pointer;
       width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .primary-btn span {
+      font-size: 15px;
     }
 
     .modal-close-row {
@@ -393,11 +522,13 @@
     }
 
     @media (max-width: 520px) {
+      body {
+        padding: 12px 8px;
+      }
       .shell {
-        border-radius: 0;
-        box-shadow: none;
-        border-left: none;
-        border-right: none;
+        min-height: 100vh;
+        border-radius: 22px;
+        box-shadow: 0 16px 40px rgba(15,23,42,0.35);
       }
       .modal {
         border-radius: 18px;
@@ -419,75 +550,108 @@
           </div>
         </div>
         <div class="pill">
+          <span class="pill-dot"></span>
           גרסת Creator • לשימוש אישי ולמכירה ללקוחות
         </div>
       </div>
 
-      <div class="hero-text-main">
-        4 כפתורים שעוזרים להבין, להסביר ולמכור – בכל תחום.
-      </div>
-      <div class="hero-text-sub">
-        בוחרים כלי → מעתיקים את הטקסט → מדביקים ב-ChatGPT → עונים על השאלות → מקבלים תוצאה מוכנה.
+      <div class="hero-top">
+        <div>
+          <div class="hero-title">4 כפתורים שעוזרים לכם להבין, להסביר ולמכור – בכל תחום.</div>
+          <div class="hero-sub">
+            בוחרים כלי → מעתיקים את הטקסט → מדביקים ב-ChatGPT → עונים על השאלות → מקבלים תוצאה מוכנה:
+            מסמכים, טקסטים ללקוחות ותוכן לרשתות – בלי לחשוב איך לנסח ובלי להבין ב-AI.
+          </div>
+        </div>
+        <div class="hero-steps">
+          <div class="step-pill"><span>①</span> בוחרים את הכלי שמתאים לרגע הזה</div>
+          <div class="step-pill"><span>②</span> מעתיקים את הטקסט ומדביקים ב-ChatGPT</div>
+          <div class="step-pill"><span>③</span> עונים על שאלות פשוטות – ומקבלים תוצאה מוכנה</div>
+        </div>
       </div>
     </header>
 
     <main class="body">
       <div class="section-label">
         <span></span>
-        בחרי כלי – הוא יתאים את עצמו לתחום שלך ברגע שתסבירי מה את עושה
+        בחרו כלי – הוא יתאים את עצמו לתחום שלכם ברגע שתסבירו מה אתם עושים
       </div>
 
       <div class="tools-grid">
 
-        <div class="tool-card" data-tool="needs">
-          <div>
-            <div class="tool-title">אפיון צרכים</div>
-            <div class="tool-desc">מסדר מה הלקוח צריך ומה מטרת הפרויקט</div>
+        <article class="tool-card" data-tool="needs">
+          <div class="tool-top">
+            <div class="tool-icon">🧩</div>
+            <div>
+              <div class="tool-title">אפיון צרכים</div>
+              <div class="tool-desc">מסדר מה הלקוח צריך, מה אתם מציעים ומה מטרת הפרויקט.</div>
+            </div>
           </div>
           <div class="tool-chevron">›</div>
-        </div>
+        </article>
 
-        <div class="tool-card" data-tool="concept">
-          <div>
-            <div class="tool-title">יצירת כיוון / רעיון</div>
-            <div class="tool-desc">מזקק רעיון ברור לכל סוג פעילות</div>
+        <article class="tool-card" data-tool="concept">
+          <div class="tool-top">
+            <div class="tool-icon">💡</div>
+            <div>
+              <div class="tool-title">יצירת כיוון / רעיון</div>
+              <div class="tool-desc">מזקק רעיון ברור, מובן ובוגר – לכל סוג פעילות או עסק.</div>
+            </div>
           </div>
           <div class="tool-chevron">›</div>
-        </div>
+        </article>
 
-        <div class="tool-card" data-tool="client">
-          <div>
-            <div class="tool-title">טקסטים ללקוחות</div>
-            <div class="tool-desc">הודעות, מיילים ותשובות ללקוחות – בכל תחום</div>
+        <article class="tool-card" data-tool="client">
+          <div class="tool-top">
+            <div class="tool-icon">💬</div>
+            <div>
+              <div class="tool-title">טקסטים ללקוחות</div>
+              <div class="tool-desc">הודעות, מיילים ותשובות ללקוחות – מותאם לשפה ולתחום שלכם.</div>
+            </div>
           </div>
           <div class="tool-chevron">›</div>
-        </div>
+        </article>
 
-        <div class="tool-card" data-tool="content">
-          <div>
-            <div class="tool-title">תוכן לרשתות</div>
-            <div class="tool-desc">רעיונות ופוסטים לאינסטגרם, פייסבוק, טיקטוק ועוד</div>
+        <article class="tool-card" data-tool="content">
+          <div class="tool-top">
+            <div class="tool-icon">📣</div>
+            <div>
+              <div class="tool-title">תוכן לרשתות</div>
+              <div class="tool-desc">רעיונות, פוסטים ותסריטים לרילסים – לכל תחום וקהל.</div>
+            </div>
           </div>
           <div class="tool-chevron">›</div>
-        </div>
+        </article>
 
       </div>
 
       <div class="info-strip">
-        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, כותבים כמה מילים מה את/ה עושה ובאיזה תחום, עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש.
+        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, כותבים כמה מילים מה אתם עושים ובאיזה תחום,
+        עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש. אפשר למכור את הגישה למערכת ללקוחות,
+        או להשתמש בה לעסק שלכם.
+      </div>
+
+      <!-- SALES STRIP -->
+      <div class="sales-strip">
+        <div class="sales-main">
+          🚀 רוצים מערכת AI משלכם עם שם וסטייל? קבלו את <strong>HEDVA.AI Creator PRO</strong>.
+        </div>
+        <div class="sales-sub">
+          נבנה לפי הצרכים שלכם – מתאים לכל תחום.
+        </div>
       </div>
     </main>
 
     <footer class="footer">
       <div class="footer-left">
-        <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן</div>
+        <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן.</div>
         <div class="footer-tag-row">
           <div class="footer-tag">מתאים לכל תחום</div>
           <div class="footer-tag">כולל התאמה אוטומטית לתחום המשתמש</div>
         </div>
       </div>
       <button class="footer-btn" onclick="showInstallHint()">
-        📱 הוספה למסך הבית
+        <span>📱</span> הוספה למסך הבית
       </button>
     </footer>
 
@@ -505,22 +669,25 @@
         <div class="modal-steps">
           <strong>איך להשתמש בכלי (3 צעדים):</strong>
           <ul>
-            <li>לחצי על הכפתור "העתקת הטקסט ל-ChatGPT".</li>
-            <li>פתחי ChatGPT, הדביקי את הטקסט והוסיפי הסבר קצר מה את עושה ובאיזה תחום.</li>
-            <li>עני על השאלות – ובסוף תקבלי מסמך/תוכן מוכן.</li>
+            <li>לחצו על הכפתור "העתקת הטקסט ל-ChatGPT".</li>
+            <li>פתחו ChatGPT, הדביקו את הטקסט והוסיפו בקצרה מה אתם עושים ובאיזה תחום.</li>
+            <li>ענו על השאלות – ובסוף תקבלו מסמך/תוכן מוכן.</li>
           </ul>
         </div>
 
         <div>הטקסט להדבקה ב־ChatGPT:</div>
         <div class="modal-output" id="modalContent">
-בחרי כלי למעלה – ואז יופיע כאן טקסט מוכן להדבקה ב-ChatGPT.
+בחרו כלי למעלה – ואז יופיע כאן טקסט מוכן להדבקה ב-ChatGPT.
         </div>
 
-        <button class="primary-btn" onclick="copyPrompt()">📋 העתקת הטקסט ל־ChatGPT</button>
+        <button class="primary-btn" onclick="copyPrompt()">
+          <span>📋</span>
+          העתקת הטקסט ל-ChatGPT
+        </button>
       </div>
 
       <div class="modal-close-row">
-        <div>הערה: הטקסט כולל קרדיט "נוצר באמצעות HEDVA.AI" – לשימוש אישי של הרוכש בלבד.</div>
+        <div>הטקסט כולל קרדיט "נוצר באמצעות HEDVA.AI" – לשימוש אישי של הרוכש בלבד.</div>
         <button class="modal-close-btn" onclick="closeModal()" aria-label="סגירה">×</button>
       </div>
     </div>
@@ -534,7 +701,6 @@
 
   let currentPrompt = "";
 
-  // פרומפטים אוניברסליים – מתאימים את עצמם לתחום שהמשתמש יכתוב
   const tools = {
     needs: {
       title: "אפיון צרכים",
@@ -578,7 +744,7 @@
     },
     concept: {
       title: "יצירת כיוון / רעיון",
-      sub: "מזקק רעיון ברור, מובן ובוגר – שמתאים לכל סוג פרויקט או עסק.",
+      sub: "מזקק רעיון ברור, מובן ובוגר – לכל סוג פרויקט או עסק.",
       text: `את/ה עוזר/ת AI ליצירת כיוון / רעיון (קונספט) לכל תחום או פעילות.
 
 המטרה שלך:
@@ -621,19 +787,19 @@
     },
     client: {
       title: "טקסטים ללקוחות",
-      sub: "כותב עבורך הודעות, מיילים ותשובות ללקוחות – מותאם לתחום שלך.",
+      sub: "כותב עבורכם הודעות, מיילים ותשובות ללקוחות – מותאם לתחום שלכם.",
       text: `את/ה עוזר/ת AI לכתיבת טקסטים ללקוחות – לכל תחום.
 
 המטרה שלך:
 1. לעזור לי לנסח הודעות ומיילים ללקוחות בצורה ברורה, מנומסת ומקצועית.
 2. להכין לי משפטים מוכנים למצבים שחוזרים על עצמם עם לקוחות.
-3. להתאים את הניסוח לתחום שבו אני עובדת ולסגנון תקשורת שמתאים לי.
+3. להתאים את הניסוח לתחום שבו אני עובד/ת ולסגנון תקשורת שמתאים לי.
 
 לפני שאת/ה מתחיל/ה:
 – שאל/י אותי:
   • באיזה תחום אני (לדוגמה: עיצוב, טיפולים, אימון, ייעוץ, שיווק, לימודים, מוצרים פיזיים, מוצרים דיגיטליים וכו').
   • איך אני מעדיף/פה לדבר – יותר רשמי, יותר חברי, או באמצע.
-  • דרך איזה ערוץ אני לרוב מדברת עם לקוחות – ווטסאפ, אינסטגרם, מייל, טלפון.
+  • דרך איזה ערוץ אני לרוב מדבר/ת עם לקוחות – ווטסאפ, אינסטגרם, מייל, טלפון.
 
 אופן העבודה:
 - עזור/י לי לכתוב קודם תיאור קצר של השירות או המוצר שלי (2–3 משפטים).
@@ -730,11 +896,10 @@
 
   function copyPrompt() {
     if (!currentPrompt) {
-      alert("קודם בחרי אחד הכלים – ואז אפשר להעתיק את הטקסט.");
+      alert("קודם בחרו אחד הכלים – ואז אפשר להעתיק את הטקסט.");
       return;
     }
 
-    // "הגנה רכה": מוסיפים שורת קרדיט לכל העתקה
     const brandedText =
       currentPrompt +
       "\n\n---\nנוצר באמצעות HEDVA.AI – לשימוש אישי של הרוכש בלבד. אין להעביר את הטקסט הזה כמוצר נפרד.";
@@ -742,23 +907,23 @@
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(brandedText)
         .then(() => {
-          alert("הטקסט הועתק (כולל קרדיט HEDVA.AI). עכשיו פתחי ChatGPT, הדביקי את הטקסט והוסיפי כמה מילים מה את עושה ובאיזה תחום.");
+          alert("הטקסט הועתק (כולל קרדיט HEDVA.AI). עכשיו פתחו ChatGPT, הדביקו את הטקסט והוסיפו בקצרה מה אתם עושים ובאיזה תחום.");
         })
         .catch(() => {
-          alert("אם ההעתקה לא עבדה – סמני את הטקסט בחלון, העתיקי ידנית והדביקי ב-ChatGPT.");
+          alert("אם ההעתקה לא עבדה – סמנו את הטקסט בחלון, העתיקו ידנית והדביקו ב-ChatGPT.");
         });
     } else {
-      alert("אם ההעתקה לא עבדה – סמני את הטקסט בחלון, העתיקי ידנית והדביקי ב-ChatGPT.");
+      alert("אם ההעתקה לא עבדה – סמנו את הטקסט בחלון, העתיקו ידנית והדביקו ב-ChatGPT.");
     }
   }
 
   function showInstallHint() {
     alert(
       "כדי להפוך את HEDVA.AI לאפליקציה בנייד:\n\n" +
-      "1. פתחי את הקישור של האפליקציה בטלפון.\n" +
-      "2. ב-iPhone (Safari): לחצי על Share → Add to Home Screen.\n" +
-      "3. באנדרואיד (Chrome): לחצי על ⋮ → 'הוסף למסך הבית'.\n\n" +
-      "האייקון יופיע במסך הבית ותוכלי לפתוח את המערכת כמו אפליקציה רגילה."
+      "1. פתחו את הקישור של האפליקציה בטלפון.\n" +
+      "2. ב-iPhone (Safari): לחצו על Share → Add to Home Screen.\n" +
+      "3. באנדרואיד (Chrome): לחצו על ⋮ → 'הוסף למסך הבית'.\n\n" +
+      "האייקון יופיע במסך הבית ותוכלו לפתוח את המערכת כמו אפליקציה רגילה."
     );
   }
 </script>
