@@ -6,19 +6,18 @@
   <title>ArchiAI Studio – אפליקציית AI למעצבים</title>
   <style>
     :root {
-      --bg: #050816;
-      --bg2: #020617;
-      --card: rgba(15, 23, 42, 0.9);
-      --accent1: #ff7ac6;
-      --accent2: #22d3ee;
-      --accent3: #facc15;
-      --accent-soft: rgba(255, 122, 198, 0.14);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: rgba(148, 163, 184, 0.6);
-      --radius-lg: 24px;
+      --bg: #f3f4f6;
+      --bg-soft: #e5e7eb;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --accent-strong: #4f46e5;
+      --text: #020617;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --radius-lg: 26px;
       --radius-md: 16px;
-      --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.75);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.14);
     }
 
     * {
@@ -32,40 +31,42 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 20px 12px;
+      padding: 24px 12px;
       background:
-        radial-gradient(circle at top left, #1d1b3f 0, transparent 55%),
-        radial-gradient(circle at top right, #3b0764 0, transparent 55%),
-        radial-gradient(circle at bottom, #0f172a 0, #020617 55%);
+        radial-gradient(circle at top left, #e0f2fe 0, transparent 55%),
+        radial-gradient(circle at top right, #e0e7ff 0, transparent 55%),
+        linear-gradient(to bottom, #f9fafb, #e5e7eb);
       color: var(--text);
     }
 
     .shell {
       width: 100%;
       max-width: 540px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
-      border: 1px solid rgba(148,163,184,0.5);
+      background: var(--card);
+      border-radius: 32px;
       box-shadow: var(--shadow-soft);
-      overflow: hidden;
+      border: 1px solid var(--border);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
+    /* HEADER */
+
     .header {
-      padding: 18px 20px 14px;
-      border-bottom: 1px solid rgba(148,163,184,0.4);
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid #e5e7eb;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.35), transparent 60%),
-        radial-gradient(circle at top right, rgba(251,191,36,0.3), transparent 60%),
-        linear-gradient(135deg, #020617, #020617);
+        radial-gradient(circle at top left, rgba(59,130,246,0.16), transparent 60%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.18), transparent 60%),
+        linear-gradient(to bottom, #ffffff, #f9fafb);
     }
 
     .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
     }
 
     .brand {
@@ -78,18 +79,20 @@
       width: 40px;
       height: 40px;
       border-radius: 14px;
-      background: conic-gradient(from 190deg, #22d3ee, #a855f7, #f97316, #facc15, #22d3ee);
+      background: conic-gradient(from 200deg, #22c1c3, #4f46e5, #f97316, #22c1c3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 0 25px rgba(56,189,248,0.7);
+      font-size: 20px;
+      color: #ffffff;
+      box-shadow: 0 12px 25px rgba(79,70,229,0.55);
     }
 
     .brand-main {
       font-weight: 700;
       font-size: 18px;
       letter-spacing: 0.03em;
+      color: #111827;
     }
 
     .brand-sub {
@@ -99,14 +102,14 @@
 
     .pill {
       border-radius: 999px;
-      border: 1px solid rgba(248,250,252,0.7);
+      border: 1px solid rgba(148,163,184,0.7);
       padding: 4px 10px;
       font-size: 11px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(15,23,42,0.85);
-      color: #e5e7eb;
+      background: rgba(255,255,255,0.9);
+      color: #111827;
       white-space: nowrap;
     }
 
@@ -115,7 +118,7 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34,197,94,0.3);
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
     }
 
     .hero {
@@ -126,6 +129,7 @@
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: #0f172a;
     }
 
     .hero-sub {
@@ -133,34 +137,30 @@
       color: var(--muted);
     }
 
-    .hero-tags {
+    .hero-steps {
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
       font-size: 11px;
     }
 
-    .hero-tag {
+    .hero-step {
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.7);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(37,99,235,0.22);
+      color: #1e293b;
     }
 
-    .hero-tag span.icon {
-      font-size: 13px;
-    }
+    /* BODY */
 
     .body {
       padding: 14px 14px 12px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(15,23,42,1));
+      background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
     }
 
     .section-label {
@@ -180,41 +180,50 @@
     }
 
     .tools-grid {
+      margin-top: 4px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
-    .tool {
+    .tool-card {
       border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
       padding: 10px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: radial-gradient(circle at top, rgba(59,130,246,0.38), rgba(15,23,42,0.98));
-      cursor: pointer;
       display: flex;
       flex-direction: column;
       gap: 4px;
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease, background-color 0.14s ease;
       position: relative;
       overflow: hidden;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.18s ease;
     }
 
-    .tool:nth-child(2) {
-      background: radial-gradient(circle at top, rgba(248,113,113,0.4), rgba(15,23,42,0.98));
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.14s ease;
+      pointer-events: none;
     }
 
-    .tool:nth-child(3) {
-      background: radial-gradient(circle at top, rgba(45,212,191,0.4), rgba(15,23,42,0.98));
+    .tool-card:hover::before {
+      opacity: 1;
     }
 
-    .tool:nth-child(4) {
-      background: radial-gradient(circle at top, rgba(244,114,182,0.45), rgba(15,23,42,0.98));
+    .tool-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(148,163,184,0.35);
+      border-color: rgba(37,99,235,0.45);
     }
 
-    .tool.active {
-      border-color: var(--accent1);
-      box-shadow: 0 16px 35px rgba(0,0,0,0.9);
-      transform: translateY(-2px);
+    .tool-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(37,99,235,0.35);
+      background-color: #f9fafb;
     }
 
     .tool-top {
@@ -227,142 +236,54 @@
       width: 30px;
       height: 30px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.8);
+      background: #eff6ff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .tool-title {
       font-size: 13px;
       font-weight: 600;
+      color: #111827;
     }
 
     .tool-desc {
       font-size: 11px;
-      color: #e5e7eb;
-      opacity: 0.95;
+      color: var(--muted);
     }
 
     .tool-meta {
       font-size: 10px;
-      color: #cbd5f5;
+      color: #64748b;
       margin-top: 2px;
     }
 
     .tool-chevron {
       position: absolute;
-      left: 8px;
-      bottom: 6px;
-      font-size: 16px;
-      opacity: 0.9;
+      left: 10px;
+      bottom: 7px;
+      font-size: 15px;
+      color: #94a3b8;
     }
 
-    .panel {
-      margin-top: 6px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.7);
-      background: radial-gradient(circle at top, rgba(15,23,42,0.96), #020617);
-      padding: 12px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .panel-sub {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .badge {
+    .info-strip {
+      margin-top: 8px;
       font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      background: rgba(15,23,42,0.9);
-      white-space: nowrap;
+      color: #6b7280;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #eef2ff;
+      border: 1px dashed rgba(129,140,248,0.6);
     }
 
-    .panel-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .primary-btn {
-      border-radius: 999px;
-      border: none;
-      padding: 8px 14px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background-image: linear-gradient(135deg, #f97316, #ec4899, #22c1c3);
-      color: #0b1120;
-      box-shadow: 0 14px 30px rgba(236,72,153,0.55);
-      white-space: nowrap;
-    }
-
-    .secondary-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      padding: 7px 10px;
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(15,23,42,0.95);
-      color: #e5e7eb;
-      white-space: nowrap;
-    }
-
-    .hint {
-      font-size: 10px;
-      color: var(--muted);
-    }
-
-    .output {
-      margin-top: 6px;
-      border-radius: 14px;
-      background: #020617;
-      border: 1px solid rgba(148,163,184,0.8);
-      padding: 9px 10px;
-      font-size: 11px;
-      max-height: 260px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    }
-
-    .output-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #e5e7eb;
-    }
+    /* FOOTER */
 
     .footer {
-      border-top: 1px solid rgba(148,163,184,0.5);
+      border-top: 1px solid #e5e7eb;
       padding: 9px 14px 10px;
-      background: linear-gradient(135deg, #020617, #020617);
+      background: #f9fafb;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -372,30 +293,191 @@
     }
 
     .footer-tags {
+      margin-top: 3px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 3px;
     }
 
     .footer-tag {
       padding: 2px 7px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
     }
 
     .footer-btn {
       border-radius: 999px;
-      border: 1px dashed rgba(248,250,252,0.9);
+      border: 1px dashed rgba(148,163,184,0.9);
       padding: 6px 9px;
       font-size: 10px;
-      background: rgba(15,23,42,0.95);
-      color: #e5e7eb;
+      background: #ffffff;
+      color: #111827;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       cursor: pointer;
       white-space: nowrap;
+    }
+
+    /* MODAL */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.16);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 40;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 22px 60px rgba(15,23,42,0.22);
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+    }
+
+    .modal-header {
+      padding: 14px 16px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .modal-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .modal-badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      white-space: nowrap;
+    }
+
+    .modal-body {
+      padding: 10px 16px 12px;
+      font-size: 11px;
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-steps {
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid rgba(37,99,235,0.22);
+      color: #1e293b;
+    }
+
+    .modal-steps ul {
+      padding-right: 18px;
+      margin-top: 4px;
+    }
+
+    .modal-steps li {
+      margin-bottom: 2px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .primary-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(37,99,235,0.45);
+    }
+
+    .secondary-btn {
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 7px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    .modal-output {
+      margin-top: 4px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 8px 9px;
+      max-height: 260px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11px;
+      color: #111827;
+    }
+
+    .modal-output-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .modal-footer {
+      padding: 8px 16px 10px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 10px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
     }
 
     @media (max-width: 520px) {
@@ -404,6 +486,9 @@
       }
       .shell {
         border-radius: 26px;
+      }
+      .modal {
+        border-radius: 20px;
       }
     }
   </style>
@@ -421,19 +506,19 @@
         </div>
         <div class="pill">
           <span class="dot"></span>
-          גרסת Creator • למכירה
+          גרסת Creator • לשימוש אישי ולמכירה
         </div>
       </div>
       <div class="hero">
         <div class="hero-title">כל העסק העיצובי שלך – ב־4 כפתורי AI</div>
         <div class="hero-sub">
-          בריף, קונספט, תקשורת לקוח ותוכן לרשתות – בקליק אחד לכל כלי. מתאים לשימוש אישי ולמכירה ללקוחות.
+          בריף, קונספט, תקשורת לקוח ותוכן לרשתות – בלי להיבהל מ־AI ובלי לכתוב מילה באנגלית. רק לוחצים, מעתיקים ומדביקים.
         </div>
-        <div class="hero-tags">
-          <div class="hero-tag"><span class="icon">⚡</span> בריף מלא בפחות מדקה</div>
-          <div class="hero-tag"><span class="icon">🎨</span> Moodboard טקסטואלי</div>
-          <div class="hero-tag"><span class="icon">💼</span> הצעת מחיר והתנגדויות</div>
-          <div class="hero-tag"><span class="icon">📣</span> חודש תוכן לרשתות</div>
+        <div class="hero-steps">
+          <div class="hero-step">1. בוחרים כלי</div>
+          <div class="hero-step">2. לוחצים "העתקת הטקסט"</div>
+          <div class="hero-step">3. מדביקים ב־ChatGPT</div>
+          <div class="hero-step">4. מקבלים תוצאה מיידית</div>
         </div>
       </div>
     </header>
@@ -441,93 +526,67 @@
     <main class="body">
       <div class="section-label">
         <span></span>
-        לחצי על אחד הכלים – קבלי טקסט מוכן להדבקה ב־ChatGPT
+        בחרי אחד הכלים – הכל פשוט, בעברית, גם למי שלא מבין כלום ב־AI
       </div>
 
       <section class="tools-grid">
-        <article class="tool" data-tool="brief">
+        <article class="tool-card" data-tool="brief">
           <div class="tool-top">
             <div class="tool-icon">🧠</div>
             <div>
               <div class="tool-title">מחולל בריף</div>
-              <div class="tool-desc">שאלות חכמות + מסמך בריף מסודר ללקוח</div>
-              <div class="tool-meta">דירות, בתים, משרדים, קליניקות</div>
+              <div class="tool-desc">תהליך שאלות + מסמך בריף מסודר ללקוח</div>
+              <div class="tool-meta">דירה, בית פרטי, משרד, קליניקה</div>
             </div>
           </div>
           <div class="tool-chevron">›</div>
         </article>
 
-        <article class="tool" data-tool="concept">
+        <article class="tool-card" data-tool="concept">
           <div class="tool-top">
             <div class="tool-icon">🎨</div>
             <div>
               <div class="tool-title">מחולל קונספט</div>
-              <div class="tool-desc">קונספט חד + Moodboard טקסטואלי</div>
-              <div class="tool-meta">צבעים, חומרים, אווירה, נקודות וואו</div>
+              <div class="tool-desc">קונספט + Moodboard טקסטואלי שיווקי</div>
+              <div class="tool-meta">צבעים, חומרים, אווירה ונקודות וואו</div>
             </div>
           </div>
           <div class="tool-chevron">›</div>
         </article>
 
-        <article class="tool" data-tool="client">
+        <article class="tool-card" data-tool="client">
           <div class="tool-top">
             <div class="tool-icon">💼</div>
             <div>
               <div class="tool-title">תקשורת לקוח</div>
               <div class="tool-desc">ווטסאפ, הצעת מחיר ותשובות ל"יקר לי"</div>
-              <div class="tool-meta">ייעוץ, ליווי, הום סטיילינג, פרויקטים מלאים</div>
+              <div class="tool-meta">ייעוץ חד פעמי, ליווי, הום סטיילינג</div>
             </div>
           </div>
           <div class="tool-chevron">›</div>
         </article>
 
-        <article class="tool" data-tool="content">
+        <article class="tool-card" data-tool="content">
           <div class="tool-top">
             <div class="tool-icon">📣</div>
             <div>
               <div class="tool-title">מנוע תוכן</div>
-              <div class="tool-desc">לוח 30 ימים + פוסטים ורילסים</div>
-              <div class="tool-meta">ממתג אותך כמומחית עיצוב אונליין</div>
+              <div class="tool-desc">לוח תוכן לחודש + טקסטים לפוסטים ורילסים</div>
+              <div class="tool-meta">מתאים לאינסטגרם, פייסבוק ו־TikTok</div>
             </div>
           </div>
           <div class="tool-chevron">›</div>
         </article>
       </section>
 
-      <section class="panel">
-        <div class="panel-header">
-          <div>
-            <div class="panel-title" id="panel-title">בחרי כלי כדי להתחיל</div>
-            <div class="panel-sub" id="panel-sub">
-              רק לבחור כלי, להעתיק את הטקסט שמופיע למטה, להדביק ב־ChatGPT – וה־AI יעשה את השאר.
-            </div>
-          </div>
-          <div class="badge">1. לבחור כלי • 2. להדביק ב־ChatGPT • 3. להשתמש בתוצאה</div>
-        </div>
-
-        <div class="panel-actions">
-          <button class="primary-btn" id="copy-btn">
-            📋 העתקת הטקסט
-          </button>
-          <button class="secondary-btn" onclick="showHowToUse()">
-            ❔ איך למכור את זה ללקוחות
-          </button>
-        </div>
-        <div class="hint">
-          הטקסט למטה הוא הפרומפט המלא. אפשר להשתמש בו לעצמך או למכור גישה לאדריכלים ומעצבים אחרים.
-        </div>
-
-        <div class="output">
-          <div class="output-title">הטקסט להדבקה ב־ChatGPT:</div>
-          <pre id="prompt-text">
-בחרי אחד הכלים למעלה – הטקסט המלא יופיע כאן ותוכלי להעתיק אותו בלחיצה.</pre>
-        </div>
-      </section>
+      <div class="info-strip">
+        לא חייבים להבין ב־AI: כל כלי כבר כתוב בעברית, עם הוראות ברורות. הלקוח רק מעתיק את הטקסט ל־ChatGPT ומקבל תוצאה.
+      </div>
     </main>
 
     <footer class="footer">
       <div>
-        <div>ArchiAI Studio • אפליקציית AI למעצבים</div>
+        <div>ArchiAI Studio • כלי AI למעצבים</div>
         <div class="footer-tags">
           <div class="footer-tag">מוכן לשימוש אישי</div>
           <div class="footer-tag">מוכן למכירה כמוצר דיגיטלי</div>
@@ -539,165 +598,220 @@
     </footer>
   </div>
 
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalTitle">כותרת הכלי</div>
+          <div class="modal-sub" id="modalSub">הסבר קצר מה הכלי עושה.</div>
+        </div>
+        <button class="modal-close" id="modalCloseBtn" aria-label="סגירה">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-steps">
+          <strong>איך להשתמש בכלי (3 צעדים פשוטים):</strong>
+          <ul>
+            <li>לחצי על "העתקת הטקסט ל־ChatGPT".</li>
+            <li>פתחי ChatGPT → הדביקי את הטקסט.</li>
+            <li>עני על השאלות שתקבלי – וקבלי מסמך מוכן.</li>
+          </ul>
+        </div>
+        <div class="modal-actions">
+          <button class="primary-btn" id="copyBtn">📋 העתקת הטקסט ל־ChatGPT</button>
+          <button class="secondary-btn" onclick="showHowToSell()">איך למכור את זה ללקוחות?</button>
+        </div>
+        <div class="modal-output">
+          <div class="modal-output-title">הטקסט להדבקה ב־ChatGPT:</div>
+          <pre id="modalPrompt">בחרי אחד הכלים למעלה – ואז תראי כאן את הטקסט המלא, ברור ופשוט, להדבקה ב־ChatGPT.</pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div>אפשר לערוך את הטקסט לפני שמעתיקים, להתאים לסגנון שלך.</div>
+        <div>בנוי במיוחד למעצבים שלא אוהבים טקסטים מסובכים.</div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    var tools = document.querySelectorAll(".tool");
-    var panelTitle = document.getElementById("panel-title");
-    var panelSub = document.getElementById("panel-sub");
-    var promptText = document.getElementById("prompt-text");
-    var copyBtn = document.getElementById("copy-btn");
+    var toolCards = document.querySelectorAll(".tool-card");
+    var modalBackdrop = document.getElementById("modalBackdrop");
+    var modalTitle = document.getElementById("modalTitle");
+    var modalSub = document.getElementById("modalSub");
+    var modalPrompt = document.getElementById("modalPrompt");
+    var modalCloseBtn = document.getElementById("modalCloseBtn");
+    var copyBtn = document.getElementById("copyBtn");
+
+    var currentPrompt = "";
 
     var prompts = {
       brief: {
         title: "מחולל בריף – ARCHI-BRIEF",
-        sub: "שולחת ל-ChatGPT ומקבלת תהליך שאלות + מסמך בריף מסודר ללקוח.",
-        text:
-"את/ה ARCHI-BRIEF, עוזר/ת AI לאדריכלים ומעצבי פנים.\n\n" +
-"המטרה שלך:\n" +
-"1. לבנות בריף מפורט לפרויקט עיצוב פנים.\n" +
-"2. לשאול אותי שאלות חכמות וממוקדות, שאלה אחת בכל פעם.\n" +
-"3. בסוף התהליך לסכם את כל מה שעניתי למסמך בריף מסודר שניתן לשלוח ללקוח לאישור.\n\n" +
-"הוראות עבודה:\n" +
-"- שאל/י תמיד שאלה אחת בלבד בכל שלב, והמתן/י לתשובה שלי.\n" +
-"- אם התשובה שלי כללית מדי, בקש/י הבהרה או דוגמה.\n" +
-"- שמור/י על שפה מקצועית אך פשוטה.\n\n" +
-"נתוני פתיחה לדוגמה (ניתן לערוך לפני הרצה):\n" +
-"• סוג פרויקט: דירת 4 חדרים למשפחה צעירה\n" +
-"• מיקום: תל אביב, ישראל\n" +
-"• גודל: כ-110 מ\"ר\n" +
-"• טווח תקציב: 300–450 אלף ש\"ח\n" +
-"• מה חשוב במיוחד ללקוח: המון אחסון, אי במטבח, אזור אירוח גדול, פינת עבודה שקטה, תחושת בית חם ומואר.\n\n" +
-"בסיום השאלות:\n" +
-"סכם/י את כל התשובות למסמך בריף מסודר עם כותרות, סעיפים ונקודות, בצורה שניתן לשלוח ללקוח במייל או בווטסאפ."
+        sub: "הכלי שמוביל את הלקוח צעד־אחר־צעד לשאלות בריף, עד למסמך מסודר.",
+        text: `את/ה ARCHI-BRIEF, עוזר/ת AI לאדריכלים ומעצבי פנים.
+
+המטרה שלך:
+1. לבנות בריף מפורט לפרויקט עיצוב פנים.
+2. לשאול אותי שאלות חכמות וממוקדות, שאלה אחת בכל פעם.
+3. בסוף התהליך לסכם את כל מה שעניתי למסמך בריף מסודר שניתן לשלוח ללקוח לאישור.
+
+הוראות עבודה:
+- שאל/י תמיד שאלה אחת בלבד בכל שלב, והמתן/י לתשובה שלי.
+- אם התשובה שלי כללית מדי, בקש/י הבהרה או דוגמה.
+- שמור/י על שפה מקצועית אבל פשוטה, בלי מילים מסובכות.
+
+נתוני פתיחה לדוגמה (ניתן לערוך לפני ההרצה):
+• סוג פרויקט: דירת 4 חדרים למשפחה צעירה
+• מיקום: תל אביב, ישראל
+• גודל: כ-110 מ"ר
+• טווח תקציב: 300–450 אלף ש"ח
+• מה חשוב במיוחד ללקוח: המון אחסון, אי במטבח, אזור אירוח גדול, פינת עבודה שקטה, תחושת בית חם ומואר.
+
+בסיום השאלות:
+סכם/י את כל התשובות למסמך בריף מסודר עם כותרות, סעיפים ונקודות, בצורה שניתן לשלוח ללקוח במייל או בווטסאפ.`
       },
       concept: {
         title: "מחולל קונספט – CONCEPT-AI",
-        sub: "הופך בריף יבש לקונספט חד + Moodboard טקסטואלי שיווקי.",
-        text:
-"את/ה CONCEPT-AI, עוזר/ת קונספט לאדריכלים ומעצבי פנים.\n\n" +
-"המטרה:\n" +
-"1. לזקק קונספט עיצובי אחד ברור לפרויקט.\n" +
-"2. לבנות Moodboard טקסטואלי מפורט.\n" +
-"3. להציע חומרים, צבעים ואווירה שמתאימים לקהל היעד ולתקציב.\n\n" +
-"נתוני פרויקט לדוגמה (ניתן לערוך לפני הרצה):\n" +
-"• סגנון מועדף: מודרני חמים עם נגיעות יוקרה\n" +
-"• מי משתמש בחלל: זוג + תינוקת, אוהבים לארח\n" +
-"• מה חשוב להם: אור טבעי, תחושת מרחב, אחסון חכם, תחושת בית ולא משרד.\n\n" +
-"פורמט תגובה מבוקש:\n" +
-"1. משפט קונספט אחד שמתחיל במילים: \"הקונספט: ...\".\n" +
-"2. Moodboard טקסטואלי:\n" +
-"   • פלטת צבעים (3–5 צבעים מרכזיים)\n" +
-"   • חומרים עיקריים (רצפה, קירות, נגרות, טקסטיל, מתכות)\n" +
-"   • אווירה כללית בחלל\n" +
-"   • 3 נקודות פוקוס עיקריות (אלמנטים \"וואו\").\n" +
-"3. 10 משפטי מפתח קצרים שאוכל לומר ללקוח במצגת / פגישה.\n" +
-"4. 3 שמות אפשריים לקונספט (למשל: \"Soft Urban Loft\")."
+        sub: "הופך בריף יבש לקונספט ברור + Moodboard טקסטואלי שאפשר להקריא ללקוח.",
+        text: `את/ה CONCEPT-AI, עוזר/ת קונספט לאדריכלים ומעצבי פנים.
+
+המטרה:
+1. לזקק קונספט עיצובי אחד ברור לפרויקט.
+2. לבנות Moodboard טקסטואלי מפורט.
+3. להציע חומרים, צבעים ואווירה שמתאימים לקהל היעד ולתקציב.
+
+נתוני פרויקט לדוגמה (ניתן לעריכה לפני ההרצה):
+• סגנון מועדף: מודרני חמים עם נגיעות יוקרה
+• מי משתמש בחלל: זוג + תינוקת, אוהבים לארח
+• מה חשוב להם: אור טבעי, תחושת מרחב, אחסון חכם, תחושת בית ולא משרד.
+
+פורמט תגובה מבוקש:
+1. משפט קונספט אחד שמתחיל במילים: "הקונספט: ...".
+2. Moodboard טקסטואלי:
+   • פלטת צבעים (3–5 צבעים מרכזיים)
+   • חומרים עיקריים (רצפה, קירות, נגרות, טקסטיל, מתכות)
+   • אווירה כללית בחלל
+   • 3 נקודות פוקוס עיקריות בחלל (אלמנטים "וואו").
+3. 8–10 משפטי מפתח קצרים שאוכל לומר ללקוח במצגת או בפגישה.
+4. 3 שמות אפשריים לקונספט (לדוגמה: "Soft Urban Loft").`
       },
       client: {
         title: "תקשורת לקוח – CLIENT-FLOW",
-        sub: "הודעת פתיחה, הצעת מחיר קצרה ותשובות ל\"יקר לי\" – מותאם לעסק שלך.",
-        text:
-"את/ה CLIENT-FLOW, יועץ/ת תקשורת ללקוחות עבור אדריכלים ומעצבי פנים.\n\n" +
-"נתוני שירות לדוגמה (ניתן לערוך לפני הרצה):\n" +
-"• סוג שירות: עיצוב מלא לדירת 4 חדרים\n" +
-"• טווח מחיר: 12,000–18,000 ש\"ח\n" +
-"• סוג לקוח: זוג צעיר, דירה ראשונה\n\n" +
-"המטרה:\n" +
-"1. לכתוב הודעת ווטסאפ ראשונית ללקוח מתעניין:\n" +
-"   - קצרה, מקצועית, מזמינה\n" +
-"   - בלי לחץ ובלי מכירה אגרסיבית.\n" +
-"2. לבנות תבנית הצעת מחיר קצרה (עד 15 שורות) הכוללת:\n" +
-"   - תיאור השירות\n" +
-"   - מה כלול (ברשימת נקודות)\n" +
-"   - טווח מחיר\n" +
-"   - לוחות זמנים כלליים.\n" +
-"3. ליצור 3 תשובות שונות לכל אחת מההתנגדויות הבאות:\n" +
-"   - \"יקר לי\"\n" +
-"   - \"אני צריכה לחשוב על זה\"\n" +
-"   - \"אני כבר עובדת עם מישהו\".\n" +
-"4. לכל הודעה לכתוב גם גרסה רשמית וגם גרסה קלילה יותר.\n\n" +
-"טון הדיבור:\n" +
-"בטוח, רגוע, מקצועי, לא מתנצל ולא אגרסיבי, משדר ערך גבוה."
+        sub: "הודעת פתיחה, הצעת מחיר ותשובות ל\"יקר לי\" – הכל כתוב עבורך.",
+        text: `את/ה CLIENT-FLOW, יועץ/ת תקשורת ללקוחות עבור אדריכלים ומעצבי פנים.
+
+נתוני שירות לדוגמה (ניתן לעריכה לפני ההרצה):
+• סוג שירות: עיצוב מלא לדירת 4 חדרים
+• טווח מחיר: 12,000–18,000 ש"ח
+• סוג לקוח: זוג צעיר, דירה ראשונה
+
+המטרה:
+1. לכתוב הודעת ווטסאפ ראשונית ללקוח שמתעניין בשירות:
+   - קצרה, מקצועית, מזמינה
+   - בלי לחץ ובלי מכירה אגרסיבית.
+2. לבנות תבנית הצעת מחיר קצרה (עד 15 שורות) הכוללת:
+   - תיאור השירות
+   - מה כלול (ברשימת נקודות)
+   - טווח מחיר
+   - לוחות זמנים כלליים.
+3. ליצור 3 תשובות שונות לכל אחת מההתנגדויות הבאות:
+   - "יקר לי"
+   - "אני צריכה לחשוב על זה"
+   - "אני כבר עובדת עם מישהו".
+4. לכל הודעה לכתוב גם גרסה רשמית וגם גרסה קלילה יותר.
+
+טון הדיבור:
+בטוח, רגוע, מקצועי, לא מתנצל ולא אגרסיבי, משדר ערך גבוה וביטחון עצמי.`
       },
       content: {
         title: "מנוע תוכן – CONTENT-ENGINE",
-        sub: "תוכנית תוכן ל-30 ימים + טקסטים לפוסטים ורילסים.",
-        text:
-"את/ה CONTENT-ENGINE, מחולל תוכן חכם לאדריכלים ומעצבי פנים.\n\n" +
-"נתונים עלי (ניתן לערוך לפני הרצה):\n" +
-"• קהל יעד: זוגות צעירים מאזור המרכז\n" +
-"• אני רוצה שיזהו אותי בתור: מעצבת שמתמחה במינימליזם חכם וחיסכון בתקציב\n" +
-"• תדירות פרסום: 3–4 פעמים בשבוע\n\n" +
-"המטרה שלך:\n" +
-"1. לבנות לוח תוכן ל-30 ימים בטבלה עם העמודות: יום, סוג תוכן (פוסט / ריל / סטורי), נושא, קריאה לפעולה.\n" +
-"2. לכתוב 5 טקסטים מלאים לפוסטים (עד 100 מילים כל אחד) בשפה פשוטה, מקצועית ונגישה.\n" +
-"3. ליצור 5 תסריטי רילס בפורמט:\n" +
-"   - משפט פתיחה חזק\n" +
-"   - 3 נקודות עיקריות\n" +
-"   - משפט סיום עם קריאה לפעולה (שמירה, שליחת הודעה, שיתוף).\n\n" +
-"שפה:\n" +
-"ידידותית, בגובה העיניים, מתאימה ללקוחות שלא מבינים בעיצוב אבל רוצים בית יפה ומתוכנן חכם."
+        sub: "יוצר לוח תוכן לחודש + טקסטים מוכנים לפוסטים ורילסים.",
+        text: `את/ה CONTENT-ENGINE, מחולל תוכן חכם לאדריכלות ועיצוב פנים.
+
+נתונים עלי (ניתן לעריכה לפני ההרצה):
+• קהל יעד: זוגות צעירים מאזור המרכז
+• אני רוצה שיזהו אותי בתור: מעצבת שמתמחה במינימליזם חכם וחיסכון בתקציב
+• תדירות פרסום: 3–4 פעמים בשבוע
+
+המטרה שלך:
+1. לבנות לוח תוכן ל-30 ימים בטבלה עם העמודות:
+   - יום
+   - סוג תוכן (פוסט / ריל / סטורי)
+   - נושא
+   - קריאה לפעולה (CTA).
+2. לכתוב 5 טקסטים מלאים לפוסטים (עד 100 מילים כל אחד) בשפה פשוטה, מקצועית ונגישה.
+3. ליצור 5 תסריטי רילס בפורמט:
+   - משפט פתיחה חזק
+   - 3 נקודות עיקריות
+   - משפט סיום עם קריאה לפעולה (שמירה, שליחת הודעה, שיתוף).
+
+שפה:
+ידידותית, בגובה העיניים, מתאימה ללקוחות שלא מבינים בעיצוב אבל רוצים בית יפה ומתוכנן חכם.`
       }
     };
 
-    var currentKey = "";
+    function openModal(key) {
+      var data = prompts[key];
+      if (!data) return;
+      currentPrompt = data.text;
+      modalTitle.textContent = data.title;
+      modalSub.textContent = data.sub;
+      modalPrompt.textContent = data.text;
+      modalBackdrop.classList.add("show");
+    }
 
-    tools.forEach(function(tool) {
-      tool.addEventListener("click", function() {
-        var key = tool.getAttribute("data-tool");
-        setActiveTool(key);
+    function closeModal() {
+      modalBackdrop.classList.remove("show");
+    }
+
+    toolCards.forEach(function(card) {
+      card.addEventListener("click", function() {
+        toolCards.forEach(function(c) { c.classList.remove("active"); });
+        card.classList.add("active");
+        var key = card.getAttribute("data-tool");
+        openModal(key);
       });
     });
 
-    function setActiveTool(key) {
-      currentKey = key;
-      tools.forEach(function(t) {
-        t.classList.remove("active");
-      });
-      var active = document.querySelector('.tool[data-tool="' + key + '"]');
-      if (active) {
-        active.classList.add("active");
+    modalCloseBtn.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", function(e) {
+      if (e.target === modalBackdrop) {
+        closeModal();
       }
-      var data = prompts[key];
-      if (!data) return;
-      panelTitle.textContent = data.title;
-      panelSub.textContent = data.sub;
-      promptText.textContent = data.text;
-    }
+    });
 
     copyBtn.addEventListener("click", function() {
-      var text = promptText.textContent || "";
-      if (!text || text.indexOf("בחרי אחד הכלים") === 0) {
-        alert("קודם בחרי אחד הכלים למעלה – ואז תהיה אפשרות להעתיק את הטקסט.");
+      if (!currentPrompt) {
+        alert("קודם בחרי כלי – ואז אפשר להעתיק את הטקסט.");
         return;
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-          alert("הטקסט הועתק. עכשיו אפשר להדביק אותו ב־ChatGPT.");
+        navigator.clipboard.writeText(currentPrompt).then(function() {
+          alert("הטקסט הועתק. עכשיו פתחי ChatGPT והדביקי אותו שם.");
         }, function() {
-          alert("לא הצלחתי להעתיק אוטומטית. אפשר לסמן את הטקסט ידנית ולהעתיק.");
+          alert("אם ההעתקה לא עבדה אוטומטית – אפשר לסמן את הטקסט בחלון ולהעתיק ידנית.");
         });
       } else {
-        alert("אם ההעתקה לא עבדה אוטומטית – אפשר לסמן את הטקסט ידנית ולהעתיק.");
+        alert("אם ההעתקה לא עבדה אוטומטית – אפשר לסמן את הטקסט בחלון ולהעתיק ידנית.");
       }
     });
 
     function showInstallHint() {
       alert(
         "כדי להפוך את ArchiAI לאפליקציה בנייד:\\n\\n" +
-        "1. פתחי את הדף הזה בטלפון (באמצעות קישור GitHub Pages).\\n" +
-        "2. ב-iPhone (Safari): כפתור Share → Add to Home Screen.\\n" +
-        "3. באנדרואיד (Chrome): תפריט ⋮ → הוסף למסך הבית.\\n\\n" +
-        "מכאן האפליקציה תופיע עם אייקון במסך הבית ותיפתח במסך מלא."
+        "1. פתחי את הקישור של האפליקציה בטלפון (GitHub Pages).\\n" +
+        "2. ב-iPhone (Safari): לחצי על Share → Add to Home Screen.\\n" +
+        "3. באנדרואיד (Chrome): לחצי על ⋮ → 'הוסף למסך הבית'.\\n\\n" +
+        "מכאן האפליקציה תופיע עם אייקון במסך הבית ותיפתח כמו אפליקציה רגילה."
       );
     }
 
-    function showHowToUse() {
+    function showHowToSell() {
       alert(
         "איך למכור את האפליקציה ללקוחות מעצבים:\\n\\n" +
-        "1. מוכרים גישה לקישור של האפליקציה.\\n" +
-        "2. כל קונה מקבל קישור + הסבר קצר איך להוסיף למסך הבית.\\n" +
-        "3. אפשר למתג את זה כ'ArchiAI למעצבים' או בשם המותג שלך.\\n" +
-        "4. את יכולה לעדכן את הטקסטים והפרומפטים מתי שתרצי – וכל מי שיש לו את הקישור מקבל את הגרסה המעודכנת."
+        "1. את מוכרת להם גישה לקישור של האפליקציה.\\n" +
+        "2. כל קונה מקבל ממך: קישור + סרטון/הסבר קצר איך להשתמש.\\n" +
+        "3. הם משתמשים בפרומפטים כדי לייצר בריפים, קונספטים ותוכן – ואת יכולה למתג את הכל תחת השם שלך."
       );
     }
   </script>
