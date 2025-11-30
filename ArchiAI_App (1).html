@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ArchiAI App</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0d0f17;
+    color: #fff;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #1a1d2b;
+    padding: 20px;
+    border-radius: 16px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.tool-box {
+    background: #25293c;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>ArchiAI – אפליקציית AI למעצבים</h1>
+    <p>גרסה בסיסית מוכנה להטמעה. לחצי על אחד הכלים:</p>
+
+    <button onclick="showTool('brief')">🧠 מחולל בריף</button>
+    <button onclick="showTool('concept')">🎨 מחולל קונספט</button>
+    <button onclick="showTool('client')">💼 תקשורת לקוח</button>
+    <button onclick="showTool('content')">📣 מנוע תוכן</button>
+
+    <div id="output" class="tool-box">בחרי כלי כדי להתחיל.</div>
+</div>
+
+<script>
+function showTool(type) {
+    let text = "";
+    if (type === "brief") {
+        text = "מחולל בריף: הדביקי את הטקסט הבא ב-ChatGPT לקבלת בריף מלא.\n\nאת/ה ARCHI-BRIEF, עוזר/ת AI לאדריכלים...";
+    }
+    if (type === "concept") {
+        text = "מחולל קונספט: הדביקי את הטקסט הבא ב-ChatGPT...\n\nאת/ה CONCEPT-AI, עוזר/ת קונספט מקצועי...";
+    }
+    if (type === "client") {
+        text = "מחולל תקשורת לקוח: הדביקי ל-ChatGPT כדי לייצר הודעות, הצעות מחיר והתנגדויות...";
+    }
+    if (type === "content") {
+        text = "מנוע תוכן: טקסט לייצור תוכן חודשי מלא בעזרת AI...";
+    }
+    document.getElementById("output").innerText = text;
+}
+</script>
+
+</body>
+</html>
