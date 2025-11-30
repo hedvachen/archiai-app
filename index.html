@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HEDVA.AI – מערכת AI למעצבים</title>
+  <title>HEDVA.AI – מערכת AI חכמה לכל תחום</title>
 
   <style>
     :root {
@@ -17,6 +17,12 @@
       --shadow: 0 18px 45px rgba(15,23,42,0.14);
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       margin: 0;
@@ -24,6 +30,7 @@
       background: #f3f4f6;
       display: flex;
       justify-content: center;
+      min-height: 100vh;
     }
 
     .shell {
@@ -34,23 +41,34 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* HEADER */
 
     .header {
-      padding: 20px;
+      padding: 18px 20px 14px;
       border-bottom: 1px solid #e5e7eb;
-      background: linear-gradient(to bottom, #ffffff, #f9fafb);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 60%),
+        linear-gradient(to bottom, #ffffff, #f9fafb);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* אייקון H החדש */
     .brand-icon {
       width: 38px;
       height: 38px;
@@ -67,7 +85,7 @@
     }
 
     .brand-main {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: #111827;
       letter-spacing: 0.5px;
@@ -78,17 +96,42 @@
       color: #6b7280;
     }
 
+    .pill {
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: rgba(255,255,255,0.9);
+      white-space: nowrap;
+      color: #111827;
+    }
+
+    .hero-text-main {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .hero-text-sub {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
     /* BODY */
 
     .body {
       padding: 16px;
       background: #f9fafb;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .section-label {
       font-size: 11px;
       color: var(--muted);
-      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -105,33 +148,38 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
+      margin-top: 6px;
     }
 
     .tool-card {
       background: white;
       border-radius: 16px;
       border: 1px solid #e5e7eb;
-      padding: 12px;
+      padding: 10px 11px;
       cursor: pointer;
       transition: .15s ease;
       position: relative;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .tool-card:hover {
       border-color: #2563eb;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, .25);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, .22);
       transform: translateY(-2px);
     }
 
     .tool-card.active {
       border-color: #2563eb;
-      box-shadow: 0 8px 28px rgba(37, 99, 235, .32);
+      box-shadow: 0 10px 26px rgba(37,99,235,0.30);
     }
 
     .tool-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       color: #111827;
     }
 
@@ -142,32 +190,63 @@
 
     .tool-chevron {
       position: absolute;
-      bottom: 8px;
+      bottom: 7px;
       left: 10px;
       font-size: 16px;
       color: #94a3b8;
     }
 
+    .info-strip {
+      font-size: 10px;
+      color: #6b7280;
+      background: #eef2ff;
+      border-radius: 10px;
+      border: 1px dashed #c7d2fe;
+      padding: 8px 10px;
+      line-height: 1.4;
+    }
+
     /* FOOTER */
 
     .footer {
-      padding: 14px;
+      padding: 10px 14px;
       background: #f9fafb;
       border-top: 1px solid #e5e7eb;
-      font-size: 11px;
+      font-size: 10px;
       color: #6b7280;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .footer-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-tag {
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
     }
 
     .footer-btn {
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
       border: 1px dashed #94a3b8;
       background: white;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 10px;
+      white-space: nowrap;
     }
 
     /* MODAL */
@@ -175,11 +254,12 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.25);
+      background: rgba(15,23,42,0.32);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      z-index: 50;
     }
 
     .modal-backdrop.show {
@@ -189,37 +269,64 @@
     .modal {
       width: 100%;
       max-width: 520px;
-      background: #fff;
+      background: #ffffff;
       border-radius: 22px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.22);
+      box-shadow: 0 20px 55px rgba(15,23,42,0.30);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
     }
 
     .modal-header {
-      padding: 16px;
+      padding: 14px 16px 10px;
       border-bottom: 1px solid #e5e7eb;
     }
 
     .modal-title {
       font-size: 15px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
+      color: #111827;
     }
 
     .modal-sub {
       font-size: 11px;
       color: #6b7280;
+      line-height: 1.4;
     }
 
     .modal-body {
-      padding: 14px 16px;
-      font-size: 12px;
+      padding: 10px 16px 14px;
+      font-size: 11px;
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-steps {
+      background: #eff6ff;
+      border-radius: 12px;
+      border: 1px solid #dbeafe;
+      padding: 8px 9px;
+      font-size: 11px;
+      color: #1e293b;
+    }
+
+    .modal-steps ul {
+      padding-right: 16px;
+      margin: 4px 0 0;
+    }
+
+    .modal-steps li {
+      margin-bottom: 2px;
     }
 
     .modal-output {
-      margin-top: 8px;
-      padding: 10px;
+      margin-top: 4px;
+      padding: 8px 10px;
       background: #f3f4f6;
       border-radius: 12px;
       border: 1px solid #e5e7eb;
@@ -227,10 +334,11 @@
       white-space: pre-wrap;
       max-height: 260px;
       overflow-y: auto;
+      line-height: 1.5;
     }
 
     .primary-btn {
-      margin-top: 10px;
+      margin-top: 8px;
       padding: 8px 14px;
       border-radius: 999px;
       background: linear-gradient(135deg, #2563eb, #4f46e5);
@@ -241,6 +349,37 @@
       width: 100%;
     }
 
+    .modal-close-row {
+      padding: 6px 16px 10px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 10px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: #9ca3af;
+      line-height: 1;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 12px;
+      }
+      .shell {
+        border-radius: 24px;
+      }
+      .modal {
+        border-radius: 18px;
+      }
+    }
   </style>
 </head>
 
@@ -248,53 +387,83 @@
   <div class="shell">
 
     <header class="header">
-      <div class="brand">
-        <div class="brand-icon">H</div>
-        <div>
-          <div class="brand-main">HEDVA.AI</div>
-          <div class="brand-sub">מערכת AI למעצבים ואדריכלים</div>
+      <div class="brand-row">
+        <div class="brand">
+          <div class="brand-icon">H</div>
+          <div>
+            <div class="brand-main">HEDVA.AI</div>
+            <div class="brand-sub">מערכת AI חכמה לכל מי שמוכר שירותים או מוצרים</div>
+          </div>
         </div>
+        <div class="pill">
+          גרסת Creator • לשימוש ומכירה ללקוחות
+        </div>
+      </div>
+
+      <div class="hero-text-main">
+        4 כפתורים שעוזרים לך להבין, להסביר ולמכור – בכל תחום.
+      </div>
+      <div class="hero-text-sub">
+        בוחרים כלי → מעתיקים את הטקסט → מדביקים ב-ChatGPT → עונים על השאלות → מקבלים תוצאה מוכנה.
       </div>
     </header>
 
     <main class="body">
       <div class="section-label">
         <span></span>
-        בחרי כלי – הכל כתוב בעברית ופשוט לשימוש
+        בחרי כלי – הוא יתאים את עצמו לתחום שלך ברגע שתסבירי מה את עושה
       </div>
 
       <div class="tools-grid">
 
-        <div class="tool-card" data-tool="brief">
-          <div class="tool-title">מחולל בריף</div>
-          <div class="tool-desc">שאלות ללקוח + מסמך מסכם</div>
+        <div class="tool-card" data-tool="needs">
+          <div>
+            <div class="tool-title">אפיון צרכים</div>
+            <div class="tool-desc">מסדר מה הלקוח צריך ומה מטרת הפרויקט</div>
+          </div>
           <div class="tool-chevron">›</div>
         </div>
 
         <div class="tool-card" data-tool="concept">
-          <div class="tool-title">מחולל קונספט</div>
-          <div class="tool-desc">קונספט + Moodboard טקסטואלי</div>
+          <div>
+            <div class="tool-title">יצירת כיוון / רעיון</div>
+            <div class="tool-desc">מזקק רעיון ברור ומובן לכל סוג פעילות</div>
+          </div>
           <div class="tool-chevron">›</div>
         </div>
 
         <div class="tool-card" data-tool="client">
-          <div class="tool-title">תקשורת לקוח</div>
-          <div class="tool-desc">ווטסאפ + הצעת מחיר + "יקר לי"</div>
+          <div>
+            <div class="tool-title">טקסטים ללקוחות</div>
+            <div class="tool-desc">הודעות, מיילים ותשובות ללקוחות – בכל תחום</div>
+          </div>
           <div class="tool-chevron">›</div>
         </div>
 
         <div class="tool-card" data-tool="content">
-          <div class="tool-title">מנוע תוכן</div>
-          <div class="tool-desc">לוח תוכן + טקסטים לפוסטים</div>
+          <div>
+            <div class="tool-title">תוכן לרשתות</div>
+            <div class="tool-desc">רעיונות ופוסטים לאינסטגרם, פייסבוק, טיקטוק ועוד</div>
+          </div>
           <div class="tool-chevron">›</div>
         </div>
 
       </div>
+
+      <div class="info-strip">
+        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש.
+      </div>
     </main>
 
     <footer class="footer">
-      <div>HEDVA.AI ©</div>
-      <button class="footer-btn" onclick="alert('ב-iPhone: Share → Add to Home Screen\nב-Android: ⋮ → הוסף למסך הבית')">
+      <div class="footer-left">
+        <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן</div>
+        <div class="footer-tag-row">
+          <div class="footer-tag">מתאים לכל תחום</div>
+          <div class="footer-tag">אפשר למתג ללקוחות שלך</div>
+        </div>
+      </div>
+      <button class="footer-btn" onclick="showInstallHint()">
         📱 הוספה למסך הבית
       </button>
     </footer>
@@ -305,65 +474,266 @@
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title" id="modalTitle">כותרת</div>
-        <div class="modal-sub" id="modalSub">תיאור קצר</div>
+        <div class="modal-title" id="modalTitle">כותרת הכלי</div>
+        <div class="modal-sub" id="modalSub">תיאור קצר מה הכלי עושה.</div>
       </div>
 
       <div class="modal-body">
-        <div>הטקסט להדבקה ב־ChatGPT:</div>
-        <div class="modal-output" id="modalContent">בחרי כלי למעלה…</div>
+        <div class="modal-steps">
+          <strong>איך להשתמש בכלי (3 צעדים):</strong>
+          <ul>
+            <li>לחצי על הכפתור "העתקת הטקסט ל-ChatGPT".</li>
+            <li>פתחי ChatGPT, הדביקי את הטקסט והוסיפי הסבר קצר מה את עושה ובאיזה תחום.</li>
+            <li>עני על השאלות שתקבלי – ובסוף תקבלי מסמך/תוכן מוכן.</li>
+          </ul>
+        </div>
 
-        <button class="primary-btn" onclick="copyText()">📋 העתקי ל־ChatGPT</button>
+        <div>הטקסט להדבקה ב־ChatGPT:</div>
+        <div class="modal-output" id="modalContent">
+בחרי כלי למעלה – ואז יופיע כאן טקסט מוכן להדבקה ב-ChatGPT.
+        </div>
+
+        <button class="primary-btn" onclick="copyPrompt()">📋 העתקת הטקסט ל־ChatGPT</button>
+      </div>
+
+      <div class="modal-close-row">
+        <div>אפשר לערוך את הטקסט לפני שמעתיקים, ולהתאים לשפה שלך.</div>
+        <button class="modal-close-btn" onclick="closeModal()" aria-label="סגירה">×</button>
       </div>
     </div>
   </div>
 
 <script>
+  // רפרנסים
   const modalBackdrop = document.getElementById("modalBackdrop");
   const modalTitle = document.getElementById("modalTitle");
   const modalSub = document.getElementById("modalSub");
   const modalContent = document.getElementById("modalContent");
 
+  let currentPrompt = "";
+
+  // פרומפטים אוניברסליים – מתאימים את עצמם לתחום שהמשתמש יכתוב
   const tools = {
-    brief: {
-      title: "מחולל בריף",
-      sub: "שאלות חכמות + סיכום אוטומטי",
-      text: `כתבי לי בריף מלא על בסיס שאלות.`
+    needs: {
+      title: "אפיון צרכים",
+      sub: "עוזר לך להבין מה הלקוח צריך ומה המטרה – בכל תחום.",
+      text: `את/ה עוזר/ת AI לאפיון צרכים עבור פרויקטים בכל תחום.
+
+המטרה שלך:
+1. לעזור לי לעשות סדר במה שאני מציע/ה (שירות או מוצר) ובמה שהלקוח צריך.
+2. לשאול שאלות בצורה ברורה ופשוטה, שאלה אחת בכל פעם.
+3. בסוף התהליך לסכם את כל מה שאמרתי למסמך אפיון קצר ומסודר.
+
+לפני שאת/ה מתחיל/ה:
+– שאל/י אותי באיזה תחום אני (לדוגמה: עיצוב פנים, קוסמטיקה, אימון, קורסים דיגיטליים, מסעדה, ייעוץ עסקי, צילום, וכו').
+– בקש/י ממני להסביר במשפט-שניים מה אני עושה, למי אני פונה, ומה המטרה שלי.
+
+אופן העבודה:
+- שאל/י תמיד שאלה אחת בכל פעם, וחכה לתשובה שלי.
+- אם אני עונה תשובה כללית מדי, בקש/י דוגמאות או דיוק.
+- שמור/י על שפה פשוטה, ידידותית וברורה, בלי מונחים מקצועיים מסובכים.
+
+נושאים שחשוב לכסות:
+1. מה אני מציע/ה – שירותים / מוצרים / תוכן.
+2. מי הלקוחות שלי – קהל יעד, גיל, סוג, מאפיינים עיקריים.
+3. מה מטרת הפרויקט – מה אני רוצה להשיג (לדוגמה: יותר לקוחות, שיפור תדמית, השקת מוצר חדש, סדר בעסק).
+4. איך אני עובד/ת היום – בקצרה.
+5. מה הכי מתסכל אותי היום – איפה אני נתקע/ת.
+6. מה חשוב לי במיוחד – ערכים, סגנון, אופי עבודה.
+7. מגבלות – תקציב, זמן, משאבים.
+
+בסיום:
+- סכם/י את כל התשובות למסמך אפיון קצר, ברור ומסודר.
+- חלק/י את האפיון לכותרות וטקסט קצר תחת כל כותרת:
+  • על מי אני ומה אני עושה
+  • על הלקוחות שלי
+  • מטרות
+  • אתגרים
+  • נקודות חוזקה
+  • מה חשוב לי בתהליך.
+
+הצג/י את האפיון כך שאוכל להעתיק אותו כמות שהוא ל-Word / Google Docs / מייל.`
     },
     concept: {
-      title: "מחולל קונספט",
-      sub: "קונספט + Moodboard טקסטואלי",
-      text: `צרי לי קונספט מלא לפרויקט עיצוב פנים.`
+      title: "יצירת כיוון / רעיון",
+      sub: "מזקק רעיון ברור, מובן ובוגר – שמתאים לכל סוג פרויקט או עסק.",
+      text: `את/ה עוזר/ת AI ליצירת כיוון / רעיון (קונספט) לכל תחום או פעילות.
+
+המטרה שלך:
+1. לקחת מידע בסיסי על מה שאני עושה ולמי אני פונה.
+2. להפוך אותו לרעיון מרכזי אחד ברור (כיוון / קונספט).
+3. להציג את זה בצורה קצרה, ברורה ומובנת – גם למי שלא מכיר את התחום.
+
+לפני שאת/ה מתחיל/ה:
+– שאל/י אותי באיזה תחום אני (לדוגמה: סטיילינג, אימון, עיצוב, ייעוץ, אוכל, חנות אונליין, תוכן, קורסים).
+– בקש/י ממני להסביר במשפט-שניים:
+  • מה אני מציע/ה
+  • למי אני רוצה להגיע
+  • מה הכי חשוב לי שירגישו.
+
+אופן העבודה:
+- תן/י לי כמה שאלות קצרות כדי לדייק את הכיוון (לא יותר מ-7–6 שאלות).
+- שמור/י על שפה פשוטה, בלי מונחים טכניים.
+
+בסיום השאלות:
+צור/י עבורי מסמך כיוון / רעיון שכולל:
+
+1. משפט כיוון ראשי:
+   – משפט אחד שמתחיל במילים: "הכיוון המרכזי שלך הוא..."
+   – שיהיה ברור, פשוט, לא שיווקי מדי.
+
+2. תיאור קצר:
+   – 3–4 פסקאות קצרות שעונות על:
+     • מה אנחנו עושים
+     • למי זה מיועד
+     • מה חשוב שירגישו
+     • במה זה שונה מאחרים.
+
+3. 5–7 נקודות מפתח:
+   – רשימת bullet points של רעיונות / עקרונות שמובילים את הכיוון.
+
+4. 3–5 משפטים שאפשר לומר ללקוח / לקהל:
+   – משפטים שאפשר לומר בשיחה או בסטורי, שמסבירים את הכיוון בפשטות.
+
+התאם/י את כל התשובות לתחום שאני אומר/ת לך בתחילת התהליך.`
     },
     client: {
-      title: "תקשורת לקוח",
-      sub: "ווטסאפ + הצעת מחיר + תשובות",
-      text: `כתבי הודעות מקצועיות ללקוח.`
+      title: "טקסטים ללקוחות",
+      sub: "כותב עבורך הודעות, מיילים ותשובות ללקוחות – מותאם לתחום שלך.",
+      text: `את/ה עוזר/ת AI לכתיבת טקסטים ללקוחות – לכל תחום.
+
+המטרה שלך:
+1. לעזור לי לנסח הודעות ומיילים ללקוחות בצורה ברורה, מנומסת ומקצועית.
+2. להכין לי משפטים מוכנים למצבים שחוזרים על עצמם עם לקוחות.
+3. להתאים את הניסוח לתחום שבו אני עובדת ולסגנון תקשורת שמתאים לי.
+
+לפני שאת/ה מתחיל/ה:
+– שאל/י אותי:
+  • באיזה תחום אני (לדוגמה: עיצוב, טיפולים, אימון, ייעוץ, שיווק, לימודים, מוצרים פיזיים, מוצרים דיגיטליים וכו').
+  • איך אני מעדיף/פה לדבר – יותר רשמי, יותר חברי, או באמצע.
+  • דרך איזה ערוץ אני לרוב מדברת עם לקוחות – ווטסאפ, אינסטגרם, מייל, טלפון.
+
+אופן העבודה:
+- עזור/י לי לכתוב קודם תיאור קצר של השירות או המוצר שלי (2–3 משפטים).
+- לאחר מכן, כתוב/כתבי עבורי את הדברים הבאים:
+
+1. הודעת פתיחה ללקוח חדש:
+   – הודעה קצרה, בגובה העיניים, שבאה אחרי שמישהו מתעניין.
+   – גרסה לווטסאפ או אינסטגרם.
+
+2. הסבר על השירות / המוצר:
+   – 5–7 שורות שמסבירות בצורה פשוטה מה אני מציע/ה.
+   – ללא שפה טכנית.
+
+3. תבנית הצעת מחיר קצרה:
+   – רשימת נקודות: מה כלול, מה לא כלול (אם רלוונטי), טווח מחיר, מה הצעד הבא.
+
+4. תשובות ל-3 מצבים נפוצים:
+   – "יקר לי"
+   – "אני צריך/ה לחשוב על זה"
+   – "נדבר כשיהיה לי זמן"
+   עבור כל מצב:
+   – כתוב/כתבי 2 נוסחים:
+     א. נוסח עדין, אמפתי ורך.
+     ב. נוסח יותר ענייני וברור אבל לא תוקפני.
+
+חשוב:
+- להתאים את הדוגמאות לתחום ולשירות שאני מתאר/ת.
+- לשמור על שפה ישראלית טבעית, לא מתורגמת ולא גבוהה מדי.`
     },
     content: {
-      title: "מנוע תוכן",
-      sub: "לוח תוכן + טקסטים לפוסטים",
-      text: `בני לוח תוכן וכתבי טקסטים לרשתות.`
+      title: "תוכן לרשתות",
+      sub: "עוזר לבנות לוח תוכן ורעיונות לפוסטים ורילסים – לכל תחום.",
+      text: `את/ה עוזר/ת AI ליצירת תוכן לרשתות חברתיות – לכל תחום.
+
+המטרה שלך:
+1. לבנות לוח רעיונות לתוכן לתקופה של חודש (או זמן שאבקש).
+2. לייצר רעיונות לפוסטים, סרטונים קצרים (רילס / טיקטוק), וסטוריז.
+3. להתאים את התוכן לתחום שלי ולסוג הקהל שאני פונה אליו.
+
+לפני שאת/ה מתחיל/ה:
+– שאל/י אותי:
+  • באיזה תחום אני (לדוגמה: עיצוב, אוכל, אימון, סטיילינג, ייעוץ, חנות אונליין, מורה פרטית, צילום וכו').
+  • מי הקהל שלי (בקצרה).
+  • באיזה רשתות אני הכי פעיל/ה (אינסטגרם, פייסבוק, טיקטוק, לינקדאין וכו').
+  • כמה פעמים בשבוע בערך אני רוצה לפרסם.
+
+אופן העבודה:
+- אחרי שאענה על השאלות, בנה/בני עבורי:
+
+1. לוח רעיונות לתוכן (לא חייב טבלה בפורמט, אפשר רשימה):
+   – רשימה של לפחות 15–20 רעיונות לפוסטים / סרטונים / סטוריז.
+   – לכל רעיון: ציין/י מה סוג התוכן (פוסט, רילס, סטורי), על מה מדברים, ומה הקריאה לפעולה (לייק, תגובה, הודעה, שמירה וכו').
+
+2. 5 טקסטים לדוגמה לפוסטים:
+   – פוסטים של עד 120 מילים כל אחד.
+   – כתובים בשפה פשוטה, אנושית, לא "פרסומית" מדי.
+   – מותאמים לקהל ולתחום שאציין.
+
+3. 5 פתיחים לסרטונים קצרים (רילס / טיקטוק):
+   – משפט ראשון שתופס את העין.
+   – 2–3 נקודות קצרות להמשך הסרטון.
+   – משפט סיום עם קריאה לפעולה (להשאיר תגובה, לשמור, לשלוח הודעה, לעקוב).
+
+חשוב:
+- להתאים את התוכן לתחום שאני מציין/ת.
+- לשמור על טון כתיבה בגובה העיניים, בלי הבטחות מוגזמות.`
     }
   };
 
+  // פתיחת מודל לכלי
   document.querySelectorAll(".tool-card").forEach(card => {
     card.onclick = () => {
+      document.querySelectorAll(".tool-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
       const key = card.dataset.tool;
-      modalTitle.textContent = tools[key].title;
-      modalSub.textContent = tools[key].sub;
-      modalContent.textContent = tools[key].text;
+      const tool = tools[key];
+
+      if (!tool) return;
+
+      modalTitle.textContent = tool.title;
+      modalSub.textContent = tool.sub;
+      modalContent.textContent = tool.text;
+      currentPrompt = tool.text;
       modalBackdrop.classList.add("show");
     };
   });
 
+  function closeModal() {
+    modalBackdrop.classList.remove("show");
+  }
+
   modalBackdrop.onclick = e => {
-    if (e.target === modalBackdrop) modalBackdrop.classList.remove("show");
+    if (e.target === modalBackdrop) closeModal();
   };
 
-  function copyText() {
-    navigator.clipboard.writeText(modalContent.textContent);
-    alert("הטקסט הועתק. הדביקי ב־ChatGPT.");
+  function copyPrompt() {
+    if (!currentPrompt) {
+      alert("קודם בחרי אחד הכלים – ואז אפשר להעתיק את הטקסט.");
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(currentPrompt)
+        .then(() => {
+          alert("הטקסט הועתק. עכשיו פתחי ChatGPT, הדביקי את הטקסט והוסיפי כמה מילים מה את עושה ובאיזה תחום.");
+        })
+        .catch(() => {
+          alert("אם ההעתקה לא עבדה – סמני את הטקסט בחלון, העתיקי ידנית והדביקי ב-ChatGPT.");
+        });
+    } else {
+      alert("אם ההעתקה לא עבדה – סמני את הטקסט בחלון, העתיקי ידנית והדביקי ב-ChatGPT.");
+    }
+  }
+
+  function showInstallHint() {
+    alert(
+      "כדי להפוך את HEDVA.AI לאפליקציה בנייד:\n\n" +
+      "1. פתחי את הקישור של האפליקציה בטלפון.\n" +
+      "2. ב-iPhone (Safari): לחצי על Share → Add to Home Screen.\n" +
+      "3. באנדרואיד (Chrome): לחצי על ⋮ → 'הוסף למסך הבית'.\n\n" +
+      "האייקון יופיע במסך הבית ותוכלי לפתוח את המערכת כמו אפליקציה רגילה."
+    );
   }
 </script>
 
