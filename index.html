@@ -198,23 +198,36 @@
       border-radius: 50%;
     }
 
-    /* DOMAIN SELECTOR */
+    /* CONTROL PANEL – בחירת תחום, סגנון, מטרה, הערה */
 
-    .domain-section {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .control-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
       margin-bottom: 10px;
-      max-width: 420px;
+      max-width: 100%;
     }
 
-    .domain-label {
+    .control-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .control-label {
       font-size: 12px;
       color: #0f172a;
       font-weight: 500;
     }
 
-    .domain-select {
+    .control-hint {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .control-select,
+    .control-input {
       width: 100%;
       padding: 8px 11px;
       border-radius: 999px;
@@ -234,19 +247,41 @@
       background-repeat: no-repeat;
     }
 
-    .domain-select:focus {
+    .control-input {
+      border-radius: 999px;
+      background-image: none;
+    }
+
+    .control-select:focus,
+    .control-input:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
     }
 
-    .domain-hint {
-      font-size: 11px;
-      color: #6b7280;
+    .control-textarea-wrapper {
+      grid-column: span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .domain-optgroup {
-      font-weight: 600;
+    .control-textarea {
+      width: 100%;
+      min-height: 46px;
+      max-height: 80px;
+      padding: 7px 10px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 12px;
+      background: #ffffff;
       color: #0f172a;
+      resize: vertical;
+      outline: none;
+    }
+
+    .control-textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
     }
 
     .tools-grid {
@@ -259,6 +294,12 @@
     @media (max-width: 1024px) {
       .tools-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .control-panel {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -276,8 +317,8 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .domain-section {
-        max-width: 100%;
+      .control-panel {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -614,14 +655,14 @@
         <div>
           <div class="hero-title">4 כפתורים שעוזרים לכם להבין, להסביר ולמכור – בכל תחום.</div>
           <div class="hero-sub">
-            בוחרים כלי → מעתיקים את הטקסט → מדביקים ב-ChatGPT → עונים על השאלות → מקבלים תוצאה מוכנה:
-            מסמכים, טקסטים ללקוחות ותוכן לרשתות – בלי לחשוב איך לנסח ובלי להבין ב-AI.
+            קודם בוחרים תחום, סגנון כתיבה ומטרה – אחר כך בוחרים כלי. המערכת יוצרת עבורכם פרומפט חכם,
+            מותאם אישית לתחום, לסגנון ולמטרה שלכם, ומעבירה אותו ל-ChatGPT בלחיצה אחת.
           </div>
         </div>
         <div class="hero-steps">
-          <div class="step-pill"><span>①</span> בוחרים את התחום שלכם</div>
+          <div class="step-pill"><span>①</span> בוחרים תחום, סגנון ומטרה</div>
           <div class="step-pill"><span>②</span> בוחרים את הכלי שמתאים לרגע הזה</div>
-          <div class="step-pill"><span>③</span> מעתיקים טקסט ל-ChatGPT ומקבלים תוצאה מוכנה</div>
+          <div class="step-pill"><span>③</span> מעתיקים ל-ChatGPT ומקבלים תוצאה מותאמת</div>
         </div>
       </div>
     </header>
@@ -629,95 +670,128 @@
     <main class="body">
       <div class="section-label">
         <span></span>
-        לפני הבחירה בכלי – בחרו תחום מתוך הרשימה (כדי לכוון את התוצאה אליכם)
+        שלב 1 – לבחור תחום, סגנון ומטרה. שלב 2 – לבחור את אחד הכלים.
       </div>
 
-      <div class="domain-section">
-        <label class="domain-label" for="domainSelect">תחום הפעילות:</label>
-        <select id="domainSelect" class="domain-select">
-          <option value="">בחרו תחום...</option>
+      <div class="control-panel">
+        <div class="control-field">
+          <label class="control-label" for="domainSelect">תחום הפעילות</label>
+          <select id="domainSelect" class="control-select">
+            <option value="">בחרו תחום...</option>
 
-          <optgroup label="עסקים ושירותים מקצועיים" class="domain-optgroup">
-            <option>ייעוץ עסקי</option>
-            <option>אימון אישי</option>
-            <option>ליווי התפתחות אישית</option>
-            <option>משאבי אנוש / גיוס</option>
-            <option>ייעוץ כלכלי</option>
-            <option>מנטורינג</option>
-            <option>ניהול פרויקטים</option>
-            <option>טכנולוגיה / תוכנה</option>
-            <option>סוכנות דיגיטל</option>
-            <option>שירות לקוחות / מכירות</option>
-          </optgroup>
+            <optgroup label="עסקים ושירותים מקצועיים">
+              <option>ייעוץ עסקי</option>
+              <option>אימון אישי</option>
+              <option>ליווי התפתחות אישית</option>
+              <option>משאבי אנוש / גיוס</option>
+              <option>ייעוץ כלכלי</option>
+              <option>מנטורינג</option>
+              <option>ניהול פרויקטים</option>
+              <option>טכנולוגיה / תוכנה</option>
+              <option>סוכנות דיגיטל</option>
+              <option>שירות לקוחות / מכירות</option>
+            </optgroup>
 
-          <optgroup label="עיצוב ויצירה" class="domain-optgroup">
-            <option>עיצוב פנים</option>
-            <option>אדריכלות</option>
-            <option>הום סטיילינג</option>
-            <option>עיצוב גרפי</option>
-            <option>ברנדינג / מיתוג</option>
-            <option>צילום</option>
-            <option>וידאו / הפקות</option>
-            <option>עיצוב מוצר</option>
-            <option>עיצוב אתרים</option>
-            <option>UX/UI</option>
-          </optgroup>
+            <optgroup label="עיצוב ויצירה">
+              <option>עיצוב פנים</option>
+              <option>אדריכלות</option>
+              <option>הום סטיילינג</option>
+              <option>עיצוב גרפי</option>
+              <option>ברנדינג / מיתוג</option>
+              <option>צילום</option>
+              <option>וידאו / הפקות</option>
+              <option>עיצוב מוצר</option>
+              <option>עיצוב אתרים</option>
+              <option>UX/UI</option>
+            </optgroup>
 
-          <optgroup label="טיפולים / יופי / בריאות" class="domain-optgroup">
-            <option>קוסמטיקה</option>
-            <option>איפור</option>
-            <option>מניקור / פדיקור</option>
-            <option>עיצוב שיער</option>
-            <option>רפואה משלימה</option>
-            <option>דיאטנית / תזונה</option>
-            <option>מטפלים רגשיים / NLP</option>
-            <option>קליניקות ורופאים</option>
-            <option>מאמני כושר</option>
-          </optgroup>
+            <optgroup label="טיפולים / יופי / בריאות">
+              <option>קוסמטיקה</option>
+              <option>איפור</option>
+              <option>מניקור / פדיקור</option>
+              <option>עיצוב שיער</option>
+              <option>רפואה משלימה</option>
+              <option>דיאטנית / תזונה</option>
+              <option>מטפלים רגשיים / NLP</option>
+              <option>קליניקות ורופאים</option>
+              <option>מאמני כושר</option>
+            </optgroup>
 
-          <optgroup label="מוצרים ומסחר" class="domain-optgroup">
-            <option>חנות אונליין</option>
-            <option>ביגוד ואופנה</option>
-            <option>תכשיטים</option>
-            <option>מוצרי תינוקות</option>
-            <option>קורסים דיגיטליים / מדריכים</option>
-            <option>מוצרים לבית</option>
-            <option>מזון ומשקאות</option>
-            <option>אמנות / יצירה</option>
-            <option>חנויות בוטיק</option>
-            <option>חנויות מתנות</option>
-          </optgroup>
+            <optgroup label="מוצרים ומסחר">
+              <option>חנות אונליין</option>
+              <option>ביגוד ואופנה</option>
+              <option>תכשיטים</option>
+              <option>מוצרי תינוקות</option>
+              <option>קורסים דיגיטליים / מדריכים</option>
+              <option>מוצרים לבית</option>
+              <option>מזון ומשקאות</option>
+              <option>אמנות / יצירה</option>
+              <option>חנויות בוטיק</option>
+              <option>חנויות מתנות</option>
+            </optgroup>
 
-          <optgroup label="מסעדות ואירוח" class="domain-optgroup">
-            <option>מסעדות</option>
-            <option>בתי קפה</option>
-            <option>קייטרינג</option>
-            <option>שף פרטי</option>
-            <option>אירועים פרטיים</option>
-            <option>מלונות / צימרים</option>
-            <option>אולמות אירועים</option>
-          </optgroup>
+            <optgroup label="מסעדות ואירוח">
+              <option>מסעדות</option>
+              <option>בתי קפה</option>
+              <option>קייטרינג</option>
+              <option>שף פרטי</option>
+              <option>אירועים פרטיים</option>
+              <option>מלונות / צימרים</option>
+              <option>אולמות אירועים</option>
+            </optgroup>
 
-          <optgroup label="שיווק, תוכן והדרכה" class="domain-optgroup">
-            <option>יוצרי תוכן</option>
-            <option>שיווק דיגיטלי</option>
-            <option>קמפיינים / פרסום</option>
-            <option>מורים פרטיים</option>
-            <option>מרצים</option>
-            <option>סדנאות והדרכות</option>
-          </optgroup>
+            <optgroup label="שיווק, תוכן והדרכה">
+              <option>יוצרי תוכן</option>
+              <option>שיווק דיגיטלי</option>
+              <option>קמפיינים / פרסום</option>
+              <option>מורים פרטיים</option>
+              <option>מרצים</option>
+              <option>סדנאות והדרכות</option>
+            </optgroup>
 
-          <optgroup label="כללי / אחרים" class="domain-optgroup">
-            <option>פרילנסרים</option>
-            <option>עסק קטן</option>
-            <option>עסק חדש</option>
-            <option>סטארטאפ</option>
-            <option>תוכן ויצירה חופשית</option>
-            <option>אחר / משהו אחר...</option>
-          </optgroup>
-        </select>
-        <div class="domain-hint">
-          הבחירה כאן רק עוזרת לכם למקד את עצמכם. את ההסבר המלא כותבים אחר כך בתוך ChatGPT לפי ההנחיות של הכלי.
+            <optgroup label="כללי / אחרים">
+              <option>פרילנסרים</option>
+              <option>עסק קטן</option>
+              <option>עסק חדש</option>
+              <option>סטארטאפ</option>
+              <option>תוכן ויצירה חופשית</option>
+              <option>אחר / משהו אחר...</option>
+            </optgroup>
+          </select>
+          <div class="control-hint">הבחירה כאן נכנסת אוטומטית לפרומפט כדי ש־ChatGPT יבין את התחום.</div>
+        </div>
+
+        <div class="control-field">
+          <label class="control-label" for="toneSelect">סגנון כתיבה</label>
+          <select id="toneSelect" class="control-select">
+            <option value="">בחרו סגנון...</option>
+            <option>חברי וקליל</option>
+            <option>מקצועי וחד</option>
+            <option>רגוע ומכיל</option>
+            <option>יוקרתי ומינימליסטי</option>
+            <option>ישיר וממוקד מכירה</option>
+          </select>
+          <div class="control-hint">איך תרצו שיישמעו הטקסטים? זה יכוון את אופי הניסוח.</div>
+        </div>
+
+        <div class="control-field">
+          <label class="control-label" for="goalSelect">המטרה המרכזית</label>
+          <select id="goalSelect" class="control-select">
+            <option value="">בחרו מטרה...</option>
+            <option>שיווק ומכירות</option>
+            <option>הסבר וחינוך הלקוח</option>
+            <option>סדר וארגון בעסק</option>
+            <option>יצירת תוכן לרשתות</option>
+            <option>שיפור חוויית הלקוח</option>
+          </select>
+          <div class="control-hint">מה אתם רוצים שיקרה בזכות התוצאה? זה משפיע על הכיוון.</div>
+        </div>
+
+        <div class="control-textarea-wrapper">
+          <label class="control-label" for="extraNotes">משהו שחשוב לכם במיוחד (לא חובה)</label>
+          <textarea id="extraNotes" class="control-textarea"
+            placeholder="לדוגמה: חשוב לי לא להישמע שיווקיים מדי / אני עובדת בעיקר עם נשים / אני בתחילת הדרך ועוד."></textarea>
+          <div class="control-hint">אם תמלאו – זה ייכנס אוטומטית לפתיח של הפרומפט ויכוון את כל התוצאה.</div>
         </div>
       </div>
 
@@ -770,9 +844,8 @@
       </div>
 
       <div class="info-strip">
-        לא חייבים להבין ב-AI: בכל כלי יש טקסט מוכן. מעתיקים ל-ChatGPT, כותבים כמה מילים מה אתם עושים ובאיזה תחום,
-        עונים על שאלות פשוטות – ומקבלים מסמכים, טקסטים ותוכן מוכנים לשימוש. אפשר למכור את הגישה למערכת ללקוחות,
-        או להשתמש בה לעסק שלכם.
+        לא חייבים להבין ב-AI: המערכת משתמשת בבחירת התחום, הסגנון והמטרה שלכם, ומכניסה אותם אוטומטית לפרומפט.
+        אתם רק בוחרים, לוחצים ומעתיקים ל-ChatGPT – ומקבלים מסמכים, טקסטים ותוכן שמרגישים כאילו נבנו במיוחד עבורכם.
       </div>
 
       <!-- SALES STRIP -->
@@ -791,7 +864,7 @@
         <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן.</div>
         <div class="footer-tag-row">
           <div class="footer-tag">מתאים לכל תחום</div>
-          <div class="footer-tag">כולל התאמה אוטומטית לתחום המשתמש</div>
+          <div class="footer-tag">כולל התאמה אוטומטית לתחום, סגנון ומטרה</div>
         </div>
       </div>
       <button class="footer-btn" onclick="showInstallHint()">
@@ -813,8 +886,8 @@
         <div class="modal-steps">
           <strong>איך להשתמש בכלי (3 צעדים):</strong>
           <ul>
-            <li>לחצו על הכפתור "העתקת הטקסט ל-ChatGPT".</li>
-            <li>פתחו ChatGPT, הדביקו את הטקסט והוסיפו בקצרה מה אתם עושים ובאיזה תחום.</li>
+            <li>בחרו תחום, סגנון כתיבה ומטרה – ואז לחצו על אחד הכלים.</li>
+            <li>לחצו על "העתקת הטקסט ל-ChatGPT" והדביקו את הטקסט ב-ChatGPT.</li>
             <li>ענו על השאלות – ובסוף תקבלו מסמך/תוכן מוכן.</li>
           </ul>
         </div>
@@ -843,6 +916,11 @@
   const modalSub = document.getElementById("modalSub");
   const modalContent = document.getElementById("modalContent");
 
+  const domainSelect = document.getElementById("domainSelect");
+  const toneSelect = document.getElementById("toneSelect");
+  const goalSelect = document.getElementById("goalSelect");
+  const extraNotes = document.getElementById("extraNotes");
+
   let currentPrompt = "";
 
   const tools = {
@@ -857,8 +935,7 @@
 3. בסוף התהליך לסכם את כל מה שאמרתי למסמך אפיון קצר ומסודר.
 
 לפני שאת/ה מתחיל/ה:
-– שאל/י אותי באיזה תחום אני (לדוגמה: עיצוב פנים, קוסמטיקה, אימון, קורסים דיגיטליים, מסעדה, ייעוץ עסקי, צילום, וכו').
-– בקש/י ממני להסביר במשפט-שניים מה אני עושה, למי אני פונה, ומה המטרה שלי.
+– שאל/י אותי באיזה שירות או מוצר אני מתמקד/ת, למי אני פונה, ומה אני רוצה שיקרה בסוף התהליך.
 
 אופן העבודה:
 - שאל/י תמיד שאלה אחת בכל פעם, וחכה לתשובה שלי.
@@ -896,15 +973,8 @@
 2. להפוך אותו לרעיון מרכזי אחד ברור (כיוון / קונספט).
 3. להציג את זה בצורה קצרה, ברורה ומובנת – גם למי שלא מכיר את התחום.
 
-לפני שאת/ה מתחיל/ה:
-– שאל/י אותי באיזה תחום אני (לדוגמה: סטיילינג, אימון, עיצוב, ייעוץ, אוכל, חנות אונליין, תוכן, קורסים).
-– בקש/י ממני להסביר במשפט-שניים:
-  • מה אני מציע/ה
-  • למי אני רוצה להגיע
-  • מה הכי חשוב לי שירגישו.
-
 אופן העבודה:
-- תן/י לי כמה שאלות קצרות כדי לדייק את הכיוון (לא יותר מ-7–6 שאלות).
+- שאל/י אותי כמה שאלות קצרות כדי לדייק את הכיוון (לא יותר מ-7–6 שאלות).
 - שמור/י על שפה פשוטה, בלי מונחים טכניים.
 
 בסיום השאלות:
@@ -927,7 +997,7 @@
 4. 3–5 משפטים שאפשר לומר ללקוח / לקהל:
    – משפטים שאפשר לומר בשיחה או בסטורי, שמסבירים את הכיוון בפשטות.
 
-התאם/י את כל התשובות לתחום שאני אומר/ת לך בתחילת התהליך, ושמור/י על טון כתיבה נעים ומכבד.`
+התאם/י את כל התשובות לתחום שבו אני עוסק/ת, ושמור/י על טון כתיבה נעים ומכבד.`
     },
     client: {
       title: "טקסטים ללקוחות",
@@ -938,12 +1008,6 @@
 1. לעזור לי לנסח הודעות ומיילים ללקוחות בצורה ברורה, מנומסת ומקצועית.
 2. להכין לי משפטים מוכנים למצבים שחוזרים על עצמם עם לקוחות.
 3. להתאים את הניסוח לתחום שבו אני עובד/ת ולסגנון תקשורת שמתאים לי.
-
-לפני שאת/ה מתחיל/ה:
-– שאל/י אותי:
-  • באיזה תחום אני (לדוגמה: עיצוב, טיפולים, אימון, ייעוץ, שיווק, לימודים, מוצרים פיזיים, מוצרים דיגיטליים וכו').
-  • איך אני מעדיף/פה לדבר – יותר רשמי, יותר חברי, או באמצע.
-  • דרך איזה ערוץ אני לרוב מדבר/ת עם לקוחות – ווטסאפ, אינסטגרם, מייל, טלפון.
 
 אופן העבודה:
 - עזור/י לי לכתוב קודם תיאור קצר של השירות או המוצר שלי (2–3 משפטים).
@@ -983,13 +1047,6 @@
 2. לייצר רעיונות לפוסטים, סרטונים קצרים (רילס / טיקטוק), וסטוריז.
 3. להתאים את התוכן לתחום שלי ולסוג הקהל שאני פונה אליו.
 
-לפני שאת/ה מתחיל/ה:
-– שאל/י אותי:
-  • באיזה תחום אני (לדוגמה: עיצוב, אוכל, אימון, סטיילינג, ייעוץ, חנות אונליין, מורה פרטית, צילום וכו').
-  • מי הקהל שלי (בקצרה).
-  • באיזה רשתות אני הכי פעיל/ה (אינסטגרם, פייסבוק, טיקטוק, לינקדאין וכו').
-  • כמה פעמים בשבוע בערך אני רוצה לפרסם.
-
 אופן העבודה:
 - אחרי שאענה על השאלות, בנה/בני עבורי:
 
@@ -1013,6 +1070,7 @@
     }
   };
 
+  // פתיחת מודל לכלי
   document.querySelectorAll(".tool-card").forEach(card => {
     card.onclick = () => {
       document.querySelectorAll(".tool-card").forEach(c => c.classList.remove("active"));
@@ -1038,20 +1096,52 @@
     if (e.target === modalBackdrop) closeModal();
   };
 
+  function buildContextPrefix() {
+    const domain = domainSelect.value.trim();
+    const tone = toneSelect.value.trim();
+    const goal = goalSelect.value.trim();
+    const extra = (extraNotes.value || "").trim();
+
+    let lines = [];
+
+    if (domain) {
+      lines.push(`אני עובד/ת בתחום הבא: ${domain}.`);
+    }
+    if (tone) {
+      lines.push(`הסגנון שאני מעדיפ/ה בטקסטים הוא: ${tone}.`);
+    }
+    if (goal) {
+      lines.push(`המטרה המרכזית של התוצאה היא: ${goal}.`);
+    }
+    if (extra) {
+      lines.push(`דברים שחשוב לי שתתחשב/י בהם: ${extra}.`);
+    }
+
+    if (!lines.length) return "";
+
+    return (
+      lines.join("\n") +
+      "\n\nהתחשב/י בכל המידע הזה בכל השאלות, הדוגמאות והניסוח, והתאם/י את כל התשובות אליי.\n\n"
+    );
+  }
+
   function copyPrompt() {
     if (!currentPrompt) {
       alert("קודם בחרו אחד הכלים – ואז אפשר להעתיק את הטקסט.");
       return;
     }
 
+    const contextPrefix = buildContextPrefix();
+    const finalPrompt = (contextPrefix || "") + currentPrompt;
+
     const brandedText =
-      currentPrompt +
+      finalPrompt +
       "\n\n---\nנוצר באמצעות HEDVA.AI – לשימוש אישי של הרוכש בלבד. אין להעביר את הטקסט הזה כמוצר נפרד.";
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(brandedText)
         .then(() => {
-          alert("הטקסט הועתק (כולל קרדיט HEDVA.AI). עכשיו פתחו ChatGPT, הדביקו את הטקסט והוסיפו בקצרה מה אתם עושים ובאיזה תחום.");
+          alert("הטקסט הועתק (כולל התאמה לתחום, לסגנון ולמטרה שבחרתם, וקרדיט HEDVA.AI). עכשיו פתחו ChatGPT והדביקו את הטקסט.");
         })
         .catch(() => {
           alert("אם ההעתקה לא עבדה – סמנו את הטקסט בחלון, העתיקו ידנית והדביקו ב-ChatGPT.");
