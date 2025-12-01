@@ -188,6 +188,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      margin-bottom: 4px;
     }
 
     .section-label span {
@@ -197,8 +198,59 @@
       border-radius: 50%;
     }
 
+    /* DOMAIN SELECTOR */
+
+    .domain-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+      max-width: 420px;
+    }
+
+    .domain-label {
+      font-size: 12px;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    .domain-select {
+      width: 100%;
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      font-size: 12px;
+      background: #ffffff;
+      color: #0f172a;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: relative;
+      background-image: linear-gradient(45deg, transparent 50%, #64748b 50%), 
+                        linear-gradient(135deg, #64748b 50%, transparent 50%);
+      background-position: calc(100% - 16px) 11px, calc(100% - 11px) 11px;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .domain-select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+    }
+
+    .domain-hint {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .domain-optgroup {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
     .tools-grid {
-      margin-top: 10px;
+      margin-top: 6px;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
@@ -223,6 +275,9 @@
       .brand-row {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .domain-section {
+        max-width: 100%;
       }
     }
 
@@ -564,9 +619,9 @@
           </div>
         </div>
         <div class="hero-steps">
-          <div class="step-pill"><span>①</span> בוחרים את הכלי שמתאים לרגע הזה</div>
-          <div class="step-pill"><span>②</span> מעתיקים את הטקסט ומדביקים ב-ChatGPT</div>
-          <div class="step-pill"><span>③</span> עונים על שאלות פשוטות – ומקבלים תוצאה מוכנה</div>
+          <div class="step-pill"><span>①</span> בוחרים את התחום שלכם</div>
+          <div class="step-pill"><span>②</span> בוחרים את הכלי שמתאים לרגע הזה</div>
+          <div class="step-pill"><span>③</span> מעתיקים טקסט ל-ChatGPT ומקבלים תוצאה מוכנה</div>
         </div>
       </div>
     </header>
@@ -574,7 +629,96 @@
     <main class="body">
       <div class="section-label">
         <span></span>
-        בחרו כלי – הוא יתאים את עצמו לתחום שלכם ברגע שתסבירו מה אתם עושים
+        לפני הבחירה בכלי – בחרו תחום מתוך הרשימה (כדי לכוון את התוצאה אליכם)
+      </div>
+
+      <div class="domain-section">
+        <label class="domain-label" for="domainSelect">תחום הפעילות:</label>
+        <select id="domainSelect" class="domain-select">
+          <option value="">בחרו תחום...</option>
+
+          <optgroup label="עסקים ושירותים מקצועיים" class="domain-optgroup">
+            <option>ייעוץ עסקי</option>
+            <option>אימון אישי</option>
+            <option>ליווי התפתחות אישית</option>
+            <option>משאבי אנוש / גיוס</option>
+            <option>ייעוץ כלכלי</option>
+            <option>מנטורינג</option>
+            <option>ניהול פרויקטים</option>
+            <option>טכנולוגיה / תוכנה</option>
+            <option>סוכנות דיגיטל</option>
+            <option>שירות לקוחות / מכירות</option>
+          </optgroup>
+
+          <optgroup label="עיצוב ויצירה" class="domain-optgroup">
+            <option>עיצוב פנים</option>
+            <option>אדריכלות</option>
+            <option>הום סטיילינג</option>
+            <option>עיצוב גרפי</option>
+            <option>ברנדינג / מיתוג</option>
+            <option>צילום</option>
+            <option>וידאו / הפקות</option>
+            <option>עיצוב מוצר</option>
+            <option>עיצוב אתרים</option>
+            <option>UX/UI</option>
+          </optgroup>
+
+          <optgroup label="טיפולים / יופי / בריאות" class="domain-optgroup">
+            <option>קוסמטיקה</option>
+            <option>איפור</option>
+            <option>מניקור / פדיקור</option>
+            <option>עיצוב שיער</option>
+            <option>רפואה משלימה</option>
+            <option>דיאטנית / תזונה</option>
+            <option>מטפלים רגשיים / NLP</option>
+            <option>קליניקות ורופאים</option>
+            <option>מאמני כושר</option>
+          </optgroup>
+
+          <optgroup label="מוצרים ומסחר" class="domain-optgroup">
+            <option>חנות אונליין</option>
+            <option>ביגוד ואופנה</option>
+            <option>תכשיטים</option>
+            <option>מוצרי תינוקות</option>
+            <option>קורסים דיגיטליים / מדריכים</option>
+            <option>מוצרים לבית</option>
+            <option>מזון ומשקאות</option>
+            <option>אמנות / יצירה</option>
+            <option>חנויות בוטיק</option>
+            <option>חנויות מתנות</option>
+          </optgroup>
+
+          <optgroup label="מסעדות ואירוח" class="domain-optgroup">
+            <option>מסעדות</option>
+            <option>בתי קפה</option>
+            <option>קייטרינג</option>
+            <option>שף פרטי</option>
+            <option>אירועים פרטיים</option>
+            <option>מלונות / צימרים</option>
+            <option>אולמות אירועים</option>
+          </optgroup>
+
+          <optgroup label="שיווק, תוכן והדרכה" class="domain-optgroup">
+            <option>יוצרי תוכן</option>
+            <option>שיווק דיגיטלי</option>
+            <option>קמפיינים / פרסום</option>
+            <option>מורים פרטיים</option>
+            <option>מרצים</option>
+            <option>סדנאות והדרכות</option>
+          </optgroup>
+
+          <optgroup label="כללי / אחרים" class="domain-optgroup">
+            <option>פרילנסרים</option>
+            <option>עסק קטן</option>
+            <option>עסק חדש</option>
+            <option>סטארטאפ</option>
+            <option>תוכן ויצירה חופשית</option>
+            <option>אחר / משהו אחר...</option>
+          </optgroup>
+        </select>
+        <div class="domain-hint">
+          הבחירה כאן רק עוזרת לכם למקד את עצמכם. את ההסבר המלא כותבים אחר כך בתוך ChatGPT לפי ההנחיות של הכלי.
+        </div>
       </div>
 
       <div class="tools-grid">
