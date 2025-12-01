@@ -59,9 +59,9 @@
       padding: 22px 32px 18px;
       border-bottom: 1px solid #e2e8f0;
       background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.16), transparent 60%),
-        radial-gradient(circle at top right, rgba(56,189,248,0.18), transparent 65%),
-        linear-gradient(to bottom, rgba(255,255,255,0.96), rgba(248,250,252,0.96));
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 60%),
+        radial-gradient(circle at top right, rgba(56,189,248,0.20), transparent 65%),
+        linear-gradient(to bottom, rgba(255,255,255,0.97), rgba(248,250,252,0.97));
     }
 
     .brand-row {
@@ -69,7 +69,18 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .brand-block {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 16px 40px rgba(15,23,42,0.18);
     }
 
     .brand {
@@ -79,30 +90,42 @@
     }
 
     .brand-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #4f46e5, #2563eb);
+      border: 1px solid #1d4ed8;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      font-weight: 700;
-      color: #111827;
-      box-shadow: 0 10px 26px rgba(15,23,42,0.25);
+      color: #f9fafb;
+      box-shadow: 0 14px 36px rgba(37,99,235,0.55);
     }
 
-    .brand-main {
-      font-size: 22px;
-      font-weight: 700;
-      color: #020617;
+    .brand-icon-main {
+      font-size: 20px;
+      font-weight: 800;
       letter-spacing: 0.06em;
     }
 
+    .brand-icon-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .brand-main {
+      font-size: 24px;
+      font-weight: 800;
+      color: #020617;
+      letter-spacing: 0.10em;
+    }
+
     .brand-sub {
-      font-size: 12px;
-      color: #64748b;
+      font-size: 13px;
+      color: #111827;
+      font-weight: 500;
     }
 
     .pill {
@@ -146,6 +169,11 @@
       color: #4b5563;
       max-width: 580px;
       line-height: 1.5;
+    }
+
+    .hero-sub strong {
+      font-weight: 600;
+      color: #111827;
     }
 
     .hero-steps {
@@ -209,6 +237,10 @@
     @media (max-width: 900px) {
       .control-panel {
         grid-template-columns: minmax(0, 1fr);
+      }
+      .brand-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -280,10 +312,6 @@
       .body {
         padding: 16px 14px 18px;
       }
-      .brand-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
 
     .tool-card {
@@ -332,11 +360,14 @@
       width: 30px;
       height: 30px;
       border-radius: 999px;
-      background: #eff6ff;
+      background: #e0edff;
+      border: 1px solid #bfdbfe;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px;
+      font-size: 16px;
+      color: #1d4ed8;
+      font-weight: 600;
     }
 
     .tool-title {
@@ -373,26 +404,31 @@
     /* SALES STRIP */
 
     .sales-strip {
-      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(56,189,248,0.10));
-      border: 1px solid rgba(148,163,184,0.35);
-      border-radius: 16px;
-      padding: 14px 20px;
-      margin-top: 12px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(15,23,42,0.10);
-      backdrop-filter: blur(8px);
+      background: linear-gradient(135deg, rgba(15,23,42,0.03), rgba(37,99,235,0.07));
+      border: 1px dashed rgba(148,163,184,0.7);
+      border-radius: 14px;
+      padding: 10px 16px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
     }
 
     .sales-main {
-      font-size: 15px;
       font-weight: 600;
-      color: #0f172a;
-      margin-bottom: 4px;
     }
 
-    .sales-sub {
-      font-size: 12px;
-      color: #475569;
+    .sales-link {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #94a3b8;
+      background: #f9fafb;
+      cursor: default;
+      opacity: 0.7;
     }
 
     /* FOOTER */
@@ -567,11 +603,16 @@
 
     <header class="header">
       <div class="brand-row">
-        <div class="brand">
-          <div class="brand-icon">H</div>
-          <div>
-            <div class="brand-main">HEDVA.AI</div>
-            <div class="brand-sub">מערכת AI חכמה לכל מי שמוכר שירותים או מוצרים</div>
+        <div class="brand-block">
+          <div class="brand">
+            <div class="brand-icon">
+              <div class="brand-icon-main">H</div>
+              <div class="brand-icon-sub">AI</div>
+            </div>
+            <div>
+              <div class="brand-main">HEDVA.AI</div>
+              <div class="brand-sub">מערכת AI חכמה לכל מי שמוכר שירותים או מוצרים</div>
+            </div>
           </div>
         </div>
         <div class="pill">
@@ -584,14 +625,14 @@
         <div>
           <div class="hero-title">4 כפתורים שעוזרים לכם להבין, להסביר ולמכור – בכל תחום.</div>
           <div class="hero-sub">
-            בוחרים תחום, סגנון ומטרה → בוחרים כלי → מעתיקים ל־ChatGPT.  
-            המערכת בונה עבורכם טקסט קצר, חכם ומדויק – בלי להתאמץ ובלי להבין ב־AI.
+            <strong>בוחרים תחום, סגנון ומטרה</strong> → לוחצים על אחד הכלים → מעתיקים ל־ChatGPT.  
+            המערכת בונה עבורכם טקסט קצר, חכם ומדויק – בלי לכתוב לבד ובלי להכיר פרומפטים.
           </div>
         </div>
         <div class="hero-steps">
-          <div class="step-pill"><span>①</span> בוחרים תחום וסגנון כתיבה</div>
-          <div class="step-pill"><span>②</span> לוחצים על אחד הכלים</div>
-          <div class="step-pill"><span>③</span> מעתיקים ל־ChatGPT ומקבלים תוצאה</div>
+          <div class="step-pill"><span>①</span> תחום + סגנון + מטרה</div>
+          <div class="step-pill"><span>②</span> בחירת כלי מתאים</div>
+          <div class="step-pill"><span>③</span> הדבקה ב־ChatGPT וקבלת תוצאה</div>
         </div>
       </div>
     </header>
@@ -599,7 +640,7 @@
     <main class="body">
       <div class="section-label">
         <span></span>
-        שלב 1 – בוחרים תחום, סגנון ומטרה. שלב 2 – בוחרים אחד הכלים.
+        שלב 1 – למלא למעלה. שלב 2 – לבחור כלי.
       </div>
 
       <div class="control-panel">
@@ -650,7 +691,7 @@
       <div class="control-field">
         <label class="control-label" for="extraNotes">משהו שחשוב לכם (לא חובה)</label>
         <textarea id="extraNotes" class="control-textarea"
-          placeholder="לדוגמה: חשוב לי לכתוב בשפה פשוטה, אני עובדת עם נשים בלבד, לא להישמע שיווקיים מדי..."></textarea>
+          placeholder="לדוגמה: לא להישמע שיווקיים מדי, אני עובדת בעיקר עם נשים, שפה פשוטה..."></textarea>
         <div class="control-hint">הערה קצרה כאן תיכנס גם היא לפרומפט.</div>
       </div>
 
@@ -658,7 +699,7 @@
 
         <article class="tool-card" data-tool="needs">
           <div class="tool-top">
-            <div class="tool-icon">🧩</div>
+            <div class="tool-icon">◎</div>
             <div>
               <div class="tool-title">אפיון צרכים</div>
               <div class="tool-desc">2 דקות להבין מה הלקוח צריך ומה המטרה.</div>
@@ -669,7 +710,7 @@
 
         <article class="tool-card" data-tool="concept">
           <div class="tool-top">
-            <div class="tool-icon">💡</div>
+            <div class="tool-icon">✦</div>
             <div>
               <div class="tool-title">כיוון / רעיון</div>
               <div class="tool-desc">משפט כיוון ברור + 5 נקודות מיקוד.</div>
@@ -680,7 +721,7 @@
 
         <article class="tool-card" data-tool="client">
           <div class="tool-top">
-            <div class="tool-icon">💬</div>
+            <div class="tool-icon">✉</div>
             <div>
               <div class="tool-title">טקסטים ללקוחות</div>
               <div class="tool-desc">הודעות, הצעת מחיר קצרה ותשובות ל"יקר לי".</div>
@@ -691,7 +732,7 @@
 
         <article class="tool-card" data-tool="content">
           <div class="tool-top">
-            <div class="tool-icon">📣</div>
+            <div class="tool-icon">✎</div>
             <div>
               <div class="tool-title">תוכן לרשתות</div>
               <div class="tool-desc">15 רעיונות + 3 פוסטים + 3 פתיחים לרילס.</div>
@@ -704,16 +745,14 @@
 
       <div class="info-strip">
         לא צריך לכתוב לבד: הבחירות שלכם (תחום, סגנון, מטרה והערה) נכנסות אוטומטית לפתיח קצר,
-        ואז מצטרף אליו טקסט מוכן לכלי שבחרתם. אתם רק מעתיקים ל־ChatGPT ומקבלים תוצאה מותאמת אליכם.
+        ואז מצטרף אליו טקסט מוכן לכלי שבחרתם. אתם רק מעתיקים ל־ChatGPT ומקבלים תוצאה שמרגישה מותאמת אליכם.
       </div>
 
       <div class="sales-strip">
         <div class="sales-main">
-          🚀 רוצים גרסה ממותגת כולה בשם שלכם? HEDVA.AI Creator PRO.
+          גרסת PRO ממותגת לעסק שלכם תגיע בהמשך.
         </div>
-        <div class="sales-sub">
-          מערכת AI אישית לעסק – עם לוגו, צבעים וכלים מותאמים.
-        </div>
+        <div class="sales-link">Creator PRO • בקרוב</div>
       </div>
     </main>
 
