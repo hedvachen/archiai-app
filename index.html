@@ -415,6 +415,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .sales-main {
@@ -427,8 +428,11 @@
       border-radius: 999px;
       border: 1px solid #94a3b8;
       background: #f9fafb;
-      cursor: default;
-      opacity: 0.7;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
     }
 
     /* FOOTER */
@@ -750,9 +754,12 @@
 
       <div class="sales-strip">
         <div class="sales-main">
-          גרסת PRO ממותגת לעסק שלכם תגיע בהמשך.
+          רוצים מערכת AI משלכם? קבלו גרסת PRO ממותגת.
         </div>
-        <div class="sales-link">Creator PRO • בקרוב</div>
+        <button class="sales-link"
+          onclick="window.location.href='mailto:hedva3d@gmail.com?subject=HEDVA.AI%20PRO&body=אשמח%20לפרטים%20על%20גרסת%20HEDVA.AI%20PRO%20לעסק%20שלי';">
+          ✉ פנייה במייל: hedva3d@gmail.com
+        </button>
       </div>
     </main>
 
