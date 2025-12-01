@@ -3,27 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HEDVA.AI – יוצרים טקסטים לעסק בלחיצה</title>
+  <title>HEDVA.AI – טקסטים לעסק בלחיצה</title>
 
   <style>
     :root {
-      --bg-page: #0f172a;
-      --bg-app: #f9fafb;
-      --bg-card: #ffffff;
-      --accent: #2563eb;
+      --bg-page: #020617;
+      --bg-card: #f9fafb;
+      --bg-inner: #ffffff;
       --border: #e5e7eb;
+      --border-soft: #d4d4d8;
+      --accent: #2563eb;
+      --accent-soft: #e0edff;
       --text-main: #0f172a;
       --text-muted: #6b7280;
       --radius-lg: 24px;
       --radius-md: 16px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.18);
+      --shadow-soft: 0 22px 50px rgba(15,23,42,0.55);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1f2937, #020617);
+      background:
+        radial-gradient(circle at top, rgba(37,99,235,0.15), transparent 60%),
+        radial-gradient(circle at bottom, rgba(15,23,42,0.85), #020617);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -31,133 +35,141 @@
       color: var(--text-main);
     }
 
-    .app {
+    .app-shell {
       width: 100%;
-      max-width: 880px;
-      background: var(--bg-app);
-      border-radius: 32px;
-      padding: 18px 18px 14px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148,163,184,0.5);
+      max-width: 980px;
       display: flex;
       flex-direction: column;
       gap: 16px;
+      align-items: center;
     }
 
-    /* HEADER – קטן, נקי */
+    /* HEADER – דומה ל-bar של Perplexity */
 
     .header {
+      width: 100%;
+      max-width: 980px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      padding: 6px 4px;
+      color: #e5e7eb;
+      font-size: 12px;
     }
 
-    .logo-area {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .logo-icon {
-      width: 30px;
-      height: 30px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       background: radial-gradient(circle at top left, #4f46e5, #2563eb);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      font-size: 10px;
       color: #f9fafb;
-      font-size: 11px;
       font-weight: 700;
     }
 
-    .logo-icon span:first-child { font-size: 13px; letter-spacing: 0.05em; }
+    .logo-icon span:first-child {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
 
     .logo-text {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 0;
     }
 
     .logo-main {
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
     .logo-sub {
-      font-size: 11px;
-      color: var(--text-muted);
+      font-size: 10px;
+      color: #9ca3af;
     }
 
-    .badge {
+    .header-right {
       font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: rgba(255,255,255,0.9);
-      color: #0f172a;
-      white-space: nowrap;
+      color: #9ca3af;
     }
 
-    /* HERO – מרכז מסך בסגנון Perplexity */
+    /* HERO CENTER – כמו שורת החיפוש של Perplexity */
 
     .hero {
+      width: 100%;
+      max-width: 720px;
+      margin: 12px auto 0;
       text-align: center;
-      padding: 6px 12px 2px;
+      color: #e5e7eb;
     }
 
     .hero-title {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 700;
-      margin-bottom: 4px;
-      color: var(--text-main);
+      margin-bottom: 6px;
     }
 
     .hero-sub {
       font-size: 13px;
-      color: var(--text-muted);
-      max-width: 520px;
+      color: #cbd5f5;
+      max-width: 480px;
       margin: 0 auto;
       line-height: 1.5;
     }
 
     .hero-sub strong {
       font-weight: 600;
-      color: #111827;
+      color: #e5e7eb;
     }
 
-    /* MAIN CARD */
+    /* MAIN CARD – כרטיס מרכזי בהיר */
 
     .card {
-      margin: 4px auto 0;
       width: 100%;
       max-width: 720px;
+      margin: 18px auto 0;
       background: var(--bg-card);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 14px 16px 16px;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: var(--shadow-soft);
+      padding: 10px;
     }
 
-    .card-top {
+    .card-inner {
+      background: var(--bg-inner);
+      border-radius: calc(var(--radius-lg) - 4px);
+      border: 1px solid var(--border);
+      padding: 12px 14px 14px;
+    }
+
+    .card-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      gap: 10px;
       font-size: 11px;
       color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
-    .card-top span.label {
+    .card-top-row span.label {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
-    .card-top span.label::before {
+    .card-top-row span.label::before {
       content: "";
       width: 6px;
       height: 6px;
@@ -165,17 +177,17 @@
       background: #c7d2fe;
     }
 
-    .card-top span.steps {
+    .card-top-row span.steps {
       opacity: 0.9;
     }
 
-    /* CONTROLS */
+    /* CONTROLS – תחום, סגנון, הערה */
 
     .controls {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     @media (max-width: 640px) {
@@ -193,8 +205,8 @@
 
     .field-label {
       font-size: 12px;
-      color: #111827;
       font-weight: 500;
+      color: #111827;
     }
 
     .field-select,
@@ -202,9 +214,9 @@
       width: 100%;
       padding: 8px 11px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 12px;
+      border: 1px solid var(--border-soft);
       background: #ffffff;
+      font-size: 12px;
       color: var(--text-main);
       outline: none;
     }
@@ -212,7 +224,7 @@
     .field-textarea {
       border-radius: 12px;
       resize: vertical;
-      min-height: 42px;
+      min-height: 40px;
       max-height: 80px;
     }
 
@@ -227,57 +239,45 @@
       color: var(--text-muted);
     }
 
-    .field-inline-hint {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: left;
-    }
-
-    /* TOOLS – 4 כפתורי כלים */
+    /* TOOLS – 4 “כרטיסי שורה” כמו הצעות בפרפלקסיטי */
 
     .tools {
-      margin-top: 4px;
+      margin-top: 6px;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 640px) {
       .tools {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 520px) {
-      .tools {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: minmax(0,1fr);
       }
     }
 
     .tool {
       border-radius: var(--radius-md);
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border);
       background: #f9fafb;
-      padding: 10px 11px;
+      padding: 9px 11px;
       cursor: pointer;
-      transition: 0.16s;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
+      transition: 0.15s;
     }
 
     .tool:hover {
       border-color: var(--accent);
-      background: #eef2ff;
-      box-shadow: 0 10px 28px rgba(37,99,235,0.16);
+      background: var(--accent-soft);
+      box-shadow: 0 10px 30px rgba(37,99,235,0.18);
       transform: translateY(-2px);
     }
 
-    .tool-main {
+    .tool-main-row {
       display: flex;
       align-items: center;
-      gap: 6px;
       justify-content: space-between;
+      gap: 8px;
     }
 
     .tool-left {
@@ -290,13 +290,13 @@
       width: 22px;
       height: 22px;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
+      border: 1px solid #d4d4d8;
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 12px;
       color: #1d4ed8;
-      background: #ffffff;
     }
 
     .tool-title {
@@ -311,7 +311,7 @@
     }
 
     .tool-sub {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
     }
 
@@ -322,52 +322,50 @@
       text-align: center;
     }
 
-    /* FOOTER AREA */
+    /* BOTTOM – שורת PRO */
 
     .bottom {
-      margin: 0 auto;
       width: 100%;
       max-width: 720px;
+      margin: 10px auto 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 11px;
-      color: var(--text-muted);
+      color: #e5e7eb;
       gap: 8px;
       flex-wrap: wrap;
-      padding: 0 4px 2px;
     }
 
-    .bottom-pro {
+    .pro-cta {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
     }
 
-    .bottom-link {
+    .pro-link {
       border-radius: 999px;
       border: 1px solid #94a3b8;
+      background: rgba(15,23,42,0.85);
       padding: 5px 10px;
-      background: #ffffff;
+      font-size: 11px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
+      color: #e5e7eb;
       white-space: nowrap;
     }
 
-    .bottom-link span.icon {
-      font-size: 12px;
-    }
+    .pro-link span.icon { font-size: 12px; }
 
-    /* MODAL – מינימלי */
+    /* MODAL – פשוט ונקי */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15,23,42,0.45);
+      background: rgba(15,23,42,0.55);
       display: none;
       align-items: center;
       justify-content: center;
@@ -383,7 +381,7 @@
       background: #ffffff;
       border-radius: 20px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 20px 50px rgba(15,23,42,0.5);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.6);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -391,7 +389,7 @@
     }
 
     .modal-header {
-      padding: 12px 16px 8px;
+      padding: 10px 16px 8px;
       border-bottom: 1px solid #e5e7eb;
     }
 
@@ -408,10 +406,11 @@
 
     .modal-body {
       padding: 10px 16px 12px;
-      font-size: 12px;
+      font-size: 11px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+      color: #111827;
     }
 
     .modal-output {
@@ -461,142 +460,153 @@
       color: #9ca3af;
       line-height: 1;
     }
+
+    @media (max-width: 520px) {
+      .app-shell {
+        gap: 12px;
+      }
+      .card {
+        margin-top: 14px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="app">
+  <div class="app-shell">
 
     <!-- HEADER -->
     <header class="header">
-      <div class="logo-area">
+      <div class="header-left">
         <div class="logo-icon">
           <span>H</span>
           <span>AI</span>
         </div>
         <div class="logo-text">
           <div class="logo-main">HEDVA.AI</div>
-          <div class="logo-sub">כלי AI אחד שמייצר עבורכם טקסטים לעסק</div>
+          <div class="logo-sub">טקסטים לעסק בעזרת AI</div>
         </div>
       </div>
-      <div class="badge">גרסת Creator לשימוש אישי</div>
+      <div class="header-right">Creator • לשימוש אישי ולמכירה ללקוחות</div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
-      <h1 class="hero-title">יוצרים טקסטים מקצועיים לעסק – בלחיצה אחת.</h1>
+      <h1 class="hero-title">טקסטים מקצועיים לעסק – בלחיצה אחת.</h1>
       <p class="hero-sub">
         <strong>ממלאים שורה-שתיים, בוחרים כלי, מעתיקים ל־ChatGPT.</strong>
-        המערכת מוסיפה לבד את התחום והסגנון שלכם, ומייצרת פרומפט חכם בלי להסתבך.
+        המערכת מוסיפה לבד את התחום והסגנון שלכם ומייצרת פרומפט חכם.
       </p>
     </section>
 
     <!-- MAIN CARD -->
     <section class="card">
-      <div class="card-top">
-        <span class="label">שלב 1 – למלא למעלה</span>
-        <span class="steps">שלב 2 – לבחור כלי | שלב 3 – להעתיק ל־ChatGPT</span>
-      </div>
+      <div class="card-inner">
+        <div class="card-top-row">
+          <span class="label">שלב 1 – למלא למעלה</span>
+          <span class="steps">שלב 2 – לבחור כלי • שלב 3 – להעתיק ל־ChatGPT</span>
+        </div>
 
-      <!-- CONTROLS -->
-      <div class="controls">
-        <div class="field">
-          <label class="field-label" for="domainSelect">תחום הפעילות</label>
-          <select id="domainSelect" class="field-select">
-            <option value="">בחרו תחום...</option>
-            <option>עיצוב פנים</option>
-            <option>אדריכלות</option>
-            <option>עיצוב גרפי</option>
-            <option>יועצים ומאמנים</option>
-            <option>עסקים קטנים</option>
-            <option>קוסמטיקה ויופי</option>
-            <option>טיפול רגשי</option>
-            <option>חנות אונליין</option>
-            <option>צילום / וידאו</option>
-            <option>אחר</option>
-          </select>
-          <div class="field-hint">כדי ש־ChatGPT יבין באיזה עולם אתם.</div>
+        <!-- CONTROLS -->
+        <div class="controls">
+          <div class="field">
+            <label class="field-label" for="domainSelect">תחום הפעילות</label>
+            <select id="domainSelect" class="field-select">
+              <option value="">בחרו תחום...</option>
+              <option>עיצוב פנים</option>
+              <option>אדריכלות</option>
+              <option>עיצוב גרפי</option>
+              <option>יועצים ומאמנים</option>
+              <option>עסקים קטנים</option>
+              <option>קוסמטיקה ויופי</option>
+              <option>טיפול רגשי</option>
+              <option>חנות אונליין</option>
+              <option>צילום / וידאו</option>
+              <option>אחר</option>
+            </select>
+            <div class="field-hint">כדי ש־ChatGPT יבין באיזה עולם אתם.</div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="toneSelect">סגנון כתיבה</label>
+            <select id="toneSelect" class="field-select">
+              <option value="">בחרו...</option>
+              <option>חברי וקליל</option>
+              <option>מקצועי וענייני</option>
+              <option>שיווקי עדין</option>
+              <option>רך ומכיל</option>
+              <option>יוקרתי ונקי</option>
+            </select>
+            <div class="field-hint">איך תרצו שזה יישמע.</div>
+          </div>
         </div>
 
         <div class="field">
-          <label class="field-label" for="toneSelect">סגנון כתיבה</label>
-          <select id="toneSelect" class="field-select">
-            <option value="">בחרו...</option>
-            <option>חברי וקליל</option>
-            <option>מקצועי וענייני</option>
-            <option>שיווקי עדין</option>
-            <option>רך ומכיל</option>
-            <option>יוקרתי ונקי</option>
-          </select>
-          <div class="field-hint">איך תרצו שזה יישמע.</div>
+          <label class="field-label" for="extraNotes">משהו שחשוב לכם (לא חובה)</label>
+          <textarea id="extraNotes" class="field-textarea"
+            placeholder="לדוגמה: לא להישמע שיווקיים מדי, אני בתחילת הדרך, אני עובדת בעיקר עם נשים..."></textarea>
+          <div class="field-hint">אם תמלאו – זה ייכנס אוטומטית לפתיח ויכוון את התוצאה.</div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="field-label" for="extraNotes">משהו שחשוב לכם (לא חובה)</label>
-        <textarea id="extraNotes" class="field-textarea"
-          placeholder="לדוגמה: לא להישמע שיווקיים מדי, אני בתחילת הדרך, אני עובדת בעיקר עם נשים..."></textarea>
-        <div class="field-hint">אם תמלאו – זה ייכנס לפתיח ויכוון את כל התוצאה.</div>
-      </div>
-
-      <!-- TOOLS -->
-      <div class="tools">
-        <button class="tool" data-tool="needs">
-          <div class="tool-main">
-            <div class="tool-left">
-              <div class="tool-icon">◎</div>
-              <div class="tool-title">אפיון צרכים</div>
+        <!-- TOOLS -->
+        <div class="tools">
+          <button class="tool" data-tool="needs">
+            <div class="tool-main-row">
+              <div class="tool-left">
+                <div class="tool-icon">◎</div>
+                <div class="tool-title">אפיון צרכים</div>
+              </div>
+              <div class="tool-arrow">›</div>
             </div>
-            <div class="tool-arrow">›</div>
-          </div>
-          <div class="tool-sub">סיכום קצר: מה אני מציע, למי, ומה המטרה.</div>
-        </button>
+            <div class="tool-sub">סיכום קצר: מה אתם מציעים, למי, ומה המטרה.</div>
+          </button>
 
-        <button class="tool" data-tool="concept">
-          <div class="tool-main">
-            <div class="tool-left">
-              <div class="tool-icon">✦</div>
-              <div class="tool-title">כיוון / רעיון</div>
+          <button class="tool" data-tool="concept">
+            <div class="tool-main-row">
+              <div class="tool-left">
+                <div class="tool-icon">✦</div>
+                <div class="tool-title">כיוון / רעיון</div>
+              </div>
+              <div class="tool-arrow">›</div>
             </div>
-            <div class="tool-arrow">›</div>
-          </div>
-          <div class="tool-sub">משפט כיוון אחד + 5 נקודות מיקוד לעסק.</div>
-        </button>
+            <div class="tool-sub">משפט כיוון אחד + 5 נקודות מיקוד לעסק.</div>
+          </button>
 
-        <button class="tool" data-tool="client">
-          <div class="tool-main">
-            <div class="tool-left">
-              <div class="tool-icon">✉</div>
-              <div class="tool-title">טקסטים ללקוחות</div>
+          <button class="tool" data-tool="client">
+            <div class="tool-main-row">
+              <div class="tool-left">
+                <div class="tool-icon">✉</div>
+                <div class="tool-title">טקסטים ללקוחות</div>
+              </div>
+              <div class="tool-arrow">›</div>
             </div>
-            <div class="tool-arrow">›</div>
-          </div>
-          <div class="tool-sub">הודעת פתיחה, הצעת מחיר קצרה ותשובות ל"יקר לי".</div>
-        </button>
+            <div class="tool-sub">פתיחה ללקוח, הסבר קצר, הצעת מחיר ותשובות ל"יקר לי".</div>
+          </button>
 
-        <button class="tool" data-tool="content">
-          <div class="tool-main">
-            <div class="tool-left">
-              <div class="tool-icon">✎</div>
-              <div class="tool-title">תוכן לרשתות</div>
+          <button class="tool" data-tool="content">
+            <div class="tool-main-row">
+              <div class="tool-left">
+                <div class="tool-icon">✎</div>
+                <div class="tool-title">תוכן לרשתות</div>
+              </div>
+              <div class="tool-arrow">›</div>
             </div>
-            <div class="tool-arrow">›</div>
-          </div>
-          <div class="tool-sub">15 רעיונות, 3 פוסטים ו–3 פתיחים לרילס.</div>
-        </button>
-      </div>
+            <div class="tool-sub">15 רעיונות + 3 פוסטים + 3 פתיחים לרילס.</div>
+          </button>
+        </div>
 
-      <div class="card-note">
-        בוחרים כלי → לוחצים → מעתיקים את הטקסט ל־ChatGPT → עונים לשאלות → מקבלים תוצאה מותאמת.
+        <div class="card-note">
+          בוחרים כלי → לוחצים → מעתיקים את הטקסט ל־ChatGPT → עונים לשאלות → מקבלים תוצאה מותאמת.
+        </div>
       </div>
     </section>
 
-    <!-- BOTTOM -->
+    <!-- BOTTOM / PRO CTA -->
     <section class="bottom">
       <div>HEDVA.AI – כלי עזר חכם לכתיבה לעסק.</div>
-      <div class="bottom-pro">
+      <div class="pro-cta">
         <span>רוצים מערכת AI ממותגת לעסק שלכם?</span>
-        <button class="bottom-link"
+        <button class="pro-link"
           onclick="window.location.href='mailto:hedva3d@gmail.com?subject=HEDVA.AI%20PRO&body=אשמח%20לפרטים%20על%20גרסת%20HEDVA.AI%20PRO%20לעסק%20שלי';">
           <span class="icon">✉</span> פנייה למייל: hedva3d@gmail.com
         </button>
@@ -742,7 +752,9 @@
     }
 
     const prefix = buildContextPrefix();
-    const finalText = prefix + currentPrompt +
+    const finalText =
+      prefix +
+      currentPrompt +
       "\n\n— נוצר באמצעות HEDVA.AI — לשימוש אישי של הרוכש בלבד.";
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
