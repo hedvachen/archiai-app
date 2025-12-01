@@ -3,171 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HEDVA.AI – מערכת AI חכמה לכל תחום</title>
+  <title>HEDVA.AI – יוצרים טקסטים לעסק בלחיצה</title>
 
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #ffffff;
+      --bg-page: #0f172a;
+      --bg-app: #f9fafb;
+      --bg-card: #ffffff;
       --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.10);
-      --text: #020617;
-      --muted: #6b7280;
-      --border: #e2e8f0;
-      --shadow: 0 24px 60px rgba(15,23,42,0.30);
-      --radius-lg: 30px;
-      --radius-md: 18px;
+      --border: #e5e7eb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937, #020617);
       min-height: 100vh;
-      margin: 0;
-      padding: 24px 16px;
       display: flex;
       justify-content: center;
-      background:
-        radial-gradient(circle at top left, #1d4ed8 0, transparent 55%),
-        radial-gradient(circle at top right, #22c1c3 0, transparent 55%),
-        linear-gradient(to bottom, #020617, #0b1120);
-      color: var(--text);
+      padding: 16px;
+      color: var(--text-main);
     }
 
-    .shell {
+    .app {
       width: 100%;
-      max-width: 1180px;
-      min-height: calc(100vh - 48px);
-      background: radial-gradient(circle at top, rgba(248,250,252,0.9), #f1f5f9);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      max-width: 880px;
+      background: var(--bg-app);
+      border-radius: 32px;
+      padding: 18px 18px 14px;
+      box-shadow: var(--shadow-soft);
       border: 1px solid rgba(148,163,184,0.5);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      backdrop-filter: blur(26px);
+      gap: 16px;
     }
 
-    /* HEADER */
+    /* HEADER – קטן, נקי */
 
     .header {
-      padding: 22px 32px 18px;
-      border-bottom: 1px solid #e2e8f0;
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 60%),
-        radial-gradient(circle at top right, rgba(56,189,248,0.20), transparent 65%),
-        linear-gradient(to bottom, rgba(255,255,255,0.97), rgba(248,250,252,0.97));
-    }
-
-    .brand-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 16px;
     }
 
-    .brand-block {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.18);
-    }
-
-    .brand {
+    .logo-area {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
-    .brand-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
       background: radial-gradient(circle at top left, #4f46e5, #2563eb);
-      border: 1px solid #1d4ed8;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #f9fafb;
-      box-shadow: 0 14px 36px rgba(37,99,235,0.55);
-    }
-
-    .brand-icon-main {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-    }
-
-    .brand-icon-sub {
-      font-size: 10px;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .brand-main {
-      font-size: 24px;
-      font-weight: 800;
-      color: #020617;
-      letter-spacing: 0.10em;
-    }
-
-    .brand-sub {
-      font-size: 13px;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .pill {
       font-size: 11px;
-      padding: 6px 14px;
+      font-weight: 700;
+    }
+
+    .logo-icon span:first-child { font-size: 13px; letter-spacing: 0.05em; }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-main {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.7);
-      background: rgba(255,255,255,0.95);
-      white-space: nowrap;
+      background: rgba(255,255,255,0.9);
       color: #0f172a;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      white-space: nowrap;
     }
 
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34,197,94,0.35);
-    }
+    /* HERO – מרכז מסך בסגנון Perplexity */
 
-    .hero-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 4px;
+    .hero {
+      text-align: center;
+      padding: 6px 12px 2px;
     }
 
     .hero-title {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
-      color: #020617;
       margin-bottom: 4px;
+      color: var(--text-main);
     }
 
     .hero-sub {
       font-size: 13px;
-      color: #4b5563;
-      max-width: 580px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
       line-height: 1.5;
     }
 
@@ -176,481 +129,380 @@
       color: #111827;
     }
 
-    .hero-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 11px;
-      color: #475569;
-      text-align: left;
+    /* MAIN CARD */
+
+    .card {
+      margin: 4px auto 0;
+      width: 100%;
+      max-width: 720px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px 16px 16px;
     }
 
-    .step-pill {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.03);
-      border: 1px dashed rgba(148,163,184,0.9);
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-top span.label {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
-    .step-pill span {
-      font-size: 13px;
+    .card-top span.label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #c7d2fe;
     }
 
-    /* BODY */
-
-    .body {
-      padding: 18px 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
+    .card-top span.steps {
+      opacity: 0.9;
     }
 
-    .section-label {
-      font-size: 12px;
-      color: #6b7280;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
+    /* CONTROLS */
 
-    .section-label span {
-      width: 7px;
-      height: 7px;
-      background: #cbd5f5;
-      border-radius: 50%;
-    }
-
-    /* CONTROL PANEL */
-
-    .control-panel {
+    .controls {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
       margin-bottom: 10px;
     }
 
-    @media (max-width: 900px) {
-      .control-panel {
+    @media (max-width: 640px) {
+      .controls {
         grid-template-columns: minmax(0, 1fr);
-      }
-      .brand-row {
-        flex-direction: column;
-        align-items: flex-start;
       }
     }
 
-    .control-field {
+    .field {
       display: flex;
       flex-direction: column;
       gap: 4px;
       font-size: 12px;
     }
 
-    .control-label {
+    .field-label {
       font-size: 12px;
-      color: #0f172a;
+      color: #111827;
       font-weight: 500;
     }
 
-    .control-hint {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .control-select,
-    .control-textarea {
+    .field-select,
+    .field-textarea {
       width: 100%;
       padding: 8px 11px;
       border-radius: 999px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #d1d5db;
       font-size: 12px;
       background: #ffffff;
-      color: #0f172a;
+      color: var(--text-main);
       outline: none;
     }
 
-    .control-textarea {
+    .field-textarea {
       border-radius: 12px;
       resize: vertical;
-      min-height: 46px;
+      min-height: 42px;
       max-height: 80px;
     }
 
-    .control-select:focus,
-    .control-textarea:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px rgba(37,99,235,0.3);
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
     }
 
-    /* TOOLS GRID */
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
 
-    .tools-grid {
-      margin-top: 6px;
+    .field-inline-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    /* TOOLS – 4 כפתורי כלים */
+
+    .tools {
+      margin-top: 4px;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+      gap: 10px;
     }
 
-    @media (max-width: 1024px) {
-      .tools-grid {
+    @media (max-width: 780px) {
+      .tools {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 640px) {
-      .tools-grid {
+    @media (max-width: 520px) {
+      .tools {
         grid-template-columns: minmax(0, 1fr);
       }
-      .header {
-        padding: 18px 18px 14px;
-      }
-      .body {
-        padding: 16px 14px 18px;
-      }
     }
 
-    .tool-card {
-      background: #ffffff;
+    .tool {
       border-radius: var(--radius-md);
-      border: 1px solid #e2e8f0;
-      padding: 12px 13px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      min-height: 92px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease, background-color .14s ease;
-    }
-
-    .tool-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 60%);
-      opacity: 0;
-      transition: opacity .14s ease;
-      pointer-events: none;
-    }
-
-    .tool-card:hover::before {
-      opacity: 1;
-    }
-
-    .tool-card:hover {
-      border-color: #2563eb;
-      box-shadow: 0 16px 38px rgba(37,99,235,0.28);
-      background: #f8fafc;
-      transform: translateY(-3px);
-    }
-
-    .tool-top {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .tool-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      background: #e0edff;
-      border: 1px solid #bfdbfe;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: #1d4ed8;
-      font-weight: 600;
-    }
-
-    .tool-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: #020617;
-      margin-bottom: 2px;
-    }
-
-    .tool-desc {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .tool-chevron {
-      position: absolute;
-      bottom: 9px;
-      left: 12px;
-      font-size: 17px;
-      color: #94a3b8;
-    }
-
-    .info-strip {
-      font-size: 11px;
-      color: #4b5563;
-      background: #eef2ff;
-      border-radius: 12px;
-      border: 1px dashed #c7d2fe;
-      padding: 9px 11px;
-      line-height: 1.5;
-      margin-top: 10px;
-    }
-
-    /* SALES STRIP */
-
-    .sales-strip {
-      background: linear-gradient(135deg, rgba(15,23,42,0.03), rgba(37,99,235,0.07));
-      border: 1px dashed rgba(148,163,184,0.7);
-      border-radius: 14px;
-      padding: 10px 16px;
-      margin-top: 10px;
-      font-size: 12px;
-      color: #334155;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .sales-main {
-      font-weight: 600;
-    }
-
-    .sales-link {
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #94a3b8;
+      border: 1px solid #e5e7eb;
       background: #f9fafb;
+      padding: 10px 11px;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    /* FOOTER */
-
-    .footer {
-      padding: 10px 20px 14px;
-      background: #f9fafb;
-      border-top: 1px solid #e2e8f0;
-      font-size: 11px;
-      color: #6b7280;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-left {
+      transition: 0.16s;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .footer-tag-row {
+    .tool:hover {
+      border-color: var(--accent);
+      background: #eef2ff;
+      box-shadow: 0 10px 28px rgba(37,99,235,0.16);
+      transform: translateY(-2px);
+    }
+
+    .tool-main {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 6px;
+      justify-content: space-between;
     }
 
-    .footer-tag {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid #e2e8f0;
-      background: #ffffff;
-    }
-
-    .footer-btn {
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px dashed #94a3b8;
-      background: white;
-      cursor: pointer;
-      font-size: 11px;
-      white-space: nowrap;
-      display: inline-flex;
+    .tool-left {
+      display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* MODAL */
+    .tool-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #1d4ed8;
+      background: #ffffff;
+    }
+
+    .tool-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .tool-arrow {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .tool-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* FOOTER AREA */
+
+    .bottom {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 0 4px 2px;
+    }
+
+    .bottom-pro {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .bottom-link {
+      border-radius: 999px;
+      border: 1px solid #94a3b8;
+      padding: 5px 10px;
+      background: #ffffff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .bottom-link span.icon {
+      font-size: 12px;
+    }
+
+    /* MODAL – מינימלי */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15,23,42,0.40);
+      background: rgba(15,23,42,0.45);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       z-index: 50;
     }
 
-    .modal-backdrop.show {
-      display: flex;
-    }
+    .modal-backdrop.show { display: flex; }
 
     .modal {
       width: 100%;
-      max-width: 540px;
+      max-width: 520px;
       background: #ffffff;
-      border-radius: 22px;
+      border-radius: 20px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 24px 60px rgba(15,23,42,0.40);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.5);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      max-height: 92vh;
+      max-height: 90vh;
     }
 
     .modal-header {
-      padding: 14px 16px 10px;
+      padding: 12px 16px 8px;
       border-bottom: 1px solid #e5e7eb;
     }
 
     .modal-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
-      margin-bottom: 3px;
-      color: #020617;
+      margin-bottom: 2px;
     }
 
     .modal-sub {
       font-size: 12px;
-      color: #6b7280;
+      color: var(--text-muted);
     }
 
     .modal-body {
-      padding: 10px 16px 14px;
-      font-size: 11px;
-      color: #111827;
+      padding: 10px 16px 12px;
+      font-size: 12px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
     .modal-output {
-      margin-top: 4px;
+      margin-top: 2px;
       padding: 8px 10px;
-      background: #f3f4f6;
       border-radius: 12px;
       border: 1px solid #e5e7eb;
-      font-size: 11px;
+      background: #f9fafb;
       white-space: pre-wrap;
       max-height: 260px;
       overflow-y: auto;
       line-height: 1.5;
+      font-size: 11px;
     }
 
-    .primary-btn {
+    .modal-btn {
       margin-top: 8px;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
       border: none;
-      color: white;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
       font-size: 12px;
       cursor: pointer;
-      width: 100%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
     }
 
-    .modal-close-row {
+    .modal-footer {
       padding: 6px 16px 10px;
       border-top: 1px solid #e5e7eb;
       font-size: 10px;
-      color: #6b7280;
+      color: var(--text-muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 8px;
     }
 
-    .modal-close-btn {
+    .modal-close {
       border: none;
-      background: transparent;
+      background: none;
       font-size: 18px;
       cursor: pointer;
       color: #9ca3af;
       line-height: 1;
     }
-
-    @media (max-width: 520px) {
-      body {
-        padding: 12px 8px;
-      }
-      .shell {
-        min-height: 100vh;
-        border-radius: 22px;
-        box-shadow: 0 16px 40px rgba(15,23,42,0.35);
-      }
-      .modal {
-        border-radius: 18px;
-      }
-    }
   </style>
 </head>
 
 <body>
-  <div class="shell">
+  <div class="app">
 
+    <!-- HEADER -->
     <header class="header">
-      <div class="brand-row">
-        <div class="brand-block">
-          <div class="brand">
-            <div class="brand-icon">
-              <div class="brand-icon-main">H</div>
-              <div class="brand-icon-sub">AI</div>
-            </div>
-            <div>
-              <div class="brand-main">HEDVA.AI</div>
-              <div class="brand-sub">מערכת AI חכמה לכל מי שמוכר שירותים או מוצרים</div>
-            </div>
-          </div>
+      <div class="logo-area">
+        <div class="logo-icon">
+          <span>H</span>
+          <span>AI</span>
         </div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          גרסת Creator • לשימוש אישי ולמכירה ללקוחות
+        <div class="logo-text">
+          <div class="logo-main">HEDVA.AI</div>
+          <div class="logo-sub">כלי AI אחד שמייצר עבורכם טקסטים לעסק</div>
         </div>
       </div>
-
-      <div class="hero-top">
-        <div>
-          <div class="hero-title">4 כפתורים שעוזרים לכם להבין, להסביר ולמכור – בכל תחום.</div>
-          <div class="hero-sub">
-            <strong>בוחרים תחום, סגנון ומטרה</strong> → לוחצים על אחד הכלים → מעתיקים ל־ChatGPT.  
-            המערכת בונה עבורכם טקסט קצר, חכם ומדויק – בלי לכתוב לבד ובלי להכיר פרומפטים.
-          </div>
-        </div>
-        <div class="hero-steps">
-          <div class="step-pill"><span>①</span> תחום + סגנון + מטרה</div>
-          <div class="step-pill"><span>②</span> בחירת כלי מתאים</div>
-          <div class="step-pill"><span>③</span> הדבקה ב־ChatGPT וקבלת תוצאה</div>
-        </div>
-      </div>
+      <div class="badge">גרסת Creator לשימוש אישי</div>
     </header>
 
-    <main class="body">
-      <div class="section-label">
-        <span></span>
-        שלב 1 – למלא למעלה. שלב 2 – לבחור כלי.
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title">יוצרים טקסטים מקצועיים לעסק – בלחיצה אחת.</h1>
+      <p class="hero-sub">
+        <strong>ממלאים שורה-שתיים, בוחרים כלי, מעתיקים ל־ChatGPT.</strong>
+        המערכת מוסיפה לבד את התחום והסגנון שלכם, ומייצרת פרומפט חכם בלי להסתבך.
+      </p>
+    </section>
+
+    <!-- MAIN CARD -->
+    <section class="card">
+      <div class="card-top">
+        <span class="label">שלב 1 – למלא למעלה</span>
+        <span class="steps">שלב 2 – לבחור כלי | שלב 3 – להעתיק ל־ChatGPT</span>
       </div>
 
-      <div class="control-panel">
-        <div class="control-field">
-          <label class="control-label" for="domainSelect">תחום הפעילות</label>
-          <select id="domainSelect" class="control-select">
+      <!-- CONTROLS -->
+      <div class="controls">
+        <div class="field">
+          <label class="field-label" for="domainSelect">תחום הפעילות</label>
+          <select id="domainSelect" class="field-select">
             <option value="">בחרו תחום...</option>
             <option>עיצוב פנים</option>
             <option>אדריכלות</option>
@@ -663,12 +515,12 @@
             <option>צילום / וידאו</option>
             <option>אחר</option>
           </select>
-          <div class="control-hint">התחום נכנס אוטומטית לפרומפט.</div>
+          <div class="field-hint">כדי ש־ChatGPT יבין באיזה עולם אתם.</div>
         </div>
 
-        <div class="control-field">
-          <label class="control-label" for="toneSelect">סגנון כתיבה</label>
-          <select id="toneSelect" class="control-select">
+        <div class="field">
+          <label class="field-label" for="toneSelect">סגנון כתיבה</label>
+          <select id="toneSelect" class="field-select">
             <option value="">בחרו...</option>
             <option>חברי וקליל</option>
             <option>מקצועי וענייני</option>
@@ -676,105 +528,80 @@
             <option>רך ומכיל</option>
             <option>יוקרתי ונקי</option>
           </select>
-          <div class="control-hint">הטון של הטקסטים.</div>
-        </div>
-
-        <div class="control-field">
-          <label class="control-label" for="goalSelect">מטרה מרכזית</label>
-          <select id="goalSelect" class="control-select">
-            <option value="">בחרו...</option>
-            <option>הסבר ללקוח</option>
-            <option>הגדלת מכירות</option>
-            <option>תוכן לרשתות</option>
-            <option>סדר בעסק</option>
-          </select>
-          <div class="control-hint">מה אתם רוצים שיקרה בזכות התוצאה.</div>
+          <div class="field-hint">איך תרצו שזה יישמע.</div>
         </div>
       </div>
 
-      <div class="control-field">
-        <label class="control-label" for="extraNotes">משהו שחשוב לכם (לא חובה)</label>
-        <textarea id="extraNotes" class="control-textarea"
-          placeholder="לדוגמה: לא להישמע שיווקיים מדי, אני עובדת בעיקר עם נשים, שפה פשוטה..."></textarea>
-        <div class="control-hint">הערה קצרה כאן תיכנס גם היא לפרומפט.</div>
+      <div class="field">
+        <label class="field-label" for="extraNotes">משהו שחשוב לכם (לא חובה)</label>
+        <textarea id="extraNotes" class="field-textarea"
+          placeholder="לדוגמה: לא להישמע שיווקיים מדי, אני בתחילת הדרך, אני עובדת בעיקר עם נשים..."></textarea>
+        <div class="field-hint">אם תמלאו – זה ייכנס לפתיח ויכוון את כל התוצאה.</div>
       </div>
 
-      <div class="tools-grid">
-
-        <article class="tool-card" data-tool="needs">
-          <div class="tool-top">
-            <div class="tool-icon">◎</div>
-            <div>
+      <!-- TOOLS -->
+      <div class="tools">
+        <button class="tool" data-tool="needs">
+          <div class="tool-main">
+            <div class="tool-left">
+              <div class="tool-icon">◎</div>
               <div class="tool-title">אפיון צרכים</div>
-              <div class="tool-desc">2 דקות להבין מה הלקוח צריך ומה המטרה.</div>
             </div>
+            <div class="tool-arrow">›</div>
           </div>
-          <div class="tool-chevron">›</div>
-        </article>
+          <div class="tool-sub">סיכום קצר: מה אני מציע, למי, ומה המטרה.</div>
+        </button>
 
-        <article class="tool-card" data-tool="concept">
-          <div class="tool-top">
-            <div class="tool-icon">✦</div>
-            <div>
+        <button class="tool" data-tool="concept">
+          <div class="tool-main">
+            <div class="tool-left">
+              <div class="tool-icon">✦</div>
               <div class="tool-title">כיוון / רעיון</div>
-              <div class="tool-desc">משפט כיוון ברור + 5 נקודות מיקוד.</div>
             </div>
+            <div class="tool-arrow">›</div>
           </div>
-          <div class="tool-chevron">›</div>
-        </article>
+          <div class="tool-sub">משפט כיוון אחד + 5 נקודות מיקוד לעסק.</div>
+        </button>
 
-        <article class="tool-card" data-tool="client">
-          <div class="tool-top">
-            <div class="tool-icon">✉</div>
-            <div>
+        <button class="tool" data-tool="client">
+          <div class="tool-main">
+            <div class="tool-left">
+              <div class="tool-icon">✉</div>
               <div class="tool-title">טקסטים ללקוחות</div>
-              <div class="tool-desc">הודעות, הצעת מחיר קצרה ותשובות ל"יקר לי".</div>
             </div>
+            <div class="tool-arrow">›</div>
           </div>
-          <div class="tool-chevron">›</div>
-        </article>
+          <div class="tool-sub">הודעת פתיחה, הצעת מחיר קצרה ותשובות ל"יקר לי".</div>
+        </button>
 
-        <article class="tool-card" data-tool="content">
-          <div class="tool-top">
-            <div class="tool-icon">✎</div>
-            <div>
+        <button class="tool" data-tool="content">
+          <div class="tool-main">
+            <div class="tool-left">
+              <div class="tool-icon">✎</div>
               <div class="tool-title">תוכן לרשתות</div>
-              <div class="tool-desc">15 רעיונות + 3 פוסטים + 3 פתיחים לרילס.</div>
             </div>
+            <div class="tool-arrow">›</div>
           </div>
-          <div class="tool-chevron">›</div>
-        </article>
-
-      </div>
-
-      <div class="info-strip">
-        לא צריך לכתוב לבד: הבחירות שלכם (תחום, סגנון, מטרה והערה) נכנסות אוטומטית לפתיח קצר,
-        ואז מצטרף אליו טקסט מוכן לכלי שבחרתם. אתם רק מעתיקים ל־ChatGPT ומקבלים תוצאה שמרגישה מותאמת אליכם.
-      </div>
-
-      <div class="sales-strip">
-        <div class="sales-main">
-          רוצים מערכת AI משלכם? קבלו גרסת PRO ממותגת.
-        </div>
-        <button class="sales-link"
-          onclick="window.location.href='mailto:hedva3d@gmail.com?subject=HEDVA.AI%20PRO&body=אשמח%20לפרטים%20על%20גרסת%20HEDVA.AI%20PRO%20לעסק%20שלי';">
-          ✉ פנייה במייל: hedva3d@gmail.com
+          <div class="tool-sub">15 רעיונות, 3 פוסטים ו–3 פתיחים לרילס.</div>
         </button>
       </div>
-    </main>
 
-    <footer class="footer">
-      <div class="footer-left">
-        <div>HEDVA.AI – כלי עזר חכם למי שעובד עם לקוחות ותוכן.</div>
-        <div class="footer-tag-row">
-          <div class="footer-tag">מתאים לכל תחום</div>
-          <div class="footer-tag">התאמה אוטומטית לתחום ולסגנון</div>
-        </div>
+      <div class="card-note">
+        בוחרים כלי → לוחצים → מעתיקים את הטקסט ל־ChatGPT → עונים לשאלות → מקבלים תוצאה מותאמת.
       </div>
-      <button class="footer-btn" onclick="showInstallHint()">
-        <span>📱</span> הוספה למסך הבית
-      </button>
-    </footer>
+    </section>
+
+    <!-- BOTTOM -->
+    <section class="bottom">
+      <div>HEDVA.AI – כלי עזר חכם לכתיבה לעסק.</div>
+      <div class="bottom-pro">
+        <span>רוצים מערכת AI ממותגת לעסק שלכם?</span>
+        <button class="bottom-link"
+          onclick="window.location.href='mailto:hedva3d@gmail.com?subject=HEDVA.AI%20PRO&body=אשמח%20לפרטים%20על%20גרסת%20HEDVA.AI%20PRO%20לעסק%20שלי';">
+          <span class="icon">✉</span> פנייה למייל: hedva3d@gmail.com
+        </button>
+      </div>
+    </section>
 
   </div>
 
@@ -783,23 +610,20 @@
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title" id="modalTitle">כותרת הכלי</div>
-        <div class="modal-sub" id="modalSub">תיאור קצר של הכלי.</div>
+        <div class="modal-sub" id="modalSub">תיאור קצר.</div>
       </div>
-
       <div class="modal-body">
         <div>הטקסט להדבקה ב־ChatGPT:</div>
         <div class="modal-output" id="modalContent">
 בחרו כלי למעלה – ואז יופיע כאן טקסט קצר להדבקה ב־ChatGPT.
         </div>
-
-        <button class="primary-btn" onclick="copyPrompt()">
-          📋 העתקת הטקסט ל־ChatGPT
+        <button class="modal-btn" onclick="copyPrompt()">
+          📋 העתקה ל־ChatGPT
         </button>
       </div>
-
-      <div class="modal-close-row">
-        <div>הטקסט כולל קרדיט "נוצר באמצעות HEDVA.AI" – לשימוש אישי של הרוכש בלבד.</div>
-        <button class="modal-close-btn" onclick="closeModal()" aria-label="סגירה">×</button>
+      <div class="modal-footer">
+        <div>נוצר באמצעות HEDVA.AI – לשימוש אישי של הרוכש בלבד.</div>
+        <button class="modal-close" onclick="closeModal()">×</button>
       </div>
     </div>
   </div>
@@ -812,7 +636,6 @@
 
   const domainSelect = document.getElementById("domainSelect");
   const toneSelect = document.getElementById("toneSelect");
-  const goalSelect = document.getElementById("goalSelect");
   const extraNotes = document.getElementById("extraNotes");
 
   let currentPrompt = "";
@@ -820,33 +643,33 @@
   const tools = {
     needs: {
       title: "אפיון צרכים",
-      sub: "2 דקות – להבין מה הלקוח צריך ומה המטרה.",
-      text: `אני צריך אפיון צרכים קצר ומסודר.
+      sub: "סיכום קצר: מה אתם מציעים, למי, ומה המטרה.",
+      text: `אני רוצה אפיון צרכים קצר לעסק שלי.
 
 שאל אותי:
 1) מה אני מציע?
 2) מי הלקוחות שלי?
-3) מה המטרה העיקרית?
+3) מה המטרה העיקרית כרגע?
 
-בסוף תן סיכום קצר מחולק לכותרות:
+בסוף תן סיכום מחולק לכותרות:
 • מי אני
 • מה אני מציע
 • מי הלקוחות
-• מטרות
-• מה חשוב לי`
+• המטרה העיקרית
+• מה חשוב לי במיוחד (אם ציינתי)`
     },
     concept: {
       title: "כיוון / רעיון",
-      sub: "משפט כיוון ברור + 5 נקודות מיקוד.",
+      sub: "משפט כיוון אחד ברור + 5 נקודות מיקוד.",
       text: `בנה לי כיוון אחד ברור לעסק / פרויקט.
 
 שאל אותי בקצרה:
 1) מה אני עושה
 2) למי אני פונה
-3) מה חשוב לי שירגישו
+3) מה חשוב לי שירגישו כשפוגשים את העסק שלי
 
 בסוף תן:
-• משפט כיוון אחד
+• משפט כיוון אחד ברור
 • 5 נקודות מיקוד קצרות שמתארות את הכיוון`
     },
     client: {
@@ -854,29 +677,29 @@
       sub: "הודעות, הצעת מחיר קצרה ותשובות ל'יקר לי'.",
       text: `כתוב עבורי טקסטים ללקוחות:
 
-1) הודעת פתיחה ללקוח חדש שמתעניין.
-2) הסבר קצר על השירות / המוצר (עד 7 שורות).
-3) תבנית הצעת מחיר קצרה: מה כלול, טווח מחיר, מה הצעד הבא.
+1) הודעת פתיחה ללקוח חדש שמתעניין (לווטסאפ / אינסטגרם).
+2) הסבר קצר על השירות / המוצר (עד 7 שורות, בשפה פשוטה).
+3) תבנית הצעת מחיר קצרה: מה כלול, טווח מחיר, ומה הצעד הבא.
 4) מענה מנומס ל"יקר לי" ול"אני צריך לחשוב על זה".
 
-שמור על שפה ישראלית טבעית, לא גבוהה מדי.`
+שמור על שפה ישראלית טבעית, לא גבוהה מדי ולא שיווקית מדי.`
     },
     content: {
       title: "תוכן לרשתות",
-      sub: "15 רעיונות + 3 פוסטים + 3 פתיחים לרילס.",
+      sub: "רעיונות + פוסטים + פתיחים לרילס.",
       text: `צור עבורי תוכן לרשתות:
 
 1) לפחות 15 רעיונות לפוסטים / רילסים / סטוריז.
 2) 3 פוסטים כתובים (קצרים, עד כ-120 מילים כל אחד).
 3) 3 פתיחים חזקים לרילס: משפט פתיחה + 2–3 נקודות + קריאה לפעולה.
 
-שפה פשוטה, בגובה העיניים, לא פרסומית מדי.`
+שמור על שפה פשוטה, בגובה העיניים, שלא נשמעת פרסומית מדי.`
     }
   };
 
-  document.querySelectorAll(".tool-card").forEach(card => {
-    card.onclick = () => {
-      const key = card.dataset.tool;
+  document.querySelectorAll(".tool").forEach(btn => {
+    btn.onclick = () => {
+      const key = btn.dataset.tool;
       const tool = tools[key];
       if (!tool) return;
 
@@ -898,24 +721,18 @@
   };
 
   function buildContextPrefix() {
-    const domain = domainSelect.value.trim();
-    const tone = toneSelect.value.trim();
-    const goal = goalSelect.value.trim();
+    const domain = (domainSelect.value || "").trim();
+    const tone = (toneSelect.value || "").trim();
     const extra = (extraNotes.value || "").trim();
 
-    let lines = [];
+    let parts = [];
+    if (domain) parts.push(`התחום שלי: ${domain}.`);
+    if (tone) parts.push(`סגנון כתיבה מועדף: ${tone}.`);
+    if (extra) parts.push(`חשוב לי במיוחד: ${extra}.`);
 
-    if (domain) lines.push(`התחום שלי: ${domain}.`);
-    if (tone) lines.push(`סגנון כתיבה מבוקש: ${tone}.`);
-    if (goal) lines.push(`המטרה העיקרית: ${goal}.`);
-    if (extra) lines.push(`חשוב לי במיוחד: ${extra}.`);
+    if (!parts.length) return "";
 
-    if (!lines.length) return "";
-
-    return (
-      lines.join(" ") +
-      "\n\nהתחשב בכל המידע הזה בתשובה שלך.\n\n"
-    );
+    return parts.join(" ") + "\n\nהתחשב בכל המידע הזה בתשובה שלך.\n\n";
   }
 
   function copyPrompt() {
@@ -925,31 +742,20 @@
     }
 
     const prefix = buildContextPrefix();
-    const finalPrompt =
-      prefix +
-      currentPrompt +
+    const finalText = prefix + currentPrompt +
       "\n\n— נוצר באמצעות HEDVA.AI — לשימוש אישי של הרוכש בלבד.";
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(finalPrompt)
+      navigator.clipboard.writeText(finalText)
         .then(() => {
           alert("הטקסט הועתק. עכשיו פתחו ChatGPT והדביקו אותו.");
         })
         .catch(() => {
-          alert("אם ההעתקה לא עבדה – סמנו את הטקסט בחלון, העתיקו ידנית והדביקו ב-ChatGPT.");
+          alert("אם ההעתקה לא עבדה – סמנו את הטקסט, העתיקו ידנית והדביקו ב־ChatGPT.");
         });
     } else {
-      alert("אם ההעתקה לא עבדה – סמנו את הטקסט בחלון, העתיקו ידנית והדביקו ב-ChatGPT.");
+      alert("אם ההעתקה לא עבדה – סמנו את הטקסט, העתיקו ידנית והדביקו ב־ChatGPT.");
     }
-  }
-
-  function showInstallHint() {
-    alert(
-      "כדי להפוך את HEDVA.AI לאפליקציה בנייד:\n\n" +
-      "1. פתחו את הקישור של המערכת בטלפון.\n" +
-      "2. ב-iPhone (Safari): לחצו Share → Add to Home Screen.\n" +
-      "3. באנדרואיד (Chrome): לחצו ⋮ → 'הוסף למסך הבית'."
-    );
   }
 </script>
 
