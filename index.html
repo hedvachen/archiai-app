@@ -7,27 +7,27 @@
 
   <style>
     :root {
-      --bg-page: #020617;
-      --bg-card: #f9fafb;
-      --bg-inner: #ffffff;
-      --border: #e5e7eb;
+      /* צבעים בסגנון Perplexity */
+      --teal: #0d9488;        /* טורקיז ראשי */
+      --teal-dark: #0f766e;
+      --teal-soft: #e0f2f1;
+      --bg-page: #f5f7fb;     /* רקע אתר */
+      --bg-card-outer: #ffffff;
+      --bg-card-inner: #ffffff;
+      --border: #e2e8f0;
       --border-soft: #d4d4d8;
-      --accent: #2563eb;
-      --accent-soft: #e0edff;
       --text-main: #0f172a;
       --text-muted: #6b7280;
       --radius-lg: 24px;
       --radius-md: 16px;
-      --shadow-soft: 0 22px 50px rgba(15,23,42,0.55);
+      --shadow-soft: 0 18px 40px rgba(15,23,42,0.10);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(37,99,235,0.15), transparent 60%),
-        radial-gradient(circle at bottom, rgba(15,23,42,0.85), #020617);
+      background: var(--bg-page);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -40,11 +40,33 @@
       max-width: 980px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
     }
 
-    /* HEADER – דומה ל-bar של Perplexity */
+    /* פס עליון בצבע טורקיז כמו בפרפלקסיטי */
+
+    .top-bar {
+      width: 100%;
+      max-width: 980px;
+      border-radius: 999px;
+      background: var(--teal);
+      color: #ecfeff;
+      text-align: center;
+      font-size: 11px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(13,148,136,0.25);
+    }
+
+    .top-bar span.icon {
+      font-size: 13px;
+    }
+
+    /* HEADER קטן ונקי */
 
     .header {
       width: 100%;
@@ -52,8 +74,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 4px;
-      color: #e5e7eb;
+      padding: 6px 4px 0;
+      color: #0f172a;
       font-size: 12px;
     }
 
@@ -67,13 +89,13 @@
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      background: radial-gradient(circle at top left, #4f46e5, #2563eb);
+      background: radial-gradient(circle at top left, var(--teal), var(--teal-dark));
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-size: 10px;
-      color: #f9fafb;
+      color: #ecfeff;
       font-weight: 700;
     }
 
@@ -93,26 +115,27 @@
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: #0f172a;
     }
 
     .logo-sub {
       font-size: 10px;
-      color: #9ca3af;
+      color: var(--text-muted);
     }
 
     .header-right {
       font-size: 11px;
-      color: #9ca3af;
+      color: var(--text-muted);
     }
 
-    /* HERO CENTER – כמו שורת החיפוש של Perplexity */
+    /* HERO – מרכז מסך */
 
     .hero {
       width: 100%;
       max-width: 720px;
-      margin: 12px auto 0;
+      margin: 10px auto 0;
       text-align: center;
-      color: #e5e7eb;
+      color: #0f172a;
     }
 
     .hero-title {
@@ -123,7 +146,7 @@
 
     .hero-sub {
       font-size: 13px;
-      color: #cbd5f5;
+      color: var(--text-muted);
       max-width: 480px;
       margin: 0 auto;
       line-height: 1.5;
@@ -131,7 +154,7 @@
 
     .hero-sub strong {
       font-weight: 600;
-      color: #e5e7eb;
+      color: #0f172a;
     }
 
     /* MAIN CARD – כרטיס מרכזי בהיר */
@@ -139,16 +162,16 @@
     .card {
       width: 100%;
       max-width: 720px;
-      margin: 18px auto 0;
-      background: var(--bg-card);
+      margin: 16px auto 0;
+      background: var(--bg-card-outer);
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.6);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       padding: 10px;
     }
 
     .card-inner {
-      background: var(--bg-inner);
+      background: var(--bg-card-inner);
       border-radius: calc(var(--radius-lg) - 4px);
       border: 1px solid var(--border);
       padding: 12px 14px 14px;
@@ -174,7 +197,8 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: #c7d2fe;
+      background: var(--teal-soft);
+      border: 1px solid #a5f3fc;
     }
 
     .card-top-row span.steps {
@@ -230,8 +254,8 @@
 
     .field-select:focus,
     .field-textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 1px rgba(13,148,136,0.35);
     }
 
     .field-hint {
@@ -239,7 +263,7 @@
       color: var(--text-muted);
     }
 
-    /* TOOLS – 4 “כרטיסי שורה” כמו הצעות בפרפלקסיטי */
+    /* TOOLS – 4 אריחים כמו quick actions */
 
     .tools {
       margin-top: 6px;
@@ -267,9 +291,9 @@
     }
 
     .tool:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      box-shadow: 0 10px 30px rgba(37,99,235,0.18);
+      border-color: var(--teal);
+      background: var(--teal-soft);
+      box-shadow: 0 10px 26px rgba(13,148,136,0.18);
       transform: translateY(-2px);
     }
 
@@ -290,13 +314,13 @@
       width: 22px;
       height: 22px;
       border-radius: 999px;
-      border: 1px solid #d4d4d8;
+      border: 1px solid #cbd5e1;
       background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      color: #1d4ed8;
+      color: var(--teal-dark);
     }
 
     .tool-title {
@@ -322,7 +346,7 @@
       text-align: center;
     }
 
-    /* BOTTOM – שורת PRO */
+    /* BOTTOM – CTA ל-PRO */
 
     .bottom {
       width: 100%;
@@ -332,7 +356,7 @@
       justify-content: space-between;
       align-items: center;
       font-size: 11px;
-      color: #e5e7eb;
+      color: var(--text-muted);
       gap: 8px;
       flex-wrap: wrap;
     }
@@ -346,26 +370,26 @@
 
     .pro-link {
       border-radius: 999px;
-      border: 1px solid #94a3b8;
-      background: rgba(15,23,42,0.85);
+      border: 1px solid var(--teal-dark);
+      background: #ffffff;
       padding: 5px 10px;
       font-size: 11px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #e5e7eb;
+      color: var(--teal-dark);
       white-space: nowrap;
     }
 
     .pro-link span.icon { font-size: 12px; }
 
-    /* MODAL – פשוט ונקי */
+    /* MODAL – פרומפט להעתקה */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15,23,42,0.55);
+      background: rgba(15,23,42,0.35);
       display: none;
       align-items: center;
       justify-content: center;
@@ -381,7 +405,7 @@
       background: #ffffff;
       border-radius: 20px;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 20px 50px rgba(15,23,42,0.6);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.25);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -431,7 +455,7 @@
       padding: 8px 12px;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
       color: #ffffff;
       font-size: 12px;
       cursor: pointer;
@@ -463,10 +487,10 @@
 
     @media (max-width: 520px) {
       .app-shell {
-        gap: 12px;
+        gap: 10px;
       }
       .card {
-        margin-top: 14px;
+        margin-top: 12px;
       }
     }
   </style>
@@ -474,6 +498,12 @@
 
 <body>
   <div class="app-shell">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <span class="icon">✨</span>
+      <span>HEDVA.AI – טקסטים לעסק בעזרת AI, בלי להסתבך עם פרומפטים.</span>
+    </div>
 
     <!-- HEADER -->
     <header class="header">
@@ -484,7 +514,7 @@
         </div>
         <div class="logo-text">
           <div class="logo-main">HEDVA.AI</div>
-          <div class="logo-sub">טקסטים לעסק בעזרת AI</div>
+          <div class="logo-sub">כלי AI אחד שמייצר עבורכם טקסטים לעסק</div>
         </div>
       </div>
       <div class="header-right">Creator • לשימוש אישי ולמכירה ללקוחות</div>
