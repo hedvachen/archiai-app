@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HEDVA.AI – מאבחן עסק חכם</title>
+  <title>HEDVA.AI – דוח עסקי אוטומטי</title>
 
   <style>
     :root {
       --teal: #0d9488;
-      --teal-soft: #e0f2f1;
       --bg: #f5f7fb;
       --card: #ffffff;
       --border: #e2e8f0;
@@ -65,13 +64,11 @@
       font-size: 12px;
       padding: 4px 2px 0;
     }
-
     .header-left {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
     .logo-icon {
       width: 26px;
       height: 26px;
@@ -107,25 +104,22 @@
 
     .hero {
       width: 100%;
-      max-width: 720px;
+      max-width: 780px;
       text-align: center;
       margin-top: 4px;
     }
     .hero-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .hero-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.5;
     }
-    .hero-sub strong { color: var(--text-main); }
-
-    /* כרטיס מאבחן */
 
     .card {
       width: 100%;
@@ -134,150 +128,106 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 14px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-      gap: 18px;
+      padding: 14px 14px 16px;
     }
 
-    @media (max-width: 860px) {
-      .card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .questions, .report {
-      background: #ffffff;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      padding: 12px 14px;
-    }
-
-    .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .section-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .field {
-      margin-bottom: 8px;
-      font-size: 12px;
-    }
-    .field label {
-      display: block;
-      margin-bottom: 3px;
-      font-weight: 500;
-      color: #111827;
-    }
-    .field select,
-    .field input[type="number"],
-    .field textarea {
-      width: 100%;
-      padding: 7px 9px;
-      border-radius: 999px;
-      border: 1px solid #d4d4d8;
-      background: #ffffff;
-      font-size: 12px;
-      outline: none;
-    }
-    .field textarea {
-      resize: vertical;
-      border-radius: 12px;
-      min-height: 40px;
-      max-height: 80px;
-    }
-    .field select:focus,
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 1px rgba(13,148,136,0.30);
-    }
-    .field-hint {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .inline-options {
+    .toolbar {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 3px;
-    }
-    .pill {
-      border-radius: 999px;
-      border: 1px solid #d4d4d8;
-      padding: 4px 8px;
+      margin-bottom: 10px;
       font-size: 11px;
-      cursor: pointer;
-      background: #f9fafb;
-      color: #374151;
-    }
-    .pill.selected {
-      border-color: var(--teal);
-      background: var(--teal-soft);
-      color: #064e3b;
+      color: var(--text-muted);
     }
 
-    .btn-main {
-      margin-top: 10px;
-      width: 100%;
-      border: none;
+    .toolbar-buttons {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost, .btn-main {
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--teal), #0f766e);
-      color: #ffffff;
-      font-size: 13px;
-      padding: 9px 12px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      padding: 5px 10px;
+      font-size: 11px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
+    }
+    .btn-main {
+      border-color: var(--teal);
+      background: linear-gradient(135deg, var(--teal), #0f766e);
+      color: #ffffff;
+    }
+
+    .sections {
+      margin-top: 4px;
+    }
+
+    .section {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      width: 100%;
+      border: none;
+      background: #f9fafb;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .section-header span.title {
+      display: inline-flex;
+      align-items: center;
       gap: 6px;
     }
 
-    .btn-main:disabled {
-      opacity: 0.55;
-      cursor: default;
+    .section-header span.icon {
+      font-size: 14px;
+      color: #6b7280;
     }
 
-    .report-content {
+    .section-header span.chevron {
+      font-size: 13px;
+      color: #9ca3af;
+      transition: transform 0.15s;
+    }
+
+    .section-header.open span.chevron {
+      transform: rotate(180deg);
+    }
+
+    .section-body {
+      padding: 8px 10px 10px;
       font-size: 12px;
       color: #111827;
       line-height: 1.5;
-      max-height: 440px;
-      overflow-y: auto;
-      padding-right: 4px;
+      border-top: 1px solid #e5e7eb;
+      display: none;
     }
 
-    .report-block {
-      margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #e5e7eb;
+    .section-body.open {
+      display: block;
     }
-    .report-block:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-    .report-block h3 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 3px;
-      color: #0f172a;
-    }
-    .report-block p {
-      margin-bottom: 3px;
-    }
-    .report-block ul {
+
+    .section-body ul {
       padding-right: 16px;
       list-style-type: "• ";
     }
-    .report-block li {
+    .section-body li {
       margin-bottom: 2px;
     }
 
@@ -297,6 +247,17 @@
       color: #0f172a;
     }
 
+    .code-block {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      white-space: pre-wrap;
+      margin-top: 4px;
+    }
+
     .bottom {
       width: 100%;
       max-width: 780px;
@@ -309,9 +270,25 @@
     }
 
     @media (max-width: 600px) {
-      .hero-title { font-size: 22px; }
-      .card { padding: 10px; }
-      .questions, .report { padding: 10px 11px; }
+      .hero-title { font-size: 21px; }
+      .card { padding: 10px 10px 12px; }
+      .section-header { padding: 7px 9px; }
+      .section-body { padding: 7px 9px 9px; }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .top-bar, .header, .bottom, .toolbar { display: none !important; }
+      .card {
+        box-shadow: none;
+        border-radius: 0;
+        border: none;
+        max-width: 100%;
+      }
+      .section { page-break-inside: avoid; }
     }
   </style>
 </head>
@@ -320,8 +297,8 @@
 <div class="app">
 
   <div class="top-bar">
-    <span class="icon">✨</span>
-    <span>HEDVA.AI – מאבחן עסק חכם בלי צ'אט ובלי עלויות נוספות.</span>
+    <span class="icon">📊</span>
+    <span>HEDVA.AI – דוח עסקי אוטומטי על בסיס התשובות שמילאתם.</span>
   </div>
 
   <header class="header">
@@ -332,204 +309,95 @@
       </div>
       <div class="logo-text">
         <div class="logo-main">HEDVA.AI</div>
-        <div class="logo-sub">מערכת ייעוץ עסקי אוטומטית</div>
+        <div class="logo-sub">Business Diagnostic Report</div>
       </div>
     </div>
-    <div class="header-right">גרסת Creator – לשימוש אישי ולמכירה ללקוחות</div>
+    <div class="header-right">Generated locally – ללא צ'אט וללא API</div>
   </header>
 
   <section class="hero">
-    <h1 class="hero-title">מאבחן עסק חכם – דוח מקצועי ב־30 שניות.</h1>
-    <p class="hero-sub">
-      עונים על כמה שאלות קצרות, ולוחצים על כפתור.  
-      <strong>HEDVA.AI</strong> מרכיבה לכם דוח עסקי מקצועי: מצב נוכחי, הזדמנויות, תובנות וצעדים ל־90 יום –
-      ישירות על המסך, בלי צ'אט ובלי עלויות נוספות.
+    <h1 class="hero-title">דוח עסקי מותאם אישית</h1>
+    <p class="hero-sub" id="heroSub">
+      לפי 9 השאלות שמילאתם, HEDVA.AI הרכיבה עבורכם דוח שמסכם את מצב העסק, החוזקות, האתגרים,
+      ההזדמנויות, התמחור המומלץ והמסרים המוכנים לשימוש.
     </p>
   </section>
 
-  <!-- כרטיס שאלות + דוח -->
   <section class="card">
-    <!-- שאלות -->
-    <div class="questions">
-      <div class="section-title">שלב 1 – עונים על 9 שאלות</div>
-      <div class="section-sub">בחרו את התשובות הכי מתאימות לעסק שלכם. אין תשובה "נכונה" – המערכת מזהה את המגמה הכללית.</div>
-
-      <div class="field">
-        <label for="qDomain">1. באיזה תחום העסק שלכם?</label>
-        <select id="qDomain">
-          <option value="">בחרו תחום...</option>
-          <option value="עיצוב פנים">עיצוב פנים</option>
-          <option value="אדריכלות">אדריכלות</option>
-          <option value="עיצוב גרפי">עיצוב גרפי / ברנדינג</option>
-          <option value="ייעוץ ואימון">ייעוץ / אימון</option>
-          <option value="קוסמטיקה ויופי">קוסמטיקה ויופי</option>
-          <option value="טיפול רגשי">טיפול רגשי</option>
-          <option value="עסק דיגיטלי">חנות אונליין / עסק דיגיטלי</option>
-          <option value="אחר">אחר</option>
-        </select>
+    <div class="toolbar">
+      <div>
+        דוח זה מבוסס על מידע שמסרתם לפני רגע. אין כאן תיאוריה – רק תובנות וצעדים מעשיים.
       </div>
-
-      <div class="field">
-        <label>2. כמה זמן אתם פעילים?</label>
-        <div class="inline-options" data-question="experience">
-          <button type="button" class="pill" data-value="חדש/ה לגמרי">פחות משנה</button>
-          <button type="button" class="pill" data-value="בתחילת הדרך">1–3 שנים</button>
-          <button type="button" class="pill" data-value="מתבסס/ת">3–7 שנים</button>
-          <button type="button" class="pill" data-value="ותיק/ה">7+ שנים</button>
-        </div>
+      <div class="toolbar-buttons">
+        <button class="btn-ghost" onclick="goBackToForm()">← חזרה למאבחן</button>
+        <button class="btn-ghost" onclick="sendByEmail()">✉ שלחו לעצמכם במייל</button>
+        <button class="btn-main" onclick="printAsPdf()">📄 שמירה / הדפסה כ־PDF</button>
       </div>
-
-      <div class="field">
-        <label>3. למי אתם מוכרים בעיקר?</label>
-        <div class="inline-options" data-question="audience">
-          <button type="button" class="pill" data-value="לקוחות פרטיים">לקוחות פרטיים</button>
-          <button type="button" class="pill" data-value="עסקים קטנים">עסקים קטנים</button>
-          <button type="button" class="pill" data-value="חברות וארגונים">חברות וארגונים</button>
-          <button type="button" class="pill" data-value="משולב">גם וגם</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>4. מה האתגר המרכזי שלכם היום?</label>
-        <div class="inline-options" data-question="challenge">
-          <button type="button" class="pill" data-value="זרימת לקוחות">אין מספיק פניות / לידים</button>
-          <button type="button" class="pill" data-value="סגירת עסקאות">יש פניות – קשה לסגור</button>
-          <button type="button" class="pill" data-value="תמחור">לא בטוח/ה במחירים</button>
-          <button type="button" class="pill" data-value="עומס וניהול">עומס / חוסר סדר</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>5. מה היעד העיקרי ל־3 החודשים הקרובים?</label>
-        <div class="inline-options" data-question="goal">
-          <button type="button" class="pill" data-value="יותר לקוחות">להגדיל כמות לקוחות</button>
-          <button type="button" class="pill" data-value="לקוחות איכותיים יותר">למשוך סוג אחר של לקוחות</button>
-          <button type="button" class="pill" data-value="העלאת מחירים">להעלות מחירים בביטחון</button>
-          <button type="button" class="pill" data-value="סדר ויציבות">להכניס סדר ותהליך ברור</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="qScore">6. עד כמה אתם מרוצים מההכנסות היום? (1–10)</label>
-        <input id="qScore" type="number" min="1" max="10" placeholder="לדוגמה: 6" />
-        <div class="field-hint">אין שיפוט – זה רק כדי להבין את תחושת הסיפוק שלכם.</div>
-      </div>
-
-      <div class="field">
-        <label>7. איך הייתם מתארים את אופי העסק?</label>
-        <div class="inline-options" data-question="style">
-          <button type="button" class="pill" data-value="קליל ונגיש">קליל ונגיש</button>
-          <button type="button" class="pill" data-value="מקצועי וענייני">מקצועי וענייני</button>
-          <button type="button" class="pill" data-value="יוקרתי ונקי">יוקרתי ונקי</button>
-          <button type="button" class="pill" data-value="אישי וחברי">אישי וחברי</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>8. מה הכי חשוב לכם בעבודה עם לקוחות?</label>
-        <div class="inline-options" data-question="values">
-          <button type="button" class="pill" data-value="יחס אישי">יחס אישי</button>
-          <button type="button" class="pill" data-value="תוצאות ברורות">תוצאות ברורות</button>
-          <button type="button" class="pill" data-value="מהירות ושקט">מהירות ושקט</button>
-          <button type="button" class="pill" data-value="תהליך חווייתי">תהליך חווייתי ונעים</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="qUnique">9. מה מאפיין אתכם כבעלי מקצוע?</label>
-        <textarea id="qUnique" placeholder="לדוגמה: יסודיות, הקשבה, יצירתיות, שליטה בפרטים, ראייה מערכתית..."></textarea>
-        <div class="field-hint">לא חייבים לנסח יפה – כמה מילים מספיקות.</div>
-      </div>
-
-      <button class="btn-main" id="generateBtn">
-        ⚡ צור דוח מותאם אישית
-      </button>
     </div>
 
-    <!-- דוח -->
-    <div class="report">
-      <div class="section-title">שלב 2 – דוח עסקי מותאם</div>
-      <div class="section-sub">לא צריך צ'אט ולא API – המערכת מרכיבה דוח מקצועי מתוך מידע שתיאמתם הרגע.</div>
-
-      <div class="report-content" id="reportContent">
-        <p style="font-size:12px; color:#6b7280;">
-          מלאו את השאלות משמאל ולחצו על "צור דוח מותאם אישית".  
-          כאן יופיע הדוח העסקי שלכם: תקציר מנהלים, ממצאים, פרופיל עסקי, תובנות וצעדים ל־90 הימים הקרובים.
-        </p>
-      </div>
+    <div class="sections" id="sectionsContainer">
+      <!-- יוזר לואוד ייצור כאן את החלקים -->
     </div>
   </section>
 
   <section class="bottom">
-    <div>HEDVA.AI – מאבחן עסק חכם שניתן להטמיע באתר או למכור כקובץ דיגיטלי.</div>
-    <div>נוצר בשיתוף AI וכללים חכמים – רץ בדפדפן בלבד, ללא עלויות נוספות.</div>
+    <div>HEDVA.AI – מאבחן עסק חכם + דוח מלא, רץ כולו בדפדפן.</div>
+    <div>נוצר כדי לתת לבעלי עסקים תחושת "מישהו עשה בשבילי את העבודה".</div>
   </section>
 
 </div>
 
 <script>
-  // בחירת פילים (כפתורי בחירה)
-  document.querySelectorAll(".inline-options").forEach(group => {
-    group.addEventListener("click", e => {
-      const btn = e.target.closest(".pill");
-      if (!btn) return;
-      group.querySelectorAll(".pill").forEach(p => p.classList.remove("selected"));
-      btn.classList.add("selected");
-    });
-  });
-
-  const generateBtn = document.getElementById("generateBtn");
-  const reportContent = document.getElementById("reportContent");
-
-  generateBtn.addEventListener("click", () => {
-    const data = collectAnswers();
-    if (!data) return;
-    const report = buildReport(data);
-    reportContent.innerHTML = report;
-  });
-
-  function collectAnswers() {
-    const qDomain = document.getElementById("qDomain").value.trim();
-    const qScore = document.getElementById("qScore").value.trim();
-    const qUnique = document.getElementById("qUnique").value.trim();
-
-    function getSelected(name) {
-      const group = document.querySelector(`.inline-options[data-question="${name}"]`);
-      if (!group) return "";
-      const btn = group.querySelector(".pill.selected");
-      return btn ? btn.getAttribute("data-value") : "";
-    }
-
-    const experience = getSelected("experience");
-    const audience   = getSelected("audience");
-    const challenge  = getSelected("challenge");
-    const goal       = getSelected("goal");
-    const style      = getSelected("style");
-    const values     = getSelected("values");
-
-    // בדיקה בסיסית
-    if (!qDomain || !experience || !audience || !challenge || !goal || !qScore || !style || !values) {
-      alert("כדי לייצר דוח משמעותי, מלאו את כל השאלות (אפשר חופשי, אין תשובה נכונה/לא נכונה).");
-      return null;
-    }
-
-    const scoreNum = Math.max(1, Math.min(10, parseInt(qScore, 10) || 1));
-
-    return {
-      domain: qDomain,
-      experience,
-      audience,
-      challenge,
-      goal,
-      score: scoreNum,
-      style,
-      values,
-      unique: qUnique
-    };
+  // קריאת הנתונים מהדפדפן
+  let data = null;
+  try {
+    const raw = localStorage.getItem("hedvaAiDiagnostic");
+    if (raw) data = JSON.parse(raw);
+  } catch (e) {
+    data = null;
   }
 
-  // מנוע הדוח – כללים ותבניות, בלי צ'אט ובלי API
-  function buildReport(d) {
+  const sectionsContainer = document.getElementById("sectionsContainer");
+
+  if (!data) {
+    sectionsContainer.innerHTML = \`
+      <div style="font-size:12px; color:#6b7280;">
+        לא נמצאו נתונים למילוי הדוח.<br/>
+        חזרו למאבחן, מלאו את השאלות, ולאחר מכן תגיעו שוב לדף זה.
+      </div>
+    \`;
+  } else {
+    buildFullReport(data);
+  }
+
+  // ניווט חזרה
+  function goBackToForm() {
+    window.location.href = "index.html";
+  }
+
+  // הדפסה / שמירה כ-PDF
+  function printAsPdf() {
+    window.print();
+  }
+
+  // שליחה במייל – פותח מייל עם טקסט
+  function sendByEmail() {
+    const text = extractPlainText();
+    const subject = encodeURIComponent("HEDVA.AI – דוח עסקי אוטומטי");
+    const body = encodeURIComponent(text);
+    window.location.href = \`mailto:?subject=\${subject}&body=\${body}\`;
+  }
+
+  function extractPlainText() {
+    const clone = sectionsContainer.cloneNode(true);
+    // להסיר כפתורים
+    clone.querySelectorAll("button").forEach(b => b.remove());
+    return clone.textContent.trim();
+  }
+
+  // בניית הדוח המלא – חלקים נפתחים
+
+  function buildFullReport(d) {
     const domainSummary = getDomainSummary(d.domain);
     const stage = getStage(d.experience);
     const mood = getMood(d.score);
@@ -539,64 +407,128 @@
     const actions = getActions(d);
     const profile = getProfile(d);
     const scoreBlock = getScoreBlock(d.score, mood);
+    const clientNeeds = getClientNeeds(d);
+    const pricing = getPricingSection(d);
+    const readyTexts = getReadyTexts(d);
+    const plan7 = getPlan7Days(d);
+    const plan30 = getPlan30Days(d);
 
-    return `
-      <div class="report-block">
-        <h3>תקציר מנהלים</h3>
-        <p>${domainSummary}</p>
-        <p>נראה שאתם נמצאים בשלב <strong>${stage}</strong> של העסק, עם תחושת שביעות רצון ברמה של ${d.score}/10 – כלומר ${mood}.</p>
-        <p>האתגר המרכזי שציינתם הוא <strong>${d.challenge}</strong>, והמטרה הקרובה היא <strong>${d.goal}</strong>.</p>
-        ${scoreBlock}
-      </div>
+    const sectionsHtml = [
+      {
+        icon: "⓵",
+        title: "תקציר מנהלים",
+        body: `
+          <p>${domainSummary}</p>
+          <p>נראה שאתם נמצאים בשלב <strong>${stage}</strong> של העסק, עם תחושת שביעות רצון ברמה של ${d.score}/10 – כלומר ${mood}.</p>
+          <p>האתגר המרכזי שציינתם הוא <strong>${d.challenge}</strong>, והמטרה הקרובה היא <strong>${d.goal}</strong>.</p>
+          ${scoreBlock}
+        `
+      },
+      {
+        icon: "⓶",
+        title: "ממצאים מרכזיים",
+        body: `
+          <ul>
+            <li>${challengeText}</li>
+            <li>${goalText}</li>
+            <li>אופי העסק שלכם מוגדר כ<strong> ${d.style}</strong>, כשמה שבולט במיוחד הוא <strong>${d.values}</strong>.</li>
+            ${d.unique ? `<li>אתם מתארים את עצמכם כבעלי מקצוע ש${normalizeUnique(d.unique)}.</li>` : ""}
+          </ul>
+        `
+      },
+      {
+        icon: "⓷",
+        title: "פרופיל עסקי",
+        body: `<p>${profile}</p>`
+      },
+      {
+        icon: "⓸",
+        title: "מה הלקוחות שלכם מחפשים בפועל",
+        body: `
+          <ul>
+            ${clientNeeds.map(li => `<li>${li}</li>`).join("")}
+          </ul>
+        `
+      },
+      {
+        icon: "⓹",
+        title: "הזדמנויות לצמיחה",
+        body: `<p>${oppText}</p>`
+      },
+      {
+        icon: "⓺",
+        title: "תמחור – חבילות וטקסט להצעת מחיר",
+        body: pricing
+      },
+      {
+        icon: "⓻",
+        title: "טקסטים מוכנים לוואטסאפ / אינסטגרם",
+        body: readyTexts
+      },
+      {
+        icon: "⓼",
+        title: "תוכנית פעולה ל־7 הימים הקרובים",
+        body: `
+          <p>כדי שלא יישארו רק רעיונות – להלן תכנית קצרה מאוד, ממוקדת, לשבוע הקרוב.</p>
+          <ul>
+            ${plan7.map(li => `<li>${li}</li>`).join("")}
+          </ul>
+        `
+      },
+      {
+        icon: "⓽",
+        title: "תכנית ל־30 יום קדימה",
+        body: `
+          <p>זה לא "חזון" אלא רשימה מעשית. בחרו 2–3 סעיפים, כתבו ביומן ותתייחסו אליהם כאל פגישה עם לקוח.</p>
+          <ul>
+            ${plan30.map(li => `<li>${li}</li>`).join("")}
+          </ul>
+          <p style="font-size:11px; color:#6b7280; margin-top:4px;">
+            נוצר באמצעות HEDVA.AI – מאבחן עסק חכם המבוסס על תבניות מקצועיות וכללים, ללא שימוש בצ'אט חיצוני.
+          </p>
+        `
+      }
+    ];
 
-      <div class="report-block">
-        <h3>ממצאים מרכזיים</h3>
-        <ul>
-          <li>${challengeText}</li>
-          <li>${goalText}</li>
-          <li>אופי העסק שלכם מוגדר כ<strong> ${d.style}</strong>, כשמה שבולט במיוחד הוא <strong>${d.values}</strong>.</li>
-          ${d.unique ? `<li>אתם מתארים את עצמכם כבעלי מקצוע ש${normalizeUnique(d.unique)}.</li>` : ""}
-        </ul>
+    sectionsContainer.innerHTML = sectionsHtml.map((s, index) => `
+      <div class="section">
+        <button class="section-header ${index === 0 ? "open" : ""}" type="button">
+          <span class="title">
+            <span class="icon">${s.icon}</span>
+            <span>${s.title}</span>
+          </span>
+          <span class="chevron">⌃</span>
+        </button>
+        <div class="section-body ${index === 0 ? "open" : ""}">
+          ${s.body}
+        </div>
       </div>
+    `).join("");
 
-      <div class="report-block">
-        <h3>פרופיל עסקי</h3>
-        <p>${profile}</p>
-      </div>
-
-      <div class="report-block">
-        <h3>מה הלקוחות שלכם מחפשים בפועל</h3>
-        <ul>
-          ${getClientNeeds(d).map(li => `<li>${li}</li>`).join("")}
-        </ul>
-      </div>
-
-      <div class="report-block">
-        <h3>הזדמנויות לצמיחה</h3>
-        <p>${oppText}</p>
-      </div>
-
-      <div class="report-block">
-        <h3>המלצות ל־90 הימים הקרובים</h3>
-        <ul>
-          ${actions.map(li => `<li>${li}</li>`).join("")}
-        </ul>
-      </div>
-
-      <div class="report-block">
-        <h3>סיכום</h3>
-        <p>הדוח הזה נועד לתת לכם תמונת מצב בהירה על העסק, עם כיווני פעולה ישימים ולא תיאוריה. מומלץ לבחור 1–2 סעיפים מההמלצות ולהכניס אותם ליומן – כמשימות ספציפיות, עם תאריך.</p>
-        <p style="font-size:11px; color:#6b7280; margin-top:4px;">נוצר באמצעות HEDVA.AI – מאבחן עסק חכם המבוסס על תבניות מקצועיות וכללים, ללא שימוש בצ'אט חיצוני.</p>
-      </div>
-    `;
+    // הוספת לוגיקה לפתיחה/סגירה
+    sectionsContainer.querySelectorAll(".section-header").forEach(header => {
+      header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        const isOpen = body.classList.contains("open");
+        if (isOpen) {
+          header.classList.remove("open");
+          body.classList.remove("open");
+        } else {
+          header.classList.add("open");
+          body.classList.add("open");
+        }
+      });
+    });
   }
+
+  // פונקציות תוכן – אותו רעיון כמו קודם, אבל עם עוד שכבות
 
   function getDomainSummary(domain) {
     switch (domain) {
       case "עיצוב פנים":
         return "אתם פועלים בעולם עיצוב הפנים – תחום שבו לקוחות מחפשים שילוב בין אסתטיקה, פונקציה ושקט נפשי בתהליך. לרוב מדובר בהחלטות יקרות שגורמות ללקוחות להסס, ולכן יש משמעות גדולה לדרך שבה אתם מסבירים, מלווים ומחזיקים עבורם את 'התמונה הגדולה'.";
       case "אדריכלות":
-        return "אתם פועלים כאדריכלים/יות – תחום שמחבר בין תכנון, רגולציה, עבודה מול גורמי ביצוע והובלת לקוחות דרך תהליך ארוך ומורכב. הלקוחות שלכם זקוקים לביטחון ולתכנון מדויק יותר מאשר ל'עיצוב יפה' בלבד.";
+        return "אתם פועלים כאדריכלים/ות – תחום שמחבר בין תכנון, רגולציה, עבודה מול גורמי ביצוע והובלת לקוחות דרך תהליך ארוך ומורכב. הלקוחות שלכם זקוקים לביטחון ולתכנון מדויק יותר מאשר ל'עיצוב יפה' בלבד.";
       case "עיצוב גרפי":
         return "אתם פועלים בעולמות עיצוב גרפי/מותג – תחום שבו עסקים מחפשים שפה ויזואלית ברורה ועקבית שיעזור להם להיתפס מקצועיים ויציבים. האתגר הוא להסביר את הערך שמעבר ל'לוגו יפה' ולהראות איך העבודה שלכם משפיעה על העסק בפועל.";
       case "ייעוץ ואימון":
@@ -624,37 +556,39 @@
     if (score <= 3) return "יש תחושת תסכול או תקיעות, אבל עדיין יש מוטיבציה לשינוי";
     if (score <= 6) return "יש פוטנציאל טוב, אבל משהו מרגיש לא יציב או לא ממומש עד הסוף";
     if (score <= 8) return "העסק במצב טוב, ועדיין יש מקום לייעל ולדייק כדי להרוויח יותר עם פחות מאמץ";
-    return "העסק מרגיש חזק יחסית – עכשיו הזמן לעבור מצורת 'כיבוי שריפות' להתנהלות אסטרטגית ויציבה";
+    return "העסק מרגיש חזק יחסית – עכשיו הזמן לעבור מכיבוי שריפות להתנהלות אסטרטגית ויציבה";
   }
 
   function getChallengeText(challenge, domain) {
-    switch (challenge) {
-      case "זרימת לקוחות":
-        return "נושא הזרימה הקבועה של לקוחות נראה כנקודה מרכזית. ברוב התחומים (ובמיוחד ב" + domain + ") זה בדרך כלל נובע מחוסר מיקוד במסר, חוסר נראות עקבית, או מסלול לקוח שלא ברור מספיק.";
-      case "סגירת עסקאות":
-        return "אתם מקבלים פניות, אבל הסגירה לא קורה בקצב או ברמת המחיר שהייתם רוצים. זה לרוב קשור לשילוב בין הדרך שבה אתם מציגים את הערך, לבין הביטחון שלכם בהצעת המחיר.";
-      case "תמחור":
-        return "התמחור מרגיש לא יציב – או שאתם גובים פחות ממה שהייתם רוצים, או שאין לכם ודאות אם המחיר 'נכון'. זה משפיע על הביטחון בשיחה עם לקוחות ועל הרווחיות בפועל.";
-      case "עומס וניהול":
-        return "עומס וחוסר סדר מרגישים כמו גורם שחוזר על עצמו. בעסקים עצמאיים זה בדרך כלל סימן לכך שהתהליך לא מוגדר מספיק, וכל לקוח 'נמצא במקום אחר' בתודעה וביומן.";
-      default:
-        return "האתגר המרכזי שהזכרתם הוא נקודה משמעותית בתמונה העסקית, והוא ישפיע על כל מהלך שתבחרו בחודשים הקרובים.";
+    if (challenge === "זרימת לקוחות") {
+      return \`זרימת לקוחות קבועה היא כרגע נקודת מפתח. בעולמות של \${domain} זה בדרך כלל נובע מכך שהמסר הראשוני לא חד מספיק, הנראות לא עקבית, או שאין מסלול ברור מהרגע שבו הלקוח פוגש אתכם לראשונה ועד לסגירה.\`;
     }
+    if (challenge === "סגירת עסקאות") {
+      return "יש פער בין כמות הפניות לבין כמות הסגירות בפועל. ברוב המקרים זה קשור לכך שאין תסריט שיחה קבוע, ולא מוגדרים מספיק טוב גם הערך וגם הצעד הבא ללקוח.";
+    }
+    if (challenge === "תמחור") {
+      return "התמחור מרגיש לא יציב – או שאתם גובים פחות ממה שהייתם רוצים, או שאין ודאות אם המחיר 'נכון'. זה משפיע על הביטחון שלכם בשיחה ועל היכולת להחזיק מחירים מול לקוחות.";
+    }
+    if (challenge === "עומס וניהול") {
+      return "עומס וחוסר סדר מעידים שהעסק תלוי יותר מדי בזיכרון ובאילתורים, ופחות בתהליכים ברורים. זה פוגע גם בחוויית הלקוח וגם בשקט הנפשי שלכם.";
+    }
+    return "האתגר המרכזי שציינתם הוא נקודה משמעותית בתמונה העסקית, והוא ישפיע על כל מהלך שתבחרו בחודשים הקרובים.";
   }
 
   function getGoalText(goal, domain) {
-    switch (goal) {
-      case "יותר לקוחות":
-        return "היעד שלכם הוא להגדיל את כמות הלקוחות – זה אומר שצריך לחדד את הנראות, המסרים והדרך שבה אנשים פוגשים אתכם לראשונה, במיוחד בעולמות של " + domain + ".";
-      case "לקוחות איכותיים יותר":
-        return "המטרה שלכם היא לעבוד עם לקוחות מדויקים יותר. זה דורש להגדיר טוב יותר מי 'לא' הלקוח שלכם, ולחזק את השפה שתמשוך את האנשים המתאימים.";
-      case "העלאת מחירים":
-        return "היעד הוא להעלות מחירים בביטחון – מה שמצריך ניסוח חדש של ערך, אריזת שירותים נכונה יותר ותהליך שיחה שמרגיש מובנה ולא מאולתר.";
-      case "סדר ויציבות":
-        return "מה שאתם מחפשים כרגע הוא סדר ויציבות – לבנות תהליך ברור שכל לקוח עובר, כדי שאתם תוכלו לעבוד בראש יותר שקט ולהבין מה צפוי בכל חודש.";
-      default:
-        return "היעד שהגדרתם מהווה מצפן טוב לתקופה הקרובה, וחשוב שכל פעולה תיבחן מולו.";
+    if (goal === "יותר לקוחות") {
+      return \`היעד שלכם הוא להגדיל את כמות הלקוחות. בעולמות של \${domain} זה דורש בדרך כלל חידוד של המסר הראשי, שיפור נקודת המפגש הראשונה עם הלקוח ותכנון בסיסי של מסלול הלקוח.\`;
     }
+    if (goal === "לקוחות איכותיים יותר") {
+      return "המטרה היא לעבוד עם לקוחות מתאימים יותר. זה אומר להגדיר מחדש מי 'כן' ומי 'לא' הלקוח שלכם, ולהכניס דוגמאות ותיאורים שמסננים מראש את מי שפחות מתאים.";
+    }
+    if (goal === "העלאת מחירים") {
+      return "היעד הוא להעלות מחירים בביטחון. זה מצריך אריזה מחדש של השירותים, ניסוח ברור יותר של ערך, ובניית דרך קבועה לדבר על מחיר מול לקוחות.";
+    }
+    if (goal === "סדר ויציבות") {
+      return "המטרה שלכם היא להכניס סדר ויציבות. זה אומר לבנות מסלול לקוח ברור, להגדיר שירותי ליבה ולייצר תהליכי עבודה שחוזרים על עצמם.";
+    }
+    return "היעד שהגדרתם מהווה מצפן טוב לתקופה הקרובה, וחשוב שכל פעולה תיבחן מולו.";
   }
 
   function getClientNeeds(d) {
@@ -673,14 +607,13 @@
       case "ייעוץ ואימון":
         base.push("מרחב שמרגיש גם מקצועי וגם אנושי – לא הרצאה ולא 'שיחה על קפה'.");
         base.push("תהליך שמאפשר לראות התקדמות אמיתית ולא רק שיחות טובות.");
-        base.push("מישהו ששם מראה, אבל גם נותן כלים ודוגמאות מעשיות.");
+        base.push("מישהו ששם מראה אבל גם נותן כלים ודוגמאות מעשיות.");
         break;
       default:
         base.push("תקשורת ברורה ופשוטה – לדעת איפה הם נמצאים בתהליך ומה הצעד הבא.");
         base.push("תחושה שהם בידיים של מישהו שחושב עליהם, ולא עוד ספק ברשימה.");
         base.push("שילוב בין מקצועיות לאנושיות, בלי להרגיש לחץ לקנות כל הזמן.");
     }
-    // תוספת לפי ערכים
     if (d.values === "יחס אישי") {
       base.push("להרגיש שמקשיבים להם באמת, גם בפרטים הקטנים וגם בקשיים שבדרך.");
     } else if (d.values === "תוצאות ברורות") {
@@ -707,7 +640,6 @@
     if (d.challenge === "עומס וניהול") {
       parts.push("לבנות 'מסלול לקוח' קבוע מכל פנייה – מה קורה מרגע הפנייה ועד סוף התהליך, עם צ'ק־ליסטים פשוטים.");
     }
-    // לפי מטרה
     if (d.goal === "יותר לקוחות") {
       parts.push("להוסיף נקודת נראות אחת קבועה (לדוגמה: פוסט שבועי/סטוריז קבועים), במקום לנסות להיות 'בכל מקום'.");
     }
@@ -753,7 +685,7 @@
       actions.push("לבחור שירות אחד ולהעלות בו מחיר בצורה מתונה, יחד עם ניסוח ברור יותר של מה כולל השירות.");
     }
     if (d.goal === "סדר ויציבות") {
-      actions.push("להגדיר יום/חצי יום קבוע בשבוע שבו אתם עובדים על העסק (ולא בתוך העומס) – ימי תכנון, מחשבה וסידור תהליכים.");
+      actions.push("להגדיר יום/חצי יום קבוע בשבוע שבו אתם עובדים על העסק (ולא רק בתוך העומס) – ימי תכנון, מחשבה וסידור תהליכים.");
     }
 
     if (!actions.length) {
@@ -765,10 +697,10 @@
 
   function getProfile(d) {
     const parts = [];
-    parts.push("אתם מנהלים עסק בתחום " + d.domain + ", שפונה בעיקר אל " + d.audience + ".");
-    parts.push("הניסיון שלכם מתואר כ: " + d.experience + ", והאופי הכללי של העסק הוא " + d.style + ".");
-    parts.push("מה שהכי חשוב לכם בעבודה עם לקוחות הוא " + d.values + ".");
-    if (d.unique) {
+    parts.push(\`אתם מנהלים עסק בתחום \${d.domain}, שפונה בעיקר אל \${d.audience}.\`);
+    parts.push(\`הניסיון שלכם מתואר כ: \${d.experience}, והאופי הכללי של העסק הוא \${d.style}.\`);
+    parts.push(\`מה שהכי חשוב לכם בעבודה עם לקוחות הוא \${d.values}.\`);
+    if (d.unique && d.unique.trim()) {
       parts.push("בנוסף, אתם מציינים כמאפיין בולט שלכם: " + d.unique.trim() + ".");
     }
     return parts.join(" ");
@@ -777,7 +709,6 @@
   function normalizeUnique(text) {
     const t = text.trim();
     if (!t) return "מאפיין אתכם כבעלי מקצוע";
-    // הסרה עדינה של תחיליות נפוצות
     return t.replace(/^ש(אני|אנחנו)\s+/,"").replace(/^אני\s+/,"").replace(/^ש\s+/,"");
   }
 
@@ -789,6 +720,184 @@
         <span style="color:#6b7280;">(${mood})</span>
       </div>
     `;
+  }
+
+  // חלק תמחור – טקסטים מוכנים להצעת מחיר
+  function getPricingSection(d) {
+    const domain = d.domain;
+    let serviceLabel = "השירות המרכזי שלי";
+    if (domain === "עיצוב פנים") serviceLabel = "ליווי מלא לעיצוב/שיפוץ";
+    else if (domain === "אדריכלות") serviceLabel = "תכנון וליווי אדריכלי";
+    else if (domain === "ייעוץ ואימון") serviceLabel = "תהליך ליווי אישי";
+    else if (domain === "קוסמטיקה ויופי") serviceLabel = "סדרת טיפולים ראשית";
+    else if (domain === "טיפול רגשי") serviceLabel = "תהליך טיפולי אישי";
+    else if (domain === "עסק דיגיטלי") serviceLabel = "חבילת שירות דיגיטלית";
+
+    return `
+      <p>המטרה כאן היא לא לתת "מספר קסם", אלא לבנות עבורכם דרך לדבר על מחירים בביטחון, עם חבילות ברורות וטקסט שאפשר להעתיק ללקוח.</p>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">הצעה לחבילות תמחור:</h4>
+      <ul>
+        <li><strong>חבילת בסיס – ${serviceLabel} (Basic)</strong><br/>
+          • תיאור: הגרסה המצומצמת של השירות, עם הפחות שעות/פגישות.<br/>
+          • מה לכלול: 2–3 רכיבים עיקריים בלבד.<br/>
+          • מחיר: ______ ₪ (מומלץ מחיר "נוח" לסגירה מהירה).
+        </li>
+        <li><strong>חבילת מלא/סטנדרט (Standard)</strong><br/>
+          • תיאור: מה שרוב הלקוחות צריכים באמת – זה השירות המרכזי.<br/>
+          • מה לכלול: כל השלבים שאתם יודעים שנותנים תוצאה טובה.<br/>
+          • מחיר: ______ ₪ (זה המחיר שתרצו שרוב האנשים יבחרו בו).
+        </li>
+        <li><strong>חבילת פרימיום (Premium)</strong><br/>
+          • תיאור: תוספת ליווי/תמיכה/זמינות/פגישות – ללקוחות שרוצים יותר שקט ושירות אישי.<br/>
+          • מחיר: ______ ₪ (גבוה יותר, אבל עם ערך ברור).
+        </li>
+      </ul>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">טקסט מוכן להצעת מחיר:</h4>
+      <div class="code-block">
+אני שמחה לשלוח לך כיוון לתהליך שאנחנו יכולים לעשות יחד.
+
+${serviceLabel} כולל בדרך כלל:
+• שלב 1 – ____________________________________________
+• שלב 2 – ____________________________________________
+• שלב 3 – ____________________________________________
+
+כדי לעשות את זה בצורה מסודרת ונעימה, אני מציעה לבחור מתוך 3 רמות אפשריות:
+
+1) חבילת בסיס – מתאימה למי שרוצה להתחיל בקטן
+   ➤ מה כולל: ________________________________________
+   ➤ מחיר: ______ ₪
+
+2) חבילת סטנדרט – הכי מתאימה לרוב הלקוחות
+   ➤ מה כולל: ________________________________________
+   ➤ מחיר: ______ ₪
+
+3) חבילת פרימיום – למי שרוצה ליווי צמוד ושקט מלא לאורך כל הדרך
+   ➤ מה כולל: ________________________________________
+   ➤ מחיר: ______ ₪
+
+אשמח שתכתוב/י לי איזו רמה מרגישה לך הכי נכונה בשלב זה,
+ואחזור אליך עם סגירת הפרטים ותיאום צעד ראשון.
+      </div>
+
+      <p style="font-size:11px; color:#6b7280; margin-top:4px;">
+        טיפ: עדיף להגדיר חבילות ברורות ולהחזיק בהן, מאשר לתת מחיר אחר לכל לקוח. זה משדר ביטחון ומקל על סגירת העסקה.
+      </p>
+    `;
+  }
+
+  // טקסטים מוכנים לוואטסאפ / אינסטגרם
+  function getReadyTexts(d) {
+    const domain = d.domain;
+    const style = d.style;
+    const baseGreeting = (style === "קליל ונגיש" || style === "אישי וחברי") ? "היי 😊" : "שלום ותודה שפניתם";
+
+    return `
+      <p>להלן טקסטים שאפשר פשוט להעתיק לוואטסאפ / אינסטגרם, לעדכן בשם ובמחיר – ולשלוח.</p>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">1) תשובה ללקוח חדש ששואל "כמה זה עולה?"</h4>
+      <div class="code-block">
+${baseGreeting},
+תודה רבה שכתבת לי 🙏
+
+אני עוסקת בתחום ${domain}, והמטרה שלי היא לתת לכם תהליך מסודר ושקט, ולא עוד צעד מלחיץ ברשימת המשימות.
+
+כדי לתת לך תשובה מדויקת ולא "מספר מהאוויר",
+תוכל/י לכתוב לי בקצרה:
+• מה אתם רוצים לשנות / לשפר?
+• איפה אתם נמצאים היום בתהליך?
+• האם יש טווח תקציב פחות או יותר?
+
+אחרי זה אוכל לחזור אליך עם כיוון מקצועי וטווח מחיר שמתאים בדיוק למצב שלך.
+      </div>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">2) הודעת הצעת מחיר קצרה ומכבדת</h4>
+      <div class="code-block">
+${baseGreeting},
+עשיתי סדר בכל מה שכתבת לי, והכנתי עבורך תהליך מסודר שיכול להתאים למה שאתם מחפשים.
+
+כדי לשמור על זה פשוט, אני מציעה:
+
+➤ תהליך: ________________________________
+   (למשל: ליווי מלא, פגישת עומק + תכנית, תהליך של X שבועות וכו')
+
+➤ מה כולל בפועל:
+   • ____________________________________
+   • ____________________________________
+   • ____________________________________
+
+➤ המחיר לתהליך המלא: ______ ₪
+   (אפשר לחלק ל־__ תשלומים ללא ריבית)
+
+אם זה מרגיש לך נכון, אוכל לשלוח לך סיכום כתוב + הצעד הבא כדי לשריין מקום ביומן.
+      </div>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">3) מענה ל"יקר לי"</h4>
+      <div class="code-block">
+מבינה לגמרי אותך, וזה לגמרי בסדר לשאול ❤️
+
+אני בונה את המחירים שלי מתוך מחשבה על:
+• הזמן והאנרגיה שאני משקיעה בכל תהליך,
+• הניסיון והידע שאני מביאה,
+• ובעיקר – מה יוצא לך מהתהליך הזה בפועל.
+
+המטרה שלי היא לחסוך ממך טעויות, בלבול וזמן יקר, כדי שתגיע/י לתוצאה בצורה הרבה יותר רגועה ובטוחה.
+
+אם תרצה, אפשר לחשוב יחד על גרסה מצומצמת יותר של התהליך
+או על פריסת תשלומים שתהיה לכם יותר נוחה,
+מבלי לוותר על התוצאה העיקרית שחשובה לך.
+      </div>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">4) פולו־אפ ללקוח שלא ענה</h4>
+      <div class="code-block">
+${baseGreeting} 🌿
+רק רציתי לוודא שקיבלת את ההודעה האחרונה ששלחתי,
+ושאין שאלה שנשארה פתוחה 😊
+
+אין לחץ לקבל החלטה,
+אבל אם תרצה – אשמח לדעת אם זה עדיין רלוונטי עבורך,
+או שתרצה שנדבר על כיוון/תקציב מעט שונים.
+
+בכל מקרה אני כאן בשבילך לכל שאלה.
+      </div>
+
+      <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">5) בקשת המלצה אחרי סיום תהליך</h4>
+      <div class="code-block">
+${baseGreeting},
+שמחה מאוד שיצא לנו לעבוד יחד 💛
+
+אם הרגשת שהתהליך תרם לך ושווה את ההשקעה,
+אשמח מאוד אם תוכל/י לכתוב כמה מילים חופשיות על החוויה – 
+מה היה חשוב לך במיוחד, ומה השתנה אצלך.
+
+המלצות כאלה עוזרות לי להמשיך לעבוד עם אנשים שדומים לך 🙏
+אפשר פשוט להשיב להודעה הזו בכמה שורות, כל מה שעולה לך לראש.
+      </div>
+    `;
+  }
+
+  function getPlan7Days(d) {
+    const arr = [];
+    arr.push("יום 1–2: לכתוב לעצמכם, בנפרד מהדוח הזה, משפט אחד שמסכם מי אתם, מה אתם מציעים ולמי – ולהציב אותו בראש דף/וואטסאפ/רשת.");
+    arr.push("יום 3: לבחור שירות דגל אחד בלבד ולהחליט עליו כ'שירות המרכזי' שלכם לשלושת החודשים הקרובים.");
+    arr.push("יום 4: לבנות טיוטה ראשונית של 2–3 חבילות תמחור לשירות הזה (בסיס, סטנדרט, פרימיום) ולסמן ליד כל אחת מה כולל.");
+    arr.push("יום 5: לבחור טקסט אחד מ'הטקסטים המוכנים' בדוח ולערוך אותו כך שיישמע כמוכם – ואז לשמור אותו כהודעת טיוטה קבועה.");
+    arr.push("יום 6: לסמן ביומן שעה אחת קבועה בשבוע הקרוב להמשך עבודה על העסק (ולא רק בתוך עומס הלקוחות).");
+    arr.push("יום 7: להסתכל שוב על הדוח הזה, לבחור סעיף אחד קטן שנראה לכם הכי פשוט ליישום – ולהכניס אותו כמשימה עם תאריך.");
+    return arr;
+  }
+
+  function getPlan30Days(d) {
+    const arr = [];
+    arr.push("שיווק: לבחור ערוץ אחד מרכזי (למשל אינסטגרם/פייסבוק/רשימת תפוצה) ולהתחייב ל־4 פרסומים בחודש – אחד בכל שבוע.");
+    arr.push("לקוחות: לייצר תבנית אחידה לפתיחת שיחה עם לקוח חדש, כולל 2–3 שאלות שתמיד תשאלו כדי להבין אם זה מתאים.");
+    arr.push("תמחור: לבדוק על 2–3 לקוחות חדשים תמחור מעט גבוה יותר, יחד עם ניסוח ברור יותר של הערך והתהליך.");
+    arr.push("ניהול זמן: להגדיר לעצמכם חצי יום קבוע בחודש שבו אתם לא מקבלים לקוחות, אלא עובדים רק על סדר, מסמכים ותהליכים.");
+    arr.push("מיתוג: לעדכן את התיאור הקצר שלכם בכל מקום – כך שישקף את מה שכתבתם כאן בדוח (מי אתם, למי אתם עוזרים, ואיך).");
+    arr.push("חוויית לקוח: לבחור רגע אחד בתהליך שבו אפשר להפתיע את הלקוח במחווה קטנה (סיכום כתוב, מסר אישי, טיפ, PDF קצר).");
+    arr.push("למידה: לבחור נושא אחד שאתם רוצים להתחזק בו (שיווק, תמחור, ניהול, מיתוג) ולהקדיש לו 2–3 שיעורים/תכנים בחודש.");
+    return arr;
   }
 </script>
 
