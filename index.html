@@ -216,11 +216,11 @@
       color: #111827;
       line-height: 1.5;
       border-top: 1px solid #e5e7eb;
-      display: none;
+      display: block; /* פתוח כברירת מחדל */
     }
 
-    .section-body.open {
-      display: block;
+    .section-body.collapsed {
+      display: none;
     }
 
     .section-body ul {
@@ -318,15 +318,16 @@
   <section class="hero">
     <h1 class="hero-title">דוח עסקי מותאם אישית</h1>
     <p class="hero-sub" id="heroSub">
-      לפי 9 השאלות שמילאתם, HEDVA.AI הרכיבה עבורכם דוח שמסכם את מצב העסק, החוזקות, האתגרים,
-      ההזדמנויות, התמחור המומלץ והמסרים המוכנים לשימוש.
+      לפי 9 השאלות שמילאתם, HEDVA.AI הרכיבה עבורכם דוח שמסכם את מצב העסק, החוזקות,
+      האתגרים, ההזדמנויות, התמחור המומלץ והמסרים המוכנים לשימוש.  
+      גללו מטה – כל חלק בדוח פתוח כברירת מחדל וניתן לקפל/לפתוח לפי הצורך.
     </p>
   </section>
 
   <section class="card">
     <div class="toolbar">
       <div>
-        דוח זה מבוסס על מידע שמסרתם לפני רגע. אין כאן תיאוריה – רק תובנות וצעדים מעשיים.
+        הדוח מבוסס על המידע שמסרתם לפני רגע – אין כאן תיאוריה, רק תובנות וצעדים מעשיים.
       </div>
       <div class="toolbar-buttons">
         <button class="btn-ghost" onclick="goBackToForm()">← חזרה למאבחן</button>
@@ -336,7 +337,7 @@
     </div>
 
     <div class="sections" id="sectionsContainer">
-      <!-- יוזר לואוד ייצור כאן את החלקים -->
+      <!-- כאן נבנה הדוח -->
     </div>
   </section>
 
@@ -348,7 +349,7 @@
 </div>
 
 <script>
-  // קריאת הנתונים מהדפדפן
+  // קריאת הנתונים מהמאבחן
   let data = null;
   try {
     const raw = localStorage.getItem("hedvaAiDiagnostic");
@@ -360,42 +361,42 @@
   const sectionsContainer = document.getElementById("sectionsContainer");
 
   if (!data) {
-    sectionsContainer.innerHTML = \`
-      <div style="font-size:12px; color:#6b7280;">
-        לא נמצאו נתונים למילוי הדוח.<br/>
-        חזרו למאבחן, מלאו את השאלות, ולאחר מכן תגיעו שוב לדף זה.
+    sectionsContainer.innerHTML = `
+      <div style="font-size:12px; color:#6b7280; text-align:center; padding:20px 8px;">
+        הדוח עדיין ריק כי לא מולאו פרטי המאבחן.<br/><br/>
+        לחצו על הכפתור כדי לחזור לשאלון, למלא את 9 השאלות, ואז להפיק דוח מלא:
+        <br/><br/>
+        <button onclick="goBackToForm()" class="btn-main" style="font-size:12px;">
+          ← חזרה למאבחן ויצירת דוח
+        </button>
       </div>
-    \`;
+    `;
   } else {
     buildFullReport(data);
   }
 
-  // ניווט חזרה
   function goBackToForm() {
     window.location.href = "index.html";
   }
 
-  // הדפסה / שמירה כ-PDF
   function printAsPdf() {
     window.print();
   }
 
-  // שליחה במייל – פותח מייל עם טקסט
   function sendByEmail() {
     const text = extractPlainText();
     const subject = encodeURIComponent("HEDVA.AI – דוח עסקי אוטומטי");
     const body = encodeURIComponent(text);
-    window.location.href = \`mailto:?subject=\${subject}&body=\${body}\`;
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
   }
 
   function extractPlainText() {
     const clone = sectionsContainer.cloneNode(true);
-    // להסיר כפתורים
     clone.querySelectorAll("button").forEach(b => b.remove());
     return clone.textContent.trim();
   }
 
-  // בניית הדוח המלא – חלקים נפתחים
+  /* ---------- בניית הדוח המלא – כמו קודם, אבל החלקים פתוחים כברירת מחדל ---------- */
 
   function buildFullReport(d) {
     const domainSummary = getDomainSummary(d.domain);
@@ -490,38 +491,38 @@
       }
     ];
 
-    sectionsContainer.innerHTML = sectionsHtml.map((s, index) => `
+    sectionsContainer.innerHTML = sectionsHtml.map(s => `
       <div class="section">
-        <button class="section-header ${index === 0 ? "open" : ""}" type="button">
+        <button class="section-header open" type="button">
           <span class="title">
             <span class="icon">${s.icon}</span>
             <span>${s.title}</span>
           </span>
           <span class="chevron">⌃</span>
         </button>
-        <div class="section-body ${index === 0 ? "open" : ""}">
+        <div class="section-body">
           ${s.body}
         </div>
       </div>
     `).join("");
 
-    // הוספת לוגיקה לפתיחה/סגירה
+    // לוגיקה לקיפול/פתיחה (אבל הכל מתחיל פתוח)
     sectionsContainer.querySelectorAll(".section-header").forEach(header => {
       header.addEventListener("click", () => {
         const body = header.nextElementSibling;
-        const isOpen = body.classList.contains("open");
-        if (isOpen) {
-          header.classList.remove("open");
-          body.classList.remove("open");
-        } else {
+        const isCollapsed = body.classList.contains("collapsed");
+        if (isCollapsed) {
+          body.classList.remove("collapsed");
           header.classList.add("open");
-          body.classList.add("open");
+        } else {
+          body.classList.add("collapsed");
+          header.classList.remove("open");
         }
       });
     });
   }
 
-  // פונקציות תוכן – אותו רעיון כמו קודם, אבל עם עוד שכבות
+  /* ---------- פונקציות התוכן (כמו קודם) ---------- */
 
   function getDomainSummary(domain) {
     switch (domain) {
@@ -561,7 +562,7 @@
 
   function getChallengeText(challenge, domain) {
     if (challenge === "זרימת לקוחות") {
-      return \`זרימת לקוחות קבועה היא כרגע נקודת מפתח. בעולמות של \${domain} זה בדרך כלל נובע מכך שהמסר הראשוני לא חד מספיק, הנראות לא עקבית, או שאין מסלול ברור מהרגע שבו הלקוח פוגש אתכם לראשונה ועד לסגירה.\`;
+      return `זרימת לקוחות קבועה היא כרגע נקודת מפתח. בעולמות של ${domain} זה בדרך כלל נובע מכך שהמסר הראשוני לא חד מספיק, הנראות לא עקבית, או שאין מסלול ברור מהרגע שבו הלקוח פוגש אתכם לראשונה ועד לסגירה.`;
     }
     if (challenge === "סגירת עסקאות") {
       return "יש פער בין כמות הפניות לבין כמות הסגירות בפועל. ברוב המקרים זה קשור לכך שאין תסריט שיחה קבוע, ולא מוגדרים מספיק טוב גם הערך וגם הצעד הבא ללקוח.";
@@ -577,7 +578,7 @@
 
   function getGoalText(goal, domain) {
     if (goal === "יותר לקוחות") {
-      return \`היעד שלכם הוא להגדיל את כמות הלקוחות. בעולמות של \${domain} זה דורש בדרך כלל חידוד של המסר הראשי, שיפור נקודת המפגש הראשונה עם הלקוח ותכנון בסיסי של מסלול הלקוח.\`;
+      return `היעד שלכם הוא להגדיל את כמות הלקוחות. בעולמות של ${domain} זה דורש בדרך כלל חידוד של המסר הראשי, שיפור נקודת המפגש הראשונה עם הלקוח ותכנון בסיסי של מסלול הלקוח.`;
     }
     if (goal === "לקוחות איכותיים יותר") {
       return "המטרה היא לעבוד עם לקוחות מתאימים יותר. זה אומר להגדיר מחדש מי 'כן' ומי 'לא' הלקוח שלכם, ולהכניס דוגמאות ותיאורים שמסננים מראש את מי שפחות מתאים.";
@@ -697,9 +698,9 @@
 
   function getProfile(d) {
     const parts = [];
-    parts.push(\`אתם מנהלים עסק בתחום \${d.domain}, שפונה בעיקר אל \${d.audience}.\`);
-    parts.push(\`הניסיון שלכם מתואר כ: \${d.experience}, והאופי הכללי של העסק הוא \${d.style}.\`);
-    parts.push(\`מה שהכי חשוב לכם בעבודה עם לקוחות הוא \${d.values}.\`);
+    parts.push(`אתם מנהלים עסק בתחום ${d.domain}, שפונה בעיקר אל ${d.audience}.`);
+    parts.push(`הניסיון שלכם מתואר כ: ${d.experience}, והאופי הכללי של העסק הוא ${d.style}.`);
+    parts.push(`מה שהכי חשוב לכם בעבודה עם לקוחות הוא ${d.values}.`);
     if (d.unique && d.unique.trim()) {
       parts.push("בנוסף, אתם מציינים כמאפיין בולט שלכם: " + d.unique.trim() + ".");
     }
@@ -722,7 +723,6 @@
     `;
   }
 
-  // חלק תמחור – טקסטים מוכנים להצעת מחיר
   function getPricingSection(d) {
     const domain = d.domain;
     let serviceLabel = "השירות המרכזי שלי";
@@ -739,7 +739,7 @@
       <h4 style="font-size:12px; font-weight:600; margin:6px 0 2px;">הצעה לחבילות תמחור:</h4>
       <ul>
         <li><strong>חבילת בסיס – ${serviceLabel} (Basic)</strong><br/>
-          • תיאור: הגרסה המצומצמת של השירות, עם הפחות שעות/פגישות.<br/>
+          • תיאור: הגרסה המצומצמת של השירות, עם פחות שעות/פגישות.<br/>
           • מה לכלול: 2–3 רכיבים עיקריים בלבד.<br/>
           • מחיר: ______ ₪ (מומלץ מחיר "נוח" לסגירה מהירה).
         </li>
@@ -780,14 +780,9 @@ ${serviceLabel} כולל בדרך כלל:
 אשמח שתכתוב/י לי איזו רמה מרגישה לך הכי נכונה בשלב זה,
 ואחזור אליך עם סגירת הפרטים ותיאום צעד ראשון.
       </div>
-
-      <p style="font-size:11px; color:#6b7280; margin-top:4px;">
-        טיפ: עדיף להגדיר חבילות ברורות ולהחזיק בהן, מאשר לתת מחיר אחר לכל לקוח. זה משדר ביטחון ומקל על סגירת העסקה.
-      </p>
     `;
   }
 
-  // טקסטים מוכנים לוואטסאפ / אינסטגרם
   function getReadyTexts(d) {
     const domain = d.domain;
     const style = d.style;
